@@ -1,0 +1,67 @@
+.Button {
+  align-self: center;
+  min-width: 120px;
+  border: 1px solid #007AFF;
+  background: #007AFF;
+  color: #FFF;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-size: 1.1em;
+  margin: 10px;
+}
+
+.Select,
+.Input,
+.Textarea {
+  border: 1px solid #ddd;
+  display: block;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: left;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.Select {
+  height: 44px;
+}
+
+.Input::placeholder,
+.Textarea::placeholder {
+  color: #ccc;
+}
+
+.Textarea {
+  resize: vertical;
+}
+
+.Required {
+  color: #CA1551;
+  font-family: Arial;
+  font-weight: bold;
+}
+
+.ButtonLikeLink {
+  display: block;
+  min-width: 120px;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  margin: 10px;
+}
+
+.ButtonBox button:first-child {
+  border: 1px solid #007AFF;
+  background: #FFF;
+  color: #007AFF;
+}
+
+@media screen and (min-width: 330px) {
+  .ButtonBox {
+    display: flex;
+    justify-content: center;
+  }
+}

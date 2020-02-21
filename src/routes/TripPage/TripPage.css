@@ -1,0 +1,20 @@
+.TripPage__plan_list {
+  width: 90vw;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 5px;
+}
+
+.TripPage__date {
+  margin: 5px 0 0;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+.TripPage__no-plan {
+  display: block;
+  color: #AEAEB2;
+  margin: 40px auto;
+}

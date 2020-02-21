@@ -1,0 +1,27 @@
+.PlanItem {
+  border: 0.5px solid #D1D1D6;
+  border-radius: 8px;
+  margin: 5px 0;
+  padding: 5px 10px;
+}
+
+.PlanItem__details {
+  display: flex;
+  align-items: center;
+}
+
+.PlanItem__icon {
+  background-color: #007AFF;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.PlanItem__sub-type {
+  font-size: 0.9em;
+  font-weight: 300;
+}

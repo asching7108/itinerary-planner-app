@@ -1,12 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { TripListProvider } from './context/TripListContext';
+import { TripProvider } from './context/TripContext';
+import App from './components/App/App';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {
+	faEdit,
+	faTrashAlt,
+	faGlobeAsia,
+	faPlane,
+	faBed,
+	faCar,
+	faUtensils,
+	faWalking,
+	faMapMarkerAlt,
+	faPlus,
+	faMinus,
+} from '@fortawesome/free-solid-svg-icons'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+library.add(
+	faEdit,
+	faTrashAlt,
+	faGlobeAsia, // icon
+	faPlane, // flight
+	faBed, // lodging
+	faCar, // car rental
+	faUtensils, // restaurant
+	faWalking, // activity
+	faMapMarkerAlt,
+	faPlus,
+	faMinus,
+)
+
+ReactDOM.render(
+	<BrowserRouter>
+		<TripListProvider>
+			<TripProvider>
+				<App />
+			</TripProvider>
+		</TripListProvider>
+	</BrowserRouter>, 
+	document.getElementById('root')
+);
