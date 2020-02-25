@@ -8,18 +8,12 @@
   align-items: flex-start;
 }
 
-.TripForm__dest-city input {
+.TripForm__dest-city .Autocomplete {
   width: 90%;
-}
-
-.TripForm__dest-city button {
-  position: relative;
-  top: -4px;
 }
 
 .TripForm__plus-button,
 .TripForm__minus-button {
-  align-self: center;
   width: 30px;
   height: 30px;
   background-color: #007AFF;
@@ -32,4 +26,8 @@
 
 .TripForm__minus-button {
   background-color: #FF2D55;
+}
+
+.TripForm__plus-button-row {
+  align-self: center;
 }

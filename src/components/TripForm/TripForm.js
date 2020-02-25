@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Autocomplete from '../Autocomplete/Autocomplete';
 import { FormattedDate, Button, Input, Textarea, ButtonBox } from '../Utils/Utils';
 import './TripForm.css';
 
@@ -19,8 +20,9 @@ export default class TripForm extends Component {
       end_date: '',
       description: '',
       destCityCount: 1,
-      error: null
-    }
+      error: null,
+      test: ''
+    };
   }
 
   componentDidMount() {
@@ -36,15 +38,15 @@ export default class TripForm extends Component {
         description: trip.description,
         destCityCount: trip.dest_city.length,
         error: null
-      })
+      });
     }
   }
   
-  InputChanged(field, content) {
+  inputChanged(field, content) {
     this.setState({ [field]: content });
   }
 
-  destCityChanged(content, serialStr) {
+  destCityChanged = (field, content, serialStr) => {
     const newDestCity = this.state.dest_city;
     const serial = serialStr.charAt(serialStr.length - 1) - 1;
     newDestCity[serial] = content;
@@ -55,11 +57,11 @@ export default class TripForm extends Component {
     const { destCityCount, dest_city } = this.state;
     change > 0
       ? dest_city.push('')
-      : dest_city.pop()
+      : dest_city.pop();
     this.setState({
       dest_city,
       destCityCount: destCityCount + change
-    })
+    });
   }
 
   handleAddSubmit = e => {
@@ -105,13 +107,12 @@ export default class TripForm extends Component {
     if (destCityCount === 1) {
       elements.push(
         <div key={1} className='TripForm__dest-city'>
-          <Input
-            name='dest-city'
-            type='text'
+          <Autocomplete 
             id={`TripForm__dest-city-1`}
-            required
+            types={['(cities)']} 
             value={dest_city[0]}
-            onChange={e => this.destCityChanged(e.target.value, e.target.id)}
+            field={'dest_city'}
+            onSelect={this.destCityChanged}
           />
           <button 
             type='button' 
@@ -128,13 +129,11 @@ export default class TripForm extends Component {
       for (let i = 0; i < destCityCount - 1; i++) {
         elements.push(
           <div key={i + 1} className='TripForm__dest-city'>
-            <Input
-              name='dest-city'
-              type='text'
+            <Autocomplete 
               id={`TripForm__dest-city-${i + 1}`}
-              required
+              types={['(cities)']} 
               value={dest_city[i]}
-              onChange={e => this.destCityChanged(e.target.value, e.target.id)}
+              onSelect={this.destCityChanged}
             />
           </div>
         );
@@ -142,13 +141,11 @@ export default class TripForm extends Component {
 
       elements.push(
         <div key={destCityCount} className='TripForm__dest-city'>
-          <Input
-            name='dest-city'
-            type='text'
+          <Autocomplete 
             id={`TripForm__dest-city-${destCityCount}`}
-            required
+            types={['(cities)']} 
             value={dest_city[destCityCount - 1]}
-            onChange={e => this.destCityChanged(e.target.value, e.target.id)}
+            onSelect={this.destCityChanged}
           />
           <button 
             type='button' 
@@ -163,7 +160,7 @@ export default class TripForm extends Component {
       elements.push(
         <button key={destCityCount + 1}
           type='button' 
-          className='TripForm__plus-button'
+          className='TripForm__plus-button TripForm__plus-button-row'
           onClick={e => this.destCityCountChanged(1)}
         >
           <FontAwesomeIcon icon='plus' className='white' />
@@ -189,6 +186,16 @@ export default class TripForm extends Component {
           {error && <p className='red'>{error}</p>}
         </div>
         <div>
+          <label htmlFor='TripForm__name2'>
+            Test autocomplete
+          </label>
+          <Autocomplete 
+            types={['(cities)']} 
+            value={this.state.test}
+            onSelect={this.inputChanged}
+          />
+        </div>
+        <div>
           <label htmlFor='TripForm__name'>
             Trip name
           </label>
@@ -198,7 +205,7 @@ export default class TripForm extends Component {
             id='TripForm__name'
             required
             value={this.state.name}
-            onChange={e => this.InputChanged('name', e.target.value)}
+            onChange={e => this.inputChanged('name', e.target.value)}
           />
         </div>
         <div className='TripForm__dest-cities'>
@@ -217,7 +224,7 @@ export default class TripForm extends Component {
             id='TripForm__start-date'
             required
             value={this.state.start_date}
-            onChange={e => this.InputChanged('start_date', e.target.value)}
+            onChange={e => this.inputChanged('start_date', e.target.value)}
           />
         </div>
         <div>
@@ -230,7 +237,7 @@ export default class TripForm extends Component {
             id='TripForm__end-date'
             required
             value={this.state.end_date}
-            onChange={e => this.InputChanged('end_date', e.target.value)}
+            onChange={e => this.inputChanged('end_date', e.target.value)}
           />
         </div>
         <div>
@@ -242,7 +249,7 @@ export default class TripForm extends Component {
             type='textarea'
             id='TripForm__description'
             value={this.state.description}
-            onChange={e => this.InputChanged('description', e.target.value)}
+            onChange={e => this.inputChanged('description', e.target.value)}
           />
         </div>
         <ButtonBox>

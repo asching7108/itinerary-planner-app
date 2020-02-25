@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TripContext from '../../context/TripContext';
 import TripItem from '../../components/TripItem/TripItem';
 import PlanItem from '../../components/PlanItem/PlanItem';
 import { FormattedDate, ButtonBox, ButtonLikeLink } from '../../components/Utils/Utils';
 import { test_trips, test_trip_plans } from '../../data';
 import './TripPage.css';
+import { Link } from 'react-router-dom';
 
 export default class TripPage extends Component {
 	static defaultProps = {
@@ -76,6 +78,14 @@ export default class TripPage extends Component {
 		const { trip } = this.context;
     return (
 			<section className='TripPage'>
+				<div className='TripPage__close-icon-box'>
+					<div 
+						className='TripPage__close-icon'
+						onClick={e => this.props.history.goBack()}
+					>
+						<FontAwesomeIcon className='grey' icon='times' />
+					</div>
+				</div>
 				<TripItem
 					trip={trip}
 					location={this.props.location}

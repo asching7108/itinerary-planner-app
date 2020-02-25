@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import { ButtonLikeLink } from '../../components/Utils/Utils';
 import './LoginPage.css';
@@ -17,6 +16,10 @@ export default class LoginPage extends Component {
 		const dest = (location.state || {}).from || '/';
 		history.push(dest);
 	}
+
+	handleClickOnCancel = () => {
+    this.props.history.goBack();
+	}
 	
   render() {
     return (
@@ -24,6 +27,7 @@ export default class LoginPage extends Component {
 				<h2>Login</h2>
 				<LoginForm
 					onLoginSuccess={this.handleLoginSuccess}
+					onClickOnCancel={this.handleClickOnCancel}
 				/>
 				<p className='LoginPage__text'>Doesn't have an account?</p>
 				<ButtonLikeLink to='/signup' className='LoginPage__sign-up'>

@@ -1,0 +1,19 @@
+.Autocomplete {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.Autocomplete__dropdown {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 100%;
+  border-radius: 4px;
+  position: relative;
+  top: -10px;
+}
+
+.Autocomplete__suggestion {
+  font-size: 1.1em;
+  line-height: 1.5em;
+}

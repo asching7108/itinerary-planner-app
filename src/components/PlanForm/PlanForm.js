@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Autocomplete from '../Autocomplete/Autocomplete';
 import { FormattedDate, Button, Select, Input, Textarea, ButtonBox } from '../Utils/Utils';
 import './PlanForm.css';
 
@@ -54,7 +54,7 @@ export default class PlanForm extends Component {
     }
   }
 
-  InputChanged(field, content) {
+  inputChanged = (field, content) => {
     this.setState({ [field]: content });
   }
 
@@ -158,7 +158,7 @@ export default class PlanForm extends Component {
             name='type'
             id='PlanForm__type'
             required
-            onChange={e => this.InputChanged('type', e.target.value)}
+            onChange={e => this.inputChanged('type', e.target.value)}
           >
             {this.renderTypeOptions()}
           </Select>
@@ -167,13 +167,11 @@ export default class PlanForm extends Component {
           <label htmlFor='PlanForm__name'>
           {this.renderNameText()}
           </label>
-          <Input
-            name='name'
-            type='text'
+          <Autocomplete
             id='PlanForm__name'
-            required
             value={this.state.name}
-            onChange={e => this.InputChanged('name', e.target.value)}
+            field={'name'}
+            onSelect={this.inputChanged}
           />
         </div>
         <div className='PlanForm__row'>
@@ -187,7 +185,7 @@ export default class PlanForm extends Component {
               id='PlanForm__start-date'
               required
               value={this.state.start_date}
-              onChange={e => this.InputChanged('start_date', e.target.value)}
+              onChange={e => this.inputChanged('start_date', e.target.value)}
             />
           </div>
           <div>
@@ -200,7 +198,7 @@ export default class PlanForm extends Component {
               id='PlanForm__start-time'
               required
               value={this.state.start_time}
-              onChange={e => this.InputChanged('start_time', e.target.value)}
+              onChange={e => this.inputChanged('start_time', e.target.value)}
             />
           </div>
         </div>
@@ -215,7 +213,7 @@ export default class PlanForm extends Component {
               id='PlanForm__end-date'
               required
               value={this.state.end_date}
-              onChange={e => this.InputChanged('end_date', e.target.value)}
+              onChange={e => this.inputChanged('end_date', e.target.value)}
             />
           </div>
           <div>
@@ -228,7 +226,7 @@ export default class PlanForm extends Component {
               id='PlanForm__end-time'
               required
               value={this.state.end_time}
-              onChange={e => this.InputChanged('end_time', e.target.value)}
+              onChange={e => this.inputChanged('end_time', e.target.value)}
             />
           </div>
         </div>
@@ -241,7 +239,7 @@ export default class PlanForm extends Component {
             type='textarea'
             id='PlanForm__description'
             value={this.state.description}
-            onChange={e => this.InputChanged('description', e.target.value)}
+            onChange={e => this.inputChanged('description', e.target.value)}
           />
         </div>
         <ButtonBox>

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Input, Required } from '../Utils/Utils';
+import { Button, Input, Required, ButtonBox } from '../Utils/Utils';
 
 export default class RegisterForm extends Component {
   static defaultProps = {
-    onRegisterSuccess: () => {}
+    onRegisterSuccess: () => {},
+    onClickOnCancel: () => {}
   }
 
   state = { error: null }
@@ -75,9 +76,14 @@ export default class RegisterForm extends Component {
             required
           />
         </div>
-        <Button type='submit'>
-          Create acount
-        </Button>
+        <ButtonBox>
+          <Button type='button' onClick={this.props.onClickOnCancel}>
+            Cancel
+          </Button>
+          <Button type='submit'>
+            Create acount
+          </Button>
+        </ButtonBox>
       </form>
     );
   }

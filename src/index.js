@@ -10,6 +10,7 @@ import './index.css';
 import {
 	faEdit,
 	faTrashAlt,
+	faTimes,
 	faGlobeAsia,
 	faPlane,
 	faBed,
@@ -24,6 +25,7 @@ import {
 library.add(
 	faEdit,
 	faTrashAlt,
+	faTimes,
 	faGlobeAsia, // icon
 	faPlane, // flight
 	faBed, // lodging

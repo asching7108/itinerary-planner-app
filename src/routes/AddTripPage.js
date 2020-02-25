@@ -16,8 +16,7 @@ export default class AddTripPage extends Component {
 	}
 
 	handleClickOnCancel = () => {
-		const { history } = this.props;
-    history.goBack();
+    this.props.history.goBack();
 	}
 	
 	render() {

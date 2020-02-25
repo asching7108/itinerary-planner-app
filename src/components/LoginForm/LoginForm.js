@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Input } from '../Utils/Utils';
+import { Button, Input, ButtonBox } from '../Utils/Utils';
 import './LoginForm.css';
 
 export default class LoginForm extends Component {
   static defaultProps = {
-    onLoginSuccess: () => {}
+    onLoginSuccess: () => {},
+    onClickOnCancel: () => {}
   }
 
   state = { error: null }
@@ -51,9 +52,14 @@ export default class LoginForm extends Component {
             required
           />
         </div>
-        <Button type='submit'>
-          Sign in
-        </Button>
+        <ButtonBox>
+          <Button type='button' onClick={this.props.onClickOnCancel}>
+            Cancel
+          </Button>
+          <Button type='submit'>
+            Sign in
+          </Button>
+        </ButtonBox>
       </form>
     );
   }
