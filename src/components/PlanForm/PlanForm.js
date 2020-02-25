@@ -31,7 +31,7 @@ export default class PlanForm extends Component {
       end_time: '',
       description: '',
       error: null
-    }
+    };
   }
   
   componentDidMount() {
@@ -50,7 +50,12 @@ export default class PlanForm extends Component {
         end_time: FormattedDate(plan.end_date, 'HH:mm'),
         description: plan.description,
         error: null
-      })
+      });
+    }
+    else {
+      this.setState({
+        type: 'Flight'
+      });
     }
   }
 
@@ -97,9 +102,10 @@ export default class PlanForm extends Component {
   }
 
   renderTypeOptions() {
+    const { type } = this.state;
     const elements = [];
     types.forEach(t => {
-      if (t === this.state.type) {
+      if (t === type) {
         elements.push(<option key={t} value={t} selected>{t}</option>);
       }
       else {
@@ -107,6 +113,30 @@ export default class PlanForm extends Component {
       }
     })
     return elements;
+  }
+
+  renderNameInput() {
+    const { type } = this.state;
+    if (type === 'Flight') {
+      return (
+        <Input
+          name='name'
+          type='text'
+          id='PlanForm__name'
+          required
+          value={this.state.name}
+          onChange={e => this.inputChanged('name', e.target.value)}
+        />
+      );
+    }
+    return (
+      <Autocomplete
+        id='PlanForm__name'
+        value={this.state.name}
+        field={'name'}
+        onSelect={this.inputChanged}
+      />
+    );
   }
 
   renderNameText() {
@@ -167,12 +197,7 @@ export default class PlanForm extends Component {
           <label htmlFor='PlanForm__name'>
           {this.renderNameText()}
           </label>
-          <Autocomplete
-            id='PlanForm__name'
-            value={this.state.name}
-            field={'name'}
-            onSelect={this.inputChanged}
-          />
+          {this.renderNameInput()}
         </div>
         <div className='PlanForm__row'>
           <div>

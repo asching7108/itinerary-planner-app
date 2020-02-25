@@ -11,9 +11,19 @@ import AddPlanPage from '../../routes/AddPlanPage';
 import EditPlanPage from '../../routes/EditPlanPage';
 import PlanPage from '../../routes/PlanPage';
 import NotFoundPage from '../../routes/NotFoundPage';
+import config from '../../config';
 import './App.css';
 
 class App extends Component {
+	componentDidMount() {
+		const script = document.createElement('script');
+		script.async = true;
+		script.defer = true;
+		script.type = 'text/javascript';
+		script.src = `https://maps.googleapis.com/maps/api/js?key=${config.REACT_APP_MAPS_API_KEY}&libraries=places&callback=callbackFunc`;
+		document.head.appendChild(script);
+	}
+
 	render() {
 		return (
 			<div className='App'>

@@ -186,16 +186,6 @@ export default class TripForm extends Component {
           {error && <p className='red'>{error}</p>}
         </div>
         <div>
-          <label htmlFor='TripForm__name2'>
-            Test autocomplete
-          </label>
-          <Autocomplete 
-            types={['(cities)']} 
-            value={this.state.test}
-            onSelect={this.inputChanged}
-          />
-        </div>
-        <div>
           <label htmlFor='TripForm__name'>
             Trip name
           </label>

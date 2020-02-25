@@ -60,7 +60,7 @@ export default class Autocomplete extends Component {
   };
 
   render() {
-    const { types, componentRestrictions } = this.props;
+    const { callbackName, types, componentRestrictions } = this.props;
     const { inputValue } = this.state;
 
 
@@ -76,6 +76,7 @@ export default class Autocomplete extends Component {
         onSelect={this.handleSelect}
         // Pass the search options prop
         searchOptions={searchOptions}
+        googleCallbackName='callbackFunc'
       >
         {this.renderInput}
       </PlacesAutocomplete>
