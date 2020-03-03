@@ -8,28 +8,28 @@ export default class EditPlanPage extends Component {
 	handleUpdatePlanSuccess = plan => {
 		const trip_id = this.props.match.params.trip_id;
 
-    const { history } = this.props;
-    history.push(`/trip/${trip_id}`);
+		const { history } = this.props;
+		history.push(`/trip/${trip_id}`);
 	}
 
 	handleClickOnCancel = () => {
-    this.props.history.goBack();
+		this.props.history.goBack();
 	}
 	
 	render() {
-    const { planList } = this.context;
-    const plan_id = this.props.match.params.plan_id;
-    const plan = planList.find(p => p.id == plan_id);
-    return (
+		const { planList } = this.context;
+		const plan_id = this.props.match.params.plan_id;
+		const plan = planList.find(p => p.id == plan_id);
+		return (
 			<section className='EditPlanPage'>
 				<h2>Edit plan</h2>
-        <PlanForm 
-          plan={plan}
+				<PlanForm 
+					plan={plan}
 					location={this.props.location}
 					onUpdatePlanSuccess={this.handleUpdatePlanSuccess}
 					onClickOnCancel={this.handleClickOnCancel}
 				/>
 			</section>
 		);
-  }
+	}
 }

@@ -7,7 +7,7 @@ import './TripItem.css';
 export default class TripItem extends Component {
 	static defaultProps = {
 		trip: {}
-	}
+	};
 
 	renderTripItemDetailDesc() {
 		const { trip } = this.props;
@@ -25,9 +25,9 @@ export default class TripItem extends Component {
 			
 		return (
 			<div className='TripItem__details'>
-				<h2 className='TripItem__heading'>{trip.name}</h2>
+				<h2 className='TripItem__title'>{trip.trip_name}</h2>
 				<h3 className='TripItem__dest_city'>
-					{trip.dest_city && trip.dest_city.join(', ')}
+					{trip.dest_cities && trip.dest_cities.map(destCity => destCity.city_name).join(', ')}
 				</h3>
 				<h4 className='TripItem__date'>
 					{
@@ -46,7 +46,7 @@ export default class TripItem extends Component {
 	//{FormattedDate(new Date(trip.start_date))} - {FormattedDate(new Date(trip.end_date))}
 	renderTripItem() {
 		return (
-			<div className='TripItem TripItem__title'>
+			<div className='TripItem TripItem__heading'>
 				{this.renderTripItemDetail()}
 			</div>
 		);

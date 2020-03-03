@@ -1,17 +1,17 @@
 .TripListPage__trip-list {
-  width: 90vw;
-  max-width: 640px;
-  display: flex;
-  flex-direction: column;
-  margin: 15px 0;
+	width: 90vw;
+	max-width: 640px;
+	display: flex;
+	flex-direction: column;
+	margin: 15px 0;
 }
 
 .TripListPage__no-trip {
-  display: block;
-  color: #AEAEB2;
-  margin: 40px auto;
+	display: block;
+	color: #AEAEB2;
+	margin: 40px auto;
 }
 
 .TripListPage__trip-list div {
-  color: #FFF;
+	color: #FFF;
 }

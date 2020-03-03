@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
+import PrivateRoute from '../Utils/PrivateRoute';
+import PublicRoute from '../Utils/PublicRoute';
 import LoginPage from '../../routes/LoginPage/LoginPage';
 import RegisterPage from '../../routes/RegisterPage';
 import TripListPage from '../../routes/TripListPage/TripListPage';
@@ -11,63 +13,99 @@ import AddPlanPage from '../../routes/AddPlanPage';
 import EditPlanPage from '../../routes/EditPlanPage';
 import PlanPage from '../../routes/PlanPage';
 import NotFoundPage from '../../routes/NotFoundPage';
+import TokenService from '../../services/token-service';
+import AuthApiService from '../../services/auth-api-service';
+import IdleService from '../../services/idle-service';
 import config from '../../config';
 import './App.css';
 
 class App extends Component {
+	state = { hasError: false };
+
+	static getDerivedStateFromError(error) {
+		console.error(error);
+		return { hasError: true };
+	};
+	
 	componentDidMount() {
 		const script = document.createElement('script');
 		script.async = true;
 		script.defer = true;
 		script.type = 'text/javascript';
-		script.src = `https://maps.googleapis.com/maps/api/js?key=${config.REACT_APP_MAPS_API_KEY}&libraries=places&callback=callbackFunc`;
+		script.src = `https://maps.googleapis.com/maps/api/js?key=${config.MAPS_API_KEY}&libraries=places&callback=callbackFunc`;
 		document.head.appendChild(script);
+
+		IdleService.setIdleCallback(this.logoutFromIdle);
+
+		if (TokenService.hasAuthToken()) {
+			IdleService.registerIdleTimerResets();
+			TokenService.queueCallbackBeforeExpiry(() => {
+				AuthApiService.postRefreshToken();
+			});
+		}
+	}
+
+	componentWillUnmount() {
+		IdleService.unRegisterIdleResets();
+		TokenService.clearCallbackBeforeExpiry();
+	}
+	
+	logoutFromIdle = () => {
+		TokenService.clearAuthToken();
+		TokenService.clearCallbackBeforeExpiry();
+		IdleService.unRegisterIdleResets();
+		this.forceUpdate();
 	}
 
 	render() {
+		const { hasAuthToken, hasError } = this.state;
 		return (
 			<div className='App'>
 				<header className='App__header'>
 					<Header />
 				</header>
 				<main className='App__main'>
+					{
+						hasError && 
+						<p className='red'>Something went wrong. Please refresh the page or try again later.</p>
+					}
 					<Switch>
 						<Route
 							exact
 							path={'/'}
 							component={TripListPage}
 						/>
-						<Route
+						<PublicRoute
 							path={'/signin'}
 							component={LoginPage}
 						/>
-						<Route
+						<PublicRoute
 							path={'/signup'}
 							component={RegisterPage}
 						/>
-						<Route
+						<PrivateRoute
 							exact
 							path={'/trip/:trip_id'}
 							component={TripPage}
 						/>
-						<Route
+						<PrivateRoute
 							path={'/add-trip'}
 							component={AddTripPage}
 						/>
-						<Route
-							path={'/trip/:trip_id/edit-trip'}
+						<PrivateRoute
+							path={'/trip/:trip_id/edit'}
 							component={EditTripPage}
 						/>
-						<Route
+						<PrivateRoute
 							path={'/trip/:trip_id/add-plan'}
 							component={AddPlanPage}
 						/>
-						<Route
+						<PrivateRoute
 							exact
 							path={'/trip/:trip_id/plan/:plan_id'}
 							component={PlanPage}
 						/>
-						<Route
+						<PrivateRoute
 							path={'/trip/:trip_id/plan/:plan_id/edit'}
 							component={EditPlanPage}
 						/>

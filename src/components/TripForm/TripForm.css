@@ -1,33 +1,33 @@
 .TripForm__dest-cities {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 .TripForm__dest-city {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
 }
 
 .TripForm__dest-city .Autocomplete {
-  width: 90%;
+	width: 90%;
 }
 
 .TripForm__plus-button,
 .TripForm__minus-button {
-  width: 30px;
-  height: 30px;
-  background-color: #007AFF;
-  border: none;
-  border-radius: 15px;
-  font-size: 1.1em;
-  margin: 5px 0;
-  padding: 0;
+	width: 30px;
+	height: 30px;
+	background-color: #007AFF;
+	border: none;
+	border-radius: 15px;
+	font-size: 1.1em;
+	margin: 5px 0;
+	padding: 0;
 }
 
 .TripForm__minus-button {
-  background-color: #FF2D55;
+	background-color: #FF2D55;
 }
 
 .TripForm__plus-button-row {
-  align-self: center;
+	align-self: center;
 }

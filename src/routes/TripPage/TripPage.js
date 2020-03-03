@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TripContext from '../../context/TripContext';
+import TripsApiService from '../../services/trips-api-service';
 import TripItem from '../../components/TripItem/TripItem';
 import PlanItem from '../../components/PlanItem/PlanItem';
 import { FormattedDate, ButtonBox, ButtonLikeLink } from '../../components/Utils/Utils';
-import { test_trips, test_trip_plans } from '../../data';
 import './TripPage.css';
-import { Link } from 'react-router-dom';
 
 export default class TripPage extends Component {
 	static defaultProps = {
@@ -16,16 +15,20 @@ export default class TripPage extends Component {
 	static contextType = TripContext;
 
 	componentDidMount() {
-		const { trip_id } = this.props.match.params;		
-		const trip = test_trips.find(t => 
-			t.id == trip_id
-		);
-		this.context.setTrip(trip);
-			
-		const planList = test_trip_plans.filter(p => 
-			p.trip_id == trip_id
-		);
-		this.context.setPlanList(planList);	
+		const { trip_id } = this.props.match.params;
+		this.context.clearError();
+		
+		TripsApiService.getTripById(trip_id)
+			.then(this.context.setTrip)
+			.catch(this.context.setError);
+
+		TripsApiService.getTripPlans(trip_id)
+			.then(this.context.setPlanList)
+			.catch(this.context.setError);
+	}
+
+	componentWillUnmount() {
+		this.context.clearTrip();
 	}
 
 	renderDate(i, date) {
@@ -76,7 +79,7 @@ export default class TripPage extends Component {
 
 	render() {
 		const { trip } = this.context;
-    return (
+		return (
 			<section className='TripPage'>
 				<div className='TripPage__close-icon-box'>
 					<div 
@@ -92,7 +95,7 @@ export default class TripPage extends Component {
 				/>
 				<ButtonBox>
 					<ButtonLikeLink 
-						to={`/trip/${trip.id}/edit-trip`}
+						to={`/trip/${trip.id}/edit`}
 						className='delete'
 					>
 						Edit trip
@@ -109,7 +112,7 @@ export default class TripPage extends Component {
 				</div>
 			</section>
 		);
-  }
+	}
 }
 
 function getDateStrWithoutTime(dateStr) {

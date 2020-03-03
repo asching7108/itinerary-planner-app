@@ -1,6 +1,6 @@
 @media screen and (min-width: 365px) {
-  .PlanForm__row {
-    display: flex;
-    justify-content: space-between;
-  }
+	.PlanForm__row {
+		display: flex;
+		justify-content: space-between;
+	}
 }

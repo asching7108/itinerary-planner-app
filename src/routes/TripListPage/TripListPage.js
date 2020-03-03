@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import TripListContext from '../../context/TripListContext';
+import TokenService from '../../services/token-service';
+import TripsApiService from '../../services/trips-api-service';
 import TripItem from '../../components/TripItem/TripItem';
-import { test_trips } from '../../data';
 import { ButtonLikeLink } from '../../components/Utils/Utils';
 import './TripListPage.css';
 
@@ -9,7 +10,16 @@ export default class TripListPage extends Component {
 	static contextType = TripListContext;
 
 	componentDidMount() {
-		this.context.setTripList(test_trips);
+		this.context.clearError();
+		
+		if (TokenService.hasAuthToken()) {
+			TripsApiService.getTripsByUser()
+				.then(this.context.setTripList)
+				.catch(this.context.setError);
+		}
+		else {
+			this.context.setTripList([]);
+		}
 	}
 
 	renderTrips() {
@@ -34,7 +44,7 @@ export default class TripListPage extends Component {
 	}
 	
 	render() {
-    return (
+		return (
 			<section className='TripListPage'>
 				<h2>My trips</h2>
 				<div className='TripListPage__trip-list'>
@@ -48,5 +58,5 @@ export default class TripListPage extends Component {
 				</ButtonLikeLink>
 			</section>
 		);
-  }
+	}
 }

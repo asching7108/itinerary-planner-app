@@ -8,16 +8,16 @@ export default class AddPlanPage extends Component {
 	handleAddPlanSuccess = plan => {
 		const trip_id = this.props.match.params.trip_id;
 
-    const { history } = this.props;
-    history.push(`/trip/${trip_id}`);
+		const { history } = this.props;
+		history.push(`/trip/${trip_id}`);
 	}
 
 	handleClickOnCancel = () => {
-    this.props.history.goBack();
+		this.props.history.goBack();
 	}
 	
 	render() {
-    return (
+		return (
 			<section className='AddPlanPage'>
 				<h2>Create a plan</h2>
 				<PlanForm 
@@ -27,5 +27,5 @@ export default class AddPlanPage extends Component {
 				/>
 			</section>
 		);
-  }
+	}
 }

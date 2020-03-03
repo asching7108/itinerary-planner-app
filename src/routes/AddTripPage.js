@@ -11,16 +11,16 @@ export default class AddTripPage extends Component {
 		tripList.push(trip);
 		setTripList(tripList);
 
-    const { history } = this.props;
-    history.push(`/trip/${trip.id}`);
+		const { history } = this.props;
+		history.push(`/trip/${trip.id}`);
 	}
 
 	handleClickOnCancel = () => {
-    this.props.history.goBack();
+		this.props.history.goBack();
 	}
 	
 	render() {
-    return (
+		return (
 			<section className='AddTripPage'>
 				<h2>Create a trip</h2>
 				<TripForm 
@@ -30,5 +30,5 @@ export default class AddTripPage extends Component {
 				/>
 			</section>
 		);
-  }
+	}
 }

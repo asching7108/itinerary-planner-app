@@ -1,39 +1,39 @@
 .TripPage__close-icon-box {
-  width: 90vw;
-  max-width: 640px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-bottom: -30px;
+	width: 90vw;
+	max-width: 640px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	margin-bottom: -30px;
 }
 
 .TripPage__close-icon {
-  width: 30px;
-  height: 30px;
-  border: 1px solid #AEAEB2;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #AEAEB2;
+	border-radius: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .TripPage__plan_list {
-  width: 90vw;
-  max-width: 640px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin: 5px;
+	width: 90vw;
+	max-width: 640px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	margin: 5px;
 }
 
 .TripPage__date {
-  margin: 5px 0 0;
-  font-size: 0.9em;
-  font-weight: 400;
+	margin: 5px 0 0;
+	font-size: 0.9em;
+	font-weight: 400;
 }
 
 .TripPage__no-plan {
-  display: block;
-  color: #AEAEB2;
-  margin: 40px auto;
+	display: block;
+	color: #AEAEB2;
+	margin: 40px auto;
 }

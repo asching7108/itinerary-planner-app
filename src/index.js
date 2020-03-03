@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import * as serviceWorker from './serviceWorker';
 import { TripListProvider } from './context/TripListContext';
 import { TripProvider } from './context/TripContext';
 import App from './components/App/App';
@@ -20,7 +21,7 @@ import {
 	faMapMarkerAlt,
 	faPlus,
 	faMinus,
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
 
 library.add(
 	faEdit,
@@ -35,7 +36,7 @@ library.add(
 	faMapMarkerAlt,
 	faPlus,
 	faMinus,
-)
+);
 
 ReactDOM.render(
 	<BrowserRouter>
@@ -47,3 +48,5 @@ ReactDOM.render(
 	</BrowserRouter>, 
 	document.getElementById('root')
 );
+
+serviceWorker.unregister();
