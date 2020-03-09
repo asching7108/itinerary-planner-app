@@ -5,7 +5,7 @@ import TripContext from '../../context/TripContext';
 import TripsApiService from '../../services/trips-api-service';
 import TripItem from '../../components/TripItem/TripItem';
 import PlanItem from '../../components/PlanItem/PlanItem';
-import { FormattedDate, ButtonBox, ButtonLikeLink } from '../../components/Utils/Utils';
+import { FormattedDate, Button, ButtonBox, ButtonLikeLink } from '../../components/Utils/Utils';
 import './TripPage.css';
 
 export default class TripPage extends Component {
@@ -29,6 +29,18 @@ export default class TripPage extends Component {
 
 	componentWillUnmount() {
 		this.context.clearTrip();
+	}
+
+	handleClickOnDelete = e => {
+		const { trip_id } = this.props.match.params;
+		TripsApiService.deleteTrip(trip_id)
+			.then(() => {
+				const { history } = this.props;
+				history.push('/');
+			})
+			.catch(res => {
+				console.log(res.error);
+			});
 	}
 
 	renderDate(i, date) {
@@ -100,6 +112,12 @@ export default class TripPage extends Component {
 					>
 						Edit trip
 					</ButtonLikeLink>
+					<Button
+						className='delete'
+						onClick={this.handleClickOnDelete}
+					>
+						Delete trip
+					</Button>
 					<ButtonLikeLink 
 						to={`/trip/${trip.id}/add-plan`}
 						className='add'

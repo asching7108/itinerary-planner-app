@@ -26,20 +26,48 @@ const TripsApiService = {
 					: res.json()
 			);
 	},
-	postTrip(trip) {
+	postTrip(newTrip) {
 		return fetch(`${config.API_ENDPOINT}/trips`, {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',
 				'authorization': `Bearer ${TokenService.getAuthToken()}`
 			},
-			body: JSON.stringify({ ...trip }),
+			body: JSON.stringify({ ...newTrip })
 		})
 			.then(res =>
 				(!res.ok)
 					? res.json().then(e => Promise.reject(e))
 					: res.json()
 			);
+	},
+	deleteTrip(tripId) {
+		return fetch(`${config.API_ENDPOINT}/trips/${tripId}`, {
+			method: 'DELETE',
+			headers: {
+				'authorization': `Bearer ${TokenService.getAuthToken()}`
+			}
+		})
+			.then(res => {
+				if (!res.ok) {
+					return res.json().then(e => Promise.reject(e));
+				}
+			});
+	},
+	updateTrip(tripId, updateTrip) {
+		return fetch(`${config.API_ENDPOINT}/trips/${tripId}`, {
+			method: 'PATCH',
+			headers: {
+				'content-type': 'application/json',
+				'authorization': `Bearer ${TokenService.getAuthToken()}`
+			},
+			body: JSON.stringify({ ...updateTrip })
+		})
+			.then(res => {
+				if (!res.ok) {
+					res.json().then(e => Promise.reject(e));
+				}
+			});
 	},
 	getTripPlans(tripId) {
 		return fetch(`${config.API_ENDPOINT}/trips/${tripId}/plans`, {
@@ -65,21 +93,49 @@ const TripsApiService = {
 					: res.json()
 			);
 	},
-	postPlan(plan) {
-		return fetch(`${config.API_ENDPOINT}/plans`, {
+	postPlan(tripId, newPlan) {
+		return fetch(`${config.API_ENDPOINT}/trips/${tripId}/plans`, {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',
-				'authorization': `Bearer ${TokenService.getAuthToken()}`,
+				'authorization': `Bearer ${TokenService.getAuthToken()}`
 			},
-			body: JSON.stringify({ ...plan }),
+			body: JSON.stringify({ ...newPlan })
 		})
 			.then(res =>
 				(!res.ok)
 					? res.json().then(e => Promise.reject(e))
 					: res.json()
 			);
+	},
+	deletePlan(tripId, planId) {
+		return fetch(`${config.API_ENDPOINT}/trips/${tripId}/plans/${planId}`, {
+			method: 'DELETE',
+			headers: {
+				'authorization': `Bearer ${TokenService.getAuthToken()}`
+			}
+		})
+			.then(res => {
+				if (!res.ok) {
+					return res.json().then(e => Promise.reject(e));
+				}
+			});
+	},
+	updatePlan(tripId, planId, updatePlan) {
+		return fetch(`${config.API_ENDPOINT}/trips/${tripId}/plans/${planId}`, {
+			method: 'PATCH',
+			headers: {
+				'content-type': 'application/json',
+				'authorization': `Bearer ${TokenService.getAuthToken()}`
+			},
+			body: JSON.stringify({ ...updatePlan })
+		})
+			.then(res => {
+				if (!res.ok) {
+					res.json().then(e => Promise.reject(e));
+				}
+			});
 	}
-}
+};
 
 export default TripsApiService;

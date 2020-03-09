@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TripsApiService from '../../services/trips-api-service';
 import Autocomplete from '../Autocomplete/Autocomplete';
 import { FormattedDate, Button, Select, Input, Textarea, ButtonBox } from '../Utils/Utils';
 import './PlanForm.css';
@@ -20,9 +21,8 @@ export default class PlanForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			id: '',
-			name: '',
-			type: '',
+			plan_name: '',
+			plan_type: '',
 			trip_id: '',
 			dest_city: '',
 			start_date: '',
@@ -30,18 +30,20 @@ export default class PlanForm extends Component {
 			start_time: '',
 			end_time: '',
 			description: '',
+			plan_place_id: '',
+			city_name: '',
+			utc_offset_minutes: '',
 			error: null
 		};
 	}
 	
 	componentDidMount() {
-		const { plan } = this.props;
+		const { plan, destCities } = this.props;
 		
 		if (plan) {
 			this.setState({
-				id: plan.id,
-				name: plan.name,
-				type: plan.type,
+				plan_name: plan.plan_name,
+				plan_type: plan.plan_type,
 				trip_id: plan.trip_id,
 				dest_city: plan.dest_city,
 				start_date: FormattedDate(plan.start_date, 'YYYY-MM-DD'),
@@ -49,12 +51,16 @@ export default class PlanForm extends Component {
 				start_time: FormattedDate(plan.start_date, 'HH:mm'),
 				end_time: FormattedDate(plan.end_date, 'HH:mm'),
 				description: plan.description,
+				city_name: plan.city_name,
+				utc_offset_minutes: plan.utc_offset_minutes,
 				error: null
 			});
 		}
 		else {
 			this.setState({
-				type: 'Flight'
+				plan_type: 'Flight',
+				city_name: destCities[0].city_name,
+				utc_offset_minutes: destCities[0].utc_offset_minutes,
 			});
 		}
 	}
@@ -63,49 +69,130 @@ export default class PlanForm extends Component {
 		this.setState({ [field]: content });
 	}
 
+	cityChanged = (cityId) => {
+		const { destCities } = this.props;
+		const city = destCities.find(dc => dc.id == cityId);
+		this.setState({
+			city_name: city.city_name,
+			utc_offset_minutes: city.utc_offset_minutes
+		});
+	}
+
+	planNameChanged = (content) => {
+		this.setState({
+			plan_name: content.name,
+			plan_place_id: content.place_id
+		});
+	}
+
 	handleAddSubmit = e => {
 		e.preventDefault();
-		const { name, type, start_date, end_date, description } = this.state;
-		const plan = { name, type, start_date, end_date, description };
+		const { tripId } = this.props;
+		const { plan_name, 
+			plan_type, 
+			start_date, 
+			start_time,
+			end_date, 
+			end_time,
+			description,
+			city_name,
+			utc_offset_minutes
+		} = this.state;
+		const plan = { 
+			plan_name, 
+			plan_type, 
+			start_date: `${start_date}T${start_time}:00.000Z`, 
+			end_date: `${end_date}T${end_time}:00.000Z`, 
+			description,
+			city_name,
+			utc_offset_minutes
+		};
 
-		this.setState({ 
-			id: '',
-			name: '',
-			type: '',
-			trip_id: '',
-			dest_city: '',
-			start_date: '',
-			end_date: '',
-			description: '',
-			error: null
-		});
-
-		this.props.onAddPlanSuccess(plan);
+		TripsApiService.postPlan(Number(tripId), plan)
+			.then(plan => {
+				this.setState({ 
+					plan_name: '',
+					plan_type: '',
+					start_date: '',
+					end_date: '',
+					description: '',
+					city_name: '',
+					utc_offset_minutes: '',
+					error: null
+				});
+				this.props.onAddPlanSuccess(plan);
+			})
+			.catch(res => {
+				this.setState({ error: res.error });
+			});
 	}
 
 	handleUpdateSubmit = e => {
 		e.preventDefault();
-		const { id, name, type, start_date, end_date, description } = this.state;
-		const plan = { id, name, type, start_date, end_date, description };
-		
-		this.setState({ 
-			name: '',
-			dest_city: [],
-			start_date: '',
-			end_date: '',
-			description: '',
-			destCityCount: 1,
-			error: null
-		});
+		const { tripId, plan } = this.props;
+		const { plan_name, 
+			plan_type, 
+			start_date, 
+			end_date, 
+			description,
+			city_name,
+			utc_offset_minutes
+		} = this.state;
+		const updatePlan = { 
+			plan_name, 
+			plan_type, 
+			start_date, 
+			end_date, 
+			description,
+			city_name,
+			utc_offset_minutes
+		};
 
-		this.props.onUpdatePlanSuccess(plan);
+		TripsApiService.updatePlan(Number(tripId), Number(plan.id), updatePlan)
+			.then(() => {
+				this.setState({ 
+					plan_name: '',
+					plan_type: '',
+					start_date: '',
+					end_date: '',
+					description: '',
+					city_name: '',
+					utc_offset_minutes: '',
+					error: null
+				});
+				this.props.onUpdatePlanSuccess(plan);
+			})
+			.catch(res => {
+				this.setState({ error: res.error });
+			});
+	}
+
+	renderCity() {
+		const { destCities } = this.props;
+		return (
+			<div>
+				<label htmlFor='PlanForm__city'>
+					City
+				</label>
+				<Select
+					name='city'
+					id='PlanForm__city'
+					defaultValue={destCities && destCities[0].id}
+					onChange={e => this.cityChanged(e.target.value)}
+				>
+					{destCities && destCities.map((dc, idx) => 
+						<option key={idx} value={dc.id}>{dc.city_name}</option>
+					)}
+				</Select>
+			</div>
+		);
 	}
 
 	renderTypeOptions() {
-		const { type } = this.state;
+		const { plan_type } = this.state;
 		const elements = [];
 		types.forEach(t => {
-			if (t === type) {
+			if (t === plan_type) {
 				elements.push(<option key={t} value={t} selected>{t}</option>);
 			}
 			else {
@@ -116,32 +203,33 @@ export default class PlanForm extends Component {
 	}
 
 	renderNameInput() {
-		const { type } = this.state;
-		if (type === 'Flight') {
+		const { plan_type } = this.state;
+		if (plan_type === 'Flight') {
 			return (
 				<Input
 					name='name'
 					type='text'
 					id='PlanForm__name'
 					required
-					value={this.state.name}
-					onChange={e => this.inputChanged('name', e.target.value)}
+					value={this.state.plan_name}
+					onChange={e => this.inputChanged('plan_name', e.target.value)}
 				/>
 			);
 		}
 		return (
 			<Autocomplete
 				id='PlanForm__name'
-				value={this.state.name}
-				field={'name'}
-				onSelect={this.inputChanged}
+				value={this.state.plan_name}
+				field={'plan_name'}
+				onChange={this.planNameChanged}
+				onSelect={this.planNameChanged}
 			/>
 		);
 	}
 
 	renderNameText() {
-		const { type } = this.state;
-		switch (type) {
+		const { plan_type } = this.state;
+		switch (plan_type) {
 			case 'Flight': return 'Flight';
 			case 'Car Rental': return 'Rental agency';
 			default: return 'Name';
@@ -149,8 +237,8 @@ export default class PlanForm extends Component {
 	}
 
 	renderStartDateAndTimeText() {
-		const { type } = this.state;
-		switch (type) {
+		const { plan_type } = this.state;
+		switch (plan_type) {
 			case 'Flight': return 'Departure';
 			case 'Lodging': return 'Check In';
 			default: return 'Start';
@@ -158,8 +246,8 @@ export default class PlanForm extends Component {
 	}
 
 	renderEndDateAndTimeText() {
-		const { type } = this.state;
-		switch (type) {
+		const { plan_type } = this.state;
+		switch (plan_type) {
 			case 'Flight': return 'Arrival';
 			case 'Lodging': return 'Check Out';
 			default: return 'End';
@@ -180,6 +268,7 @@ export default class PlanForm extends Component {
 				<div role='alert'>
 					{error && <p className='red'>{error}</p>}
 				</div>
+				{this.renderCity()}
 				<div>
 					<label htmlFor='PlanForm__type'>
 						Type
@@ -188,7 +277,7 @@ export default class PlanForm extends Component {
 						name='type'
 						id='PlanForm__type'
 						required
-						onChange={e => this.inputChanged('type', e.target.value)}
+						onChange={e => this.inputChanged('plan_type', e.target.value)}
 					>
 						{this.renderTypeOptions()}
 					</Select>

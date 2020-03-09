@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import TripsApiService from '../../services/trips-api-service';
 import Autocomplete from '../Autocomplete/Autocomplete';
 import { FormattedDate, Button, Input, Textarea, ButtonBox } from '../Utils/Utils';
 import './TripForm.css';
@@ -13,15 +14,13 @@ export default class TripForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			id: '',
-			name: '',
-			dest_city: [],
+			trip_name: '',
+			dest_cities: [],
 			start_date: '',
 			end_date: '',
 			description: '',
 			destCityCount: 1,
-			error: null,
-			test: ''
+			error: null
 		};
 	}
 
@@ -30,13 +29,12 @@ export default class TripForm extends Component {
 		
 		if (trip) {
 			this.setState({
-				id: trip.id,
-				name: trip.name,
-				dest_city: trip.dest_city,
+				trip_name: trip.trip_name,
+				dest_cities: trip.dest_cities,
 				start_date: FormattedDate(trip.start_date, 'YYYY-MM-DD'),
 				end_date: FormattedDate(trip.end_date, 'YYYY-MM-DD'),
 				description: trip.description,
-				destCityCount: trip.dest_city.length,
+				destCityCount: trip.dest_cities.length,
 				error: null
 			});
 		}
@@ -46,77 +44,96 @@ export default class TripForm extends Component {
 		this.setState({ [field]: content });
 	}
 
-	destCityChanged = (field, content, serialStr) => {
-		const newDestCity = this.state.dest_city;
+	destCityChanged = (content, serialStr) => {
+		const newDestCities = this.state.dest_cities;
 		const serial = serialStr.charAt(serialStr.length - 1) - 1;
-		newDestCity[serial] = content;
-		this.setState({ 'dest_city': newDestCity });
+		const newDestCity = {
+			city_name: content.name,
+			city_place_id: content.place_id,
+			utc_offset_minutes: content.utc_offset_minutes
+		};
+		newDestCities[serial] = newDestCity;
+		this.setState({ 'dest_cities': newDestCities });
 	}
 
 	destCityCountChanged(change) {
-		const { destCityCount, dest_city } = this.state;
+		const { destCityCount, dest_cities } = this.state;
 		change > 0
-			? dest_city.push('')
-			: dest_city.pop();
+			? dest_cities.push('')
+			: dest_cities.pop();
 		this.setState({
-			dest_city,
+			dest_cities,
 			destCityCount: destCityCount + change
 		});
 	}
 
 	handleAddSubmit = e => {
 		e.preventDefault();
-		const { name, dest_city, start_date, end_date, description } = this.state;
-		const trip = { name, dest_city, start_date, end_date, description };
+		const { trip_name, dest_cities, start_date, end_date, description } = this.state;
+		const trip = { trip_name, dest_cities, start_date, end_date, description };
 
-		this.setState({ 
-			name: '',
-			dest_city: [],
-			start_date: '',
-			end_date: '',
-			description: '',
-			destCityCount: 1,
-			error: null
-		});
-
-		this.props.onAddTripSuccess(trip);
+		TripsApiService.postTrip(trip)
+			.then(trip => {
+				this.setState({ 
+					trip_name: '',
+					dest_cities: [],
+					start_date: '',
+					end_date: '',
+					description: '',
+					destCityCount: 1,
+					error: null
+				});		
+				this.props.onAddTripSuccess(trip);
+			})
+			.catch(res => {
+				this.setState({ error: res.error });
+			});
 	}
 
 	handleUpdateSubmit = e => {
 		e.preventDefault();
-		const { id, name, dest_city, start_date, end_date, description } = this.state;
-		const trip = { id, name, dest_city, start_date, end_date, description };
+		const { trip_name, dest_cities, start_date, end_date, description } = this.state;
+		const trip = { trip_name, dest_cities, start_date, end_date, description };
 		
-		this.setState({ 
-			name: '',
-			dest_city: [],
-			start_date: '',
-			end_date: '',
-			description: '',
-			destCityCount: 1,
-			error: null
-		});
-
-		this.props.onUpdateTripSuccess(trip);
+		TripsApiService.updateTrip(Number(this.props.trip.id), trip)
+			.then(() => {
+				this.setState({ 
+					trip_name: '',
+					dest_cities: [],
+					start_date: '',
+					end_date: '',
+					description: '',
+					destCityCount: 1,
+					error: null
+				});
+				this.props.onUpdateTripSuccess(trip);
+			})
+			.catch(res => {
+				this.setState({ error: res.error });
+			});
 	}
 
 	renderDestCity() {
-		const { dest_city, destCityCount } = this.state;
+		const { dest_cities, destCityCount } = this.state;
 		const elements = [];
-
+		
 		if (destCityCount === 1) {
 			elements.push(
 				<div key={1} className='TripForm__dest-city'>
 					<Autocomplete 
 						id={`TripForm__dest-city-1`}
 						types={['(cities)']} 
-						value={dest_city[0]}
-						field={'dest_city'}
+						value={dest_cities.length 
+							? dest_cities[0].city_name 
+							: ''
+						}
+						field={'dest_cities'}
+						onChange={this.destCityChanged}
 						onSelect={this.destCityChanged}
 					/>
 					<button 
 						type='button' 
-						className='TripForm__plus-button '
+						className='TripForm__plus-button'
 						onClick={e => this.destCityCountChanged(1)}
 					>
 						<FontAwesomeIcon icon='plus' className='white' />
@@ -132,7 +149,11 @@ export default class TripForm extends Component {
 						<Autocomplete 
 							id={`TripForm__dest-city-${i + 1}`}
 							types={['(cities)']} 
-							value={dest_city[i]}
+							value={dest_cities.length 
+								? dest_cities[i].city_name 
+								: ''
+							}
+							onChange={this.destCityChanged}
 							onSelect={this.destCityChanged}
 						/>
 					</div>
@@ -144,7 +165,11 @@ export default class TripForm extends Component {
 					<Autocomplete 
 						id={`TripForm__dest-city-${destCityCount}`}
 						types={['(cities)']} 
-						value={dest_city[destCityCount - 1]}
+						value={dest_cities.length 
+							? dest_cities[destCityCount - 1].city_name 
+							: ''
+						}
+						onChange={this.destCityChanged}
 						onSelect={this.destCityChanged}
 					/>
 					<button 
@@ -186,16 +211,16 @@ export default class TripForm extends Component {
 					{error && <p className='red'>{error}</p>}
 				</div>
 				<div>
-					<label htmlFor='TripForm__name'>
+					<label htmlFor='TripForm__trip-name'>
 						Trip name
 					</label>
 					<Input
-						name='name'
+						name='trip-name'
 						type='text'
-						id='TripForm__name'
+						id='TripForm__trip-name'
 						required
-						value={this.state.name}
-						onChange={e => this.inputChanged('name', e.target.value)}
+						value={this.state.trip_name}
+						onChange={e => this.inputChanged('trip_name', e.target.value)}
 					/>
 				</div>
 				<div className='TripForm__dest-cities'>

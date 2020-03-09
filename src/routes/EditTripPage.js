@@ -6,16 +6,17 @@ export default class EditTripPage extends Component {
 	static contextType = TripListContext;
 
 	handleUpdateTripSuccess = trip => {
+		const trip_id = this.props.match.params.trip_id;
 		const { tripList, setTripList } = this.context;
 		tripList.map((t, i) => {
-			if (t.id === trip.id) {
+			if (t.id === trip_id) {
 				tripList[i] = trip;
 			}
 		});
 		setTripList(tripList);
 
 		const { history } = this.props;
-		history.push(`/trip/${trip.id}`);
+		history.push(`/trip/${trip_id}`);
 	}
 
 	handleClickOnCancel = () => {

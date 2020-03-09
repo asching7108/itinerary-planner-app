@@ -7,7 +7,6 @@ export default class AddTripPage extends Component {
 
 	handleAddTripSuccess = trip => {
 		const { tripList, setTripList } = this.context;
-		trip.id = tripList.length + 1;
 		tripList.push(trip);
 		setTripList(tripList);
 
