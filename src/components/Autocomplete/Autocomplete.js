@@ -5,7 +5,6 @@ import './Autocomplete.css';
 export default class Autocomplete extends Component {
 	static defaultProps = {
 		id: '',
-		field: '',
 		value: '',
 		type: [],
 		componentRestrictions: {},

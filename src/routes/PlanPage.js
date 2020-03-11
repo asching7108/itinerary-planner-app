@@ -14,7 +14,7 @@ export default class PlanPage extends Component {
 	componentDidMount() {
 		const { plan_id } = this.props.match.params;		
 		const plan = test_trip_plans.find(p => 
-			p.id == plan_id
+			p.id === Number(plan_id)
 		);
 		this.setState({ plan });
 	}

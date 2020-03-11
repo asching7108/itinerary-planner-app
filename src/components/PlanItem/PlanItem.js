@@ -14,9 +14,10 @@ export default class PlanItem extends Component {
 					<span className='PlanItem__icon'>
 						<FontAwesomeIcon className='white' icon={getTypeIcon(plan.plan_type)} />
 					</span>
-					<h4>{FormattedDate(plan.start_date, 'HH:mm')}</h4>
+					<h4>{FormattedDate(plan.comparable_date, 'HH:mm')}</h4>
 					<div className='PlanItem__text'>
 						<p className='PlanItem__name'>{plan.plan_name}</p>
+						<p className='PlanItem__subtype'>{plan.plan_subtype}</p>
 					</div>
 				</div>
 			</Link>

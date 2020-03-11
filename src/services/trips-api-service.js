@@ -3,7 +3,7 @@ import TokenService from './token-service';
 
 const TripsApiService = {
 	getTripsByUser() {
-		return fetch(`${config.API_ENDPOINT}/trips`, {
+		return fetch(`${config.API_BASE_URL}/trips`, {
 			headers: {
 				'authorization': `Bearer ${TokenService.getAuthToken()}`
 			}
@@ -15,7 +15,7 @@ const TripsApiService = {
 			);
 	},
 	getTripById(tripId) {
-		return fetch(`${config.API_ENDPOINT}/trips/${tripId}`, {
+		return fetch(`${config.API_BASE_URL}/trips/${tripId}`, {
 			headers: {
 				'authorization': `Bearer ${TokenService.getAuthToken()}`
 			}
@@ -27,7 +27,7 @@ const TripsApiService = {
 			);
 	},
 	postTrip(newTrip) {
-		return fetch(`${config.API_ENDPOINT}/trips`, {
+		return fetch(`${config.API_BASE_URL}/trips`, {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',
@@ -42,7 +42,7 @@ const TripsApiService = {
 			);
 	},
 	deleteTrip(tripId) {
-		return fetch(`${config.API_ENDPOINT}/trips/${tripId}`, {
+		return fetch(`${config.API_BASE_URL}/trips/${tripId}`, {
 			method: 'DELETE',
 			headers: {
 				'authorization': `Bearer ${TokenService.getAuthToken()}`
@@ -55,7 +55,7 @@ const TripsApiService = {
 			});
 	},
 	updateTrip(tripId, updateTrip) {
-		return fetch(`${config.API_ENDPOINT}/trips/${tripId}`, {
+		return fetch(`${config.API_BASE_URL}/trips/${tripId}`, {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',
@@ -63,14 +63,14 @@ const TripsApiService = {
 			},
 			body: JSON.stringify({ ...updateTrip })
 		})
-			.then(res => {
-				if (!res.ok) {
-					res.json().then(e => Promise.reject(e));
-				}
-			});
+			.then(res => 
+				(!res.ok)
+					? res.json().then(e => Promise.reject(e))
+					: res.json()
+			);
 	},
 	getTripPlans(tripId) {
-		return fetch(`${config.API_ENDPOINT}/trips/${tripId}/plans`, {
+		return fetch(`${config.API_BASE_URL}/trips/${tripId}/plans`, {
 			headers: {
 				'authorization': `Bearer ${TokenService.getAuthToken()}`
 			}
@@ -82,7 +82,7 @@ const TripsApiService = {
 			);
 	},
 	getPlanById(tripId, planId) {
-		return fetch(`${config.API_ENDPOINT}/trips/${tripId}/plans/${planId}`, {
+		return fetch(`${config.API_BASE_URL}/trips/${tripId}/plans/${planId}`, {
 			headers: {
 				'authorization': `Bearer ${TokenService.getAuthToken()}`
 			}
@@ -94,7 +94,7 @@ const TripsApiService = {
 			);
 	},
 	postPlan(tripId, newPlan) {
-		return fetch(`${config.API_ENDPOINT}/trips/${tripId}/plans`, {
+		return fetch(`${config.API_BASE_URL}/trips/${tripId}/plans`, {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',
@@ -109,7 +109,7 @@ const TripsApiService = {
 			);
 	},
 	deletePlan(tripId, planId) {
-		return fetch(`${config.API_ENDPOINT}/trips/${tripId}/plans/${planId}`, {
+		return fetch(`${config.API_BASE_URL}/trips/${tripId}/plans/${planId}`, {
 			method: 'DELETE',
 			headers: {
 				'authorization': `Bearer ${TokenService.getAuthToken()}`
@@ -122,7 +122,7 @@ const TripsApiService = {
 			});
 	},
 	updatePlan(tripId, planId, updatePlan) {
-		return fetch(`${config.API_ENDPOINT}/trips/${tripId}/plans/${planId}`, {
+		return fetch(`${config.API_BASE_URL}/trips/${tripId}/plans/${planId}`, {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',
@@ -130,11 +130,11 @@ const TripsApiService = {
 			},
 			body: JSON.stringify({ ...updatePlan })
 		})
-			.then(res => {
-				if (!res.ok) {
-					res.json().then(e => Promise.reject(e));
-				}
-			});
+			.then(res => 
+				(!res.ok)
+					? res.json().then(e => Promise.reject(e))
+					: res.json()
+			);
 	}
 };
 

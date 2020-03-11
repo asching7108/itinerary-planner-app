@@ -63,7 +63,7 @@ export default class TripPage extends Component {
 		}
 
 		const elements = [];
-		let currDate = getDateStrWithoutTime(planList[0].start_date);
+		let currDate = getDateStrWithoutTime(planList[0].comparable_date);
 		
 		elements.push(
 			this.renderDate(0, currDate)
@@ -71,8 +71,8 @@ export default class TripPage extends Component {
 		for(let i = 0; i < planList.length; i++) {
 			const plan = planList[i];
 			
-			if (getDateStrWithoutTime(plan.start_date) > currDate) {
-				currDate = getDateStrWithoutTime(plan.start_date);
+			if (getDateStrWithoutTime(plan.comparable_date) > currDate) {
+				currDate = getDateStrWithoutTime(plan.comparable_date);
 				elements.push(
 					this.renderDate(elements.length, currDate)
 				);

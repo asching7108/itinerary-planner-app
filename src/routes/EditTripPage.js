@@ -8,11 +8,11 @@ export default class EditTripPage extends Component {
 	handleUpdateTripSuccess = trip => {
 		const trip_id = this.props.match.params.trip_id;
 		const { tripList, setTripList } = this.context;
-		tripList.map((t, i) => {
-			if (t.id === trip_id) {
+		tripList.forEach((t, i) => {
+			if (t.id === Number(trip_id)) {
 				tripList[i] = trip;
 			}
-		});
+		})
 		setTripList(tripList);
 
 		const { history } = this.props;
@@ -26,7 +26,7 @@ export default class EditTripPage extends Component {
 	render() {
 		const { tripList } = this.context;
 		const trip_id = this.props.match.params.trip_id;
-		const trip = tripList.find(t => t.id == trip_id);
+		const trip = tripList.find(t => t.id === Number(trip_id));
 		return (
 			<section className='EditTripPage'>
 				<h2>Edit trip</h2>

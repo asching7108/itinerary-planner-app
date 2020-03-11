@@ -19,7 +19,7 @@ export default class AddPlanPage extends Component {
 		this.context.clearTrip();
 	}
 
-	handleAddPlanSuccess = plan => {
+	handleAddPlanSuccess = plans => {
 		const trip_id = this.props.match.params.trip_id;
 
 		const { history } = this.props;

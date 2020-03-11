@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import TripListContext from '../../context/TripListContext';
 import Header from '../Header/Header';
 import PrivateRoute from '../Utils/PrivateRoute';
 import PublicRoute from '../Utils/PublicRoute';
@@ -20,6 +21,8 @@ import config from '../../config';
 import './App.css';
 
 class App extends Component {
+	static contextType = TripListContext;
+
 	state = { hasError: false };
 
 	static getDerivedStateFromError(error) {
@@ -42,6 +45,7 @@ class App extends Component {
 			TokenService.queueCallbackBeforeExpiry(() => {
 				AuthApiService.postRefreshToken();
 			});
+			this.context.setAuthState(true);
 		}
 	}
 
@@ -54,11 +58,13 @@ class App extends Component {
 		TokenService.clearAuthToken();
 		TokenService.clearCallbackBeforeExpiry();
 		IdleService.unRegisterIdleResets();
+		this.context.setTripList([]);
+		this.context.setAuthState(false);
 		this.forceUpdate();
 	}
 
 	render() {
-		const { hasAuthToken, hasError } = this.state;
+		const { hasError } = this.state;
 		return (
 			<div className='App'>
 				<header className='App__header'>

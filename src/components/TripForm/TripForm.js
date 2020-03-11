@@ -74,15 +74,7 @@ export default class TripForm extends Component {
 
 		TripsApiService.postTrip(trip)
 			.then(trip => {
-				this.setState({ 
-					trip_name: '',
-					dest_cities: [],
-					start_date: '',
-					end_date: '',
-					description: '',
-					destCityCount: 1,
-					error: null
-				});		
+				this.resetState();		
 				this.props.onAddTripSuccess(trip);
 			})
 			.catch(res => {
@@ -96,21 +88,25 @@ export default class TripForm extends Component {
 		const trip = { trip_name, dest_cities, start_date, end_date, description };
 		
 		TripsApiService.updateTrip(Number(this.props.trip.id), trip)
-			.then(() => {
-				this.setState({ 
-					trip_name: '',
-					dest_cities: [],
-					start_date: '',
-					end_date: '',
-					description: '',
-					destCityCount: 1,
-					error: null
-				});
+			.then(trip => {
+				this.resetState();
 				this.props.onUpdateTripSuccess(trip);
 			})
 			.catch(res => {
 				this.setState({ error: res.error });
 			});
+	}
+
+	resetState() {
+		this.setState({ 
+			trip_name: '',
+			dest_cities: [],
+			start_date: '',
+			end_date: '',
+			description: '',
+			destCityCount: 1,
+			error: null
+		});
 	}
 
 	renderDestCity() {
