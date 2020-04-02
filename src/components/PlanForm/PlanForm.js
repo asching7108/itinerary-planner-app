@@ -120,27 +120,7 @@ export default class PlanForm extends Component {
 	handleAddSubmit = e => {
 		e.preventDefault();
 		const { tripId } = this.props;
-		const { 
-			plan_name, 
-			plan_type, 
-			start_date, 
-			start_time,
-			end_date, 
-			end_time,
-			description,
-			city_name,
-			utc_offset_minutes
-		} = this.state;
-		const plan = { 
-			plan_name, 
-			plan_type, 
-			start_date: `${start_date}T${start_time}:00.000Z`, 
-			end_date: `${end_date}T${end_time}:00.000Z`, 
-			description,
-			city_name,
-			utc_offset_minutes
-		};
-
+		const plan = this.getPlan();
 		plan.plan_details = this.getPlanDetails();
 		
 		TripsApiService.postPlan(Number(tripId), plan)
@@ -156,24 +136,7 @@ export default class PlanForm extends Component {
 	handleUpdateSubmit = e => {
 		e.preventDefault();
 		const { tripId, plans } = this.props;
-		const { plan_name, 
-			plan_type, 
-			start_date, 
-			end_date, 
-			description,
-			city_name,
-			utc_offset_minutes
-		} = this.state;
-		const updatePlan = { 
-			plan_name, 
-			plan_type, 
-			start_date, 
-			end_date, 
-			description,
-			city_name,
-			utc_offset_minutes
-		};
-
+		const updatePlan = this.getPlan();
 		updatePlan.plan_details = this.getPlanDetails();
 
 		TripsApiService.updatePlan(Number(tripId), Number(plans[0].id), updatePlan)
@@ -186,6 +149,30 @@ export default class PlanForm extends Component {
 			});
 	}
 
+	getPlan() {
+		const {
+			plan_name, 
+			plan_type, 
+			start_date, 
+			start_time,
+			end_date, 
+			end_time,
+			description,
+			city_name,
+			utc_offset_minutes
+		} = this.state;
+
+		return { 
+			plan_name, 
+			plan_type, 
+			start_date: `${start_date}T${start_time}:00.000Z`, 
+			end_date: `${end_date}T${end_time}:00.000Z`, 
+			description,
+			city_name,
+			utc_offset_minutes
+		};
+	}
+	
 	getPlanDetails() {
 		const { 
 			plan_type, 
@@ -209,10 +196,10 @@ export default class PlanForm extends Component {
 			plan_details = [{
 				from_name,
 				from_place_id,
-				from_utc_offset_minutes,
+				// from_utc_offset_minutes,
 				to_name,
 				to_place_id,
-				to_utc_offset_minutes
+				// to_utc_offset_minutes
 			}];
 		}
 		else if (plan_type === 'Car Rental') {
