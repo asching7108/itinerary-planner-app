@@ -29,19 +29,16 @@
 	justify-content: flex-end;
 }
 
-.Header__sign-in a:last-child {
-	border: none;
-	background: #007AFF;
-	color: #FFF;
+.Header__sign-in a, .Header__sign-out a {
 	padding: 5px 15px;
 	border-radius: 15px;
-	margin-left: 10px;
 }
 
-.Header__sign-out a {
-	border: 1px solid #1C1C1E;
-	padding: 5px 15px;
-	border-radius: 15px;
+.Header__sign-in a:last-child {
+	border: none;
+	background: #99E2FF;
+	color: #1C1C1E;
+	margin-left: 10px;
 }
 
 @media screen and (min-width: 450px) {

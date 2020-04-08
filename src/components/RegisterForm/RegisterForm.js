@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AuthApiService from '../../services/auth-api-service';
-import { Button, Input, Required, ButtonBox } from '../Utils/Utils';
+import { Button, Input, Required } from '../Utils/Utils';
 
 export default class RegisterForm extends Component {
 	static defaultProps = {
@@ -97,14 +97,14 @@ export default class RegisterForm extends Component {
 						required
 					/>
 				</div>
-				<ButtonBox>
+				<div className='ButtonsDiv'>
 					<Button type='button' onClick={this.props.onClickOnCancel}>
 						Cancel
 					</Button>
 					<Button type='submit'>
 						Create acount
 					</Button>
-				</ButtonBox>
+				</div>
 			</form>
 		);
 	}

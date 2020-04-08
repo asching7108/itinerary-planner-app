@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TripListContext from '../../context/TripListContext';
 import LoginForm from '../../components/LoginForm/LoginForm';
-import { ButtonLikeLink } from '../../components/Utils/Utils';
+import { LinkButton } from '../../components/Utils/Utils';
 import './LoginPage.css';
 
 export default class LoginPage extends Component {
@@ -23,7 +23,8 @@ export default class LoginPage extends Component {
 	}
 
 	handleClickOnCancel = () => {
-		this.props.history.goBack();
+		if (this.props.history.action === "PUSH") { this.props.history.goBack(); }
+		this.props.history.push('/');
 	}
 	
 	render() {
@@ -35,9 +36,9 @@ export default class LoginPage extends Component {
 					onClickOnCancel={this.handleClickOnCancel}
 				/>
 				<p className='LoginPage__text'>Doesn't have an account?</p>
-				<ButtonLikeLink to='/signup' className='LoginPage__sign-up'>
+				<LinkButton to='/signup' className='LoginPage__sign-up'>
 					Sign up
-				</ButtonLikeLink>
+				</LinkButton>
 			</section>
 		);
 	}

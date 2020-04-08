@@ -9,6 +9,7 @@ import App from './components/App/App';
 import './index.css';
 
 import {
+	faPlusSquare,
 	faEdit,
 	faTrashAlt,
 	faTimes,
@@ -24,6 +25,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
+	faPlusSquare,
 	faEdit,
 	faTrashAlt,
 	faTimes,

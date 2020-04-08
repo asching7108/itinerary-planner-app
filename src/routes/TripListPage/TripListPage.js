@@ -3,23 +3,15 @@ import TripListContext from '../../context/TripListContext';
 import TokenService from '../../services/token-service';
 import TripsApiService from '../../services/trips-api-service';
 import TripItem from '../../components/TripItem/TripItem';
-import { ButtonLikeLink } from '../../components/Utils/Utils';
+import { LinkButton } from '../../components/Utils/Utils';
 import './TripListPage.css';
 
 export default class TripListPage extends Component {
 	static contextType = TripListContext;
 
 	componentDidMount() {
-		this.context.clearError();
-		
-		if (TokenService.hasAuthToken()) {
-			TripsApiService.getTripsByUser()
-				.then(this.context.setTripList)
-				.catch(this.context.setError);
-		}
-		else {
-			this.context.setTripList([]);
-		}
+		if (TokenService.hasAuthToken()) { this.context.updateTripList(); }
+		else { this.context.setTripList([]); }
 	}
 
 	renderTrips() {
@@ -50,12 +42,9 @@ export default class TripListPage extends Component {
 				<div className='TripListPage__trip-list'>
 					{this.renderTrips()}
 				</div>
-				<ButtonLikeLink 
-					to={'/add-trip'}
-					className='add'
-				>
+				<LinkButton to={'/add-trip'}>
 					Create a trip
-				</ButtonLikeLink>
+				</LinkButton>
 			</section>
 		);
 	}

@@ -12,7 +12,7 @@ import AddTripPage from '../../routes/AddTripPage';
 import EditTripPage from '../../routes/EditTripPage';
 import AddPlanPage from '../../routes/AddPlanPage';
 import EditPlanPage from '../../routes/EditPlanPage';
-import PlanPage from '../../routes/PlanPage';
+import PlanPage from '../../routes/PlanPage/PlanPage';
 import NotFoundPage from '../../routes/NotFoundPage';
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';

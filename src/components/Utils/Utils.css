@@ -1,9 +1,6 @@
 .Button {
 	align-self: center;
 	min-width: 120px;
-	border: 1px solid #007AFF;
-	background: #007AFF;
-	color: #FFF;
 	padding: 10px 25px;
 	border-radius: 20px;
 	font-size: 1.1em;
@@ -13,7 +10,7 @@
 .Select,
 .Input,
 .Textarea {
-	border: 1px solid #ddd;
+	border: 1px solid #FFF;
 	display: block;
 	font-size: 1.1em;
 	margin-bottom: 10px;
@@ -27,11 +24,6 @@
 	height: 44px;
 }
 
-.Input::placeholder,
-.Textarea::placeholder {
-	color: #ccc;
-}
-
 .Textarea {
 	resize: vertical;
 }
@@ -42,7 +34,7 @@
 	font-weight: bold;
 }
 
-.ButtonLikeLink {
+.LinkButton {
 	display: block;
 	min-width: 120px;
 	padding: 10px 25px;
@@ -53,15 +45,14 @@
 	margin: 10px;
 }
 
-.ButtonBox button:first-child {
-	border: 1px solid #007AFF;
-	background: #FFF;
-	color: #007AFF;
-}
-
-@media screen and (min-width: 330px) {
-	.ButtonBox {
-		display: flex;
-		justify-content: center;
-	}
+.ButtonIcon, .LinkIcon {
+	width: 30px;
+	height: 30px;
+	font-size: 16px;
+	font-weight: 200;
+	border: none;
+	border-radius: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

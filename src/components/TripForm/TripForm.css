@@ -16,7 +16,7 @@
 .TripForm__minus-button {
 	width: 30px;
 	height: 30px;
-	background-color: #007AFF;
+	background-color: #0A84FF;
 	border: none;
 	border-radius: 15px;
 	font-size: 1.1em;
@@ -25,7 +25,7 @@
 }
 
 .TripForm__minus-button {
-	background-color: #FF2D55;
+	background-color: #FF453A;
 }
 
 .TripForm__plus-button-row {

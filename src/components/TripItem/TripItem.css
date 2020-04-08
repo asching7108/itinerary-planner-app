@@ -1,5 +1,7 @@
 .TripItem {
-	background-color: #007AFF;
+	background-color: #99E2FF;
+	border: 1px solid #99E2FF;
+	color: #242426;
 	border-radius: 15px;
 	margin: 5px;
 	padding: 10px;
@@ -12,5 +14,18 @@
 }
 
 .TripItem__heading {
-	background-color: #fff;
+	background-color: #242426;
+	color: #FFF;
+	margin: 5px;
+	padding: 10px;
+}
+
+.TripItem:nth-child(2) {
+	background-color: #84DB9A;
+	border: 1px solid #84DB9A;
+}
+
+.TripItem:nth-child(3) {
+	background-color: #FF9E99;
+	border: 1px solid #FF9E99;
 }

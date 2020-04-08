@@ -5,6 +5,10 @@ import TripForm from '../components/TripForm/TripForm';
 export default class EditTripPage extends Component {
 	static contextType = TripListContext;
 
+	componentDidMount() {
+		if (!this.context.tripList[0]) { this.context.updateTripList(); }
+	}
+
 	handleUpdateTripSuccess = trip => {
 		const trip_id = this.props.match.params.trip_id;
 		const { tripList, setTripList } = this.context;

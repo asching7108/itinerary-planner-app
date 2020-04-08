@@ -5,6 +5,12 @@ import TripForm from '../components/TripForm/TripForm';
 export default class AddTripPage extends Component {
 	static contextType = TripListContext;
 
+	componentDidMount() {
+		if (!this.context.tripList[0]) {
+			this.context.updateTripList();
+		}
+	}
+	
 	handleAddTripSuccess = trip => {
 		const { tripList, setTripList } = this.context;
 		tripList.push(trip);

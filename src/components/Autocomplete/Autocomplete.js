@@ -72,7 +72,7 @@ export default class Autocomplete extends Component {
 		
 		return (
 			<div className='Autocomplete'>
-				<input className='Input' {...getInputProps()} />
+				<input {...getInputProps({ className: 'Input', autoFocus: true })} />
 				<div 
 					className='Autocomplete__dropdown'
 					style={suggestions.length ? activeStyle : inactiveStyle}

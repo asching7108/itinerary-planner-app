@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TripsApiService from '../../services/trips-api-service';
 import Autocomplete from '../Autocomplete/Autocomplete';
-import { FormattedDate, Button, Input, Textarea, ButtonBox } from '../Utils/Utils';
+import { formattedDate, Button, Input, Textarea } from '../Utils/Utils';
 import './TripForm.css';
 
 export default class TripForm extends Component {
@@ -24,20 +24,38 @@ export default class TripForm extends Component {
 		};
 	}
 
-	componentDidMount() {
+	componentDidMount() { this.updateState(); }
+
+	componentDidUpdate(prevProps) {
+		if (!prevProps.trip && !!this.props.trip) { this.updateState(); }
+	}
+
+	updateState() {
 		const { trip } = this.props;
 		
 		if (trip) {
 			this.setState({
 				trip_name: trip.trip_name,
 				dest_cities: trip.dest_cities,
-				start_date: FormattedDate(trip.start_date, 'YYYY-MM-DD'),
-				end_date: FormattedDate(trip.end_date, 'YYYY-MM-DD'),
+				start_date: formattedDate(trip.start_date, 'YYYY-MM-DD'),
+				end_date: formattedDate(trip.end_date, 'YYYY-MM-DD'),
 				description: trip.description,
 				destCityCount: trip.dest_cities.length,
 				error: null
 			});
 		}
+	}
+
+	resetState() {
+		this.setState({ 
+			trip_name: '',
+			dest_cities: [],
+			start_date: '',
+			end_date: '',
+			description: '',
+			destCityCount: 1,
+			error: null
+		});
 	}
 	
 	inputChanged(field, content) {
@@ -95,18 +113,6 @@ export default class TripForm extends Component {
 			.catch(res => {
 				this.setState({ error: res.error });
 			});
-	}
-
-	resetState() {
-		this.setState({ 
-			trip_name: '',
-			dest_cities: [],
-			start_date: '',
-			end_date: '',
-			description: '',
-			destCityCount: 1,
-			error: null
-		});
 	}
 
 	renderDestCity() {
@@ -263,7 +269,7 @@ export default class TripForm extends Component {
 						onChange={e => this.inputChanged('description', e.target.value)}
 					/>
 				</div>
-				<ButtonBox>
+				<div className='ButtonsDiv'>
 					<Button type='button' onClick={this.props.onClickOnCancel}>
 						Cancel
 					</Button>
@@ -274,7 +280,7 @@ export default class TripForm extends Component {
 								: 'Update'
 						}
 					</Button>
-				</ButtonBox>
+				</div>
 			</form>
 		);
 	}

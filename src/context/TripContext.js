@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import TripsApiService from '../services/trips-api-service';
 
 const TripContext = React.createContext({
 	trip: {},
 	planList: [],
 	error: null,
+	needToUpdate: true,
+	updateTrip: () => {},
 	setTrip: () => {},
 	setPlanList: () => {},
 	clearTrip: () => {},
@@ -18,6 +21,23 @@ export class TripProvider extends Component {
 		trip: {},
 		planList: [],
 		error: null
+	}
+
+	needToUpdate = trip_id => {
+		const { trip } = this.state;
+		return Object.keys(trip).length === 0 || trip.id != trip_id;
+	}
+
+	updateTrip = trip_id => {
+		this.clearError();
+
+		TripsApiService.getTripById(trip_id)
+			.then(this.setTrip)
+			.catch(this.setError);
+
+		TripsApiService.getTripPlans(trip_id)
+			.then(this.setPlanList)
+			.catch(this.setError);
 	}
 
 	setTrip = trip => {
@@ -47,6 +67,8 @@ export class TripProvider extends Component {
 			trip: this.state.trip,
 			planList: this.state.planList,
 			error: this.state.error,
+			needToUpdate: this.needToUpdate,
+			updateTrip: this.updateTrip,
 			setTrip: this.setTrip,
 			setPlanList: this.setPlanList,
 			clearTrip: this.clearTrip,

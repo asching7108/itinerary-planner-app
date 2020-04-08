@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TripsApiService from '../../services/trips-api-service';
 import Autocomplete from '../Autocomplete/Autocomplete';
-import { FormattedDate, Button, Select, Input, Textarea, ButtonBox } from '../Utils/Utils';
+import { formattedDate, Button, Select, Input, Textarea } from '../Utils/Utils';
 import './PlanForm.css';
 
 const TYPES = [
@@ -46,17 +46,27 @@ export default class PlanForm extends Component {
 		};
 	}
 	
-	componentDidMount() {
-		const { plans, destCities } = this.props;
-		
-		if (plans) {
+	componentDidMount() { this.updateState(); }
+
+	componentDidUpdate(prevProps) {
+		const { plans = [], destCities = [] } = prevProps;
+		if ((!plans[0] && this.props.plans && this.props.plans[0]) ||
+			(!destCities[0] && this.props.destCities && this.props.destCities[0])) {
+			this.updateState();
+		}
+	}
+
+	updateState() {
+		const { plans = [], destCities = [] } = this.props;
+
+		if (plans[0]) {
 			this.setState({
 				plan_name: plans[0].plan_name,
 				plan_type: plans[0].plan_type,
-				start_date: FormattedDate(plans[0].start_date, 'YYYY-MM-DD'),
-				end_date: FormattedDate(plans[0].end_date, 'YYYY-MM-DD'),
-				start_time: FormattedDate(plans[0].start_date, 'HH:mm'),
-				end_time: FormattedDate(plans[0].end_date, 'HH:mm'),
+				start_date: formattedDate(plans[0].start_date, 'YYYY-MM-DD'),
+				end_date: formattedDate(plans[0].end_date, 'YYYY-MM-DD'),
+				start_time: formattedDate(plans[0].start_date, 'HH:mm'),
+				end_time: formattedDate(plans[0].end_date, 'HH:mm'),
 				description: plans[0].description,
 				plan_place_id: plans[0].plan_place_id,
 				city_name: plans[0].city_name,
@@ -69,10 +79,8 @@ export default class PlanForm extends Component {
 				to_utc_offset_minutes: plans[plans.length - 1].to_utc_offset_minutes,
 				error: null
 			});
-
-
 		}
-		else {
+		else if (destCities[0]) {
 			this.setState({
 				plan_type: 'Flight',
 				city_name: destCities[0].city_name,
@@ -459,7 +467,7 @@ export default class PlanForm extends Component {
 						onChange={e => this.inputChanged('description', e.target.value)}
 					/>
 				</div>
-				<ButtonBox>
+				<div className='ButtonsDiv'>
 					<Button type='button' onClick={this.props.onClickOnCancel}>
 						Cancel
 					</Button>
@@ -470,7 +478,7 @@ export default class PlanForm extends Component {
 								: 'Update'
 						}
 					</Button>
-				</ButtonBox>
+				</div>
 			</form>
 		);
 	}

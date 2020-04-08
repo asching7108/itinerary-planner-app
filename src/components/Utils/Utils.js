@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import './Utils.css';
 
-export function FormattedDate(dateStr, format = 'dddd, MMMM D, YYYY') {
+export function formattedDate(dateStr, format = 'dddd, MMMM D, YYYY') {
 	return moment.parseZone(dateStr).format(format);
 }
 
@@ -39,14 +39,30 @@ export function Required({ className, ...props }) {
 	);
 }
 
-export function ButtonLikeLink({ className, ...props }) {
+export function LinkButton({ className, ...props }) {
 	return (
-		<Link className={['ButtonLikeLink', className].join(' ')} {...props} />
+		<Link className={['LinkButton', className].join(' ')} {...props} />
 	);
 }
 
-export function ButtonBox({ className, ...props }) {
+export function ButtonIcon({ className, ...props }) {
 	return (
-		<div className={['ButtonBox', className].join(' ')} {...props} />
+		<button className={['ButtonIcon', className].join(' ')} {...props} />
 	);
+}
+
+export function LinkIcon({ className, ...props }) {
+	return (
+		<Link className={['LinkIcon', className].join(' ')} {...props} />
+	);
+}
+
+export function getTypeIcon(type) {
+	switch (type) {
+		case 'Flight': return 'plane';
+		case 'Lodging': return 'bed';
+		case 'Car Rental': return 'car';
+		case 'Restaurant': return 'utensils';
+		default: return 'walking';
+	}
 }

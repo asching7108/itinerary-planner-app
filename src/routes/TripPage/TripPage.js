@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TripContext from '../../context/TripContext';
 import TripsApiService from '../../services/trips-api-service';
 import TripItem from '../../components/TripItem/TripItem';
 import PlanItem from '../../components/PlanItem/PlanItem';
-import { FormattedDate, Button, ButtonBox, ButtonLikeLink } from '../../components/Utils/Utils';
+import { formattedDate, ButtonIcon, LinkIcon, LinkButton } from '../../components/Utils/Utils';
 import './TripPage.css';
 
 export default class TripPage extends Component {
@@ -13,22 +14,11 @@ export default class TripPage extends Component {
 		match: { params: {} }
 	}
 	static contextType = TripContext;
-
+	
 	componentDidMount() {
-		const { trip_id } = this.props.match.params;
-		this.context.clearError();
-		
-		TripsApiService.getTripById(trip_id)
-			.then(this.context.setTrip)
-			.catch(this.context.setError);
-
-		TripsApiService.getTripPlans(trip_id)
-			.then(this.context.setPlanList)
-			.catch(this.context.setError);
-	}
-
-	componentWillUnmount() {
-		this.context.clearTrip();
+		if (this.context.needToUpdate) {
+			this.context.updateTrip(this.props.match.params.trip_id);
+		}
 	}
 
 	handleClickOnDelete = e => {
@@ -46,7 +36,7 @@ export default class TripPage extends Component {
 	renderDate(i, date) {
 		return (
 			<p key={i} className='TripPage__date'>
-				{FormattedDate(date).toUpperCase()}
+				{formattedDate(date).toUpperCase()}
 			</p>
 		);
 	}
@@ -105,26 +95,23 @@ export default class TripPage extends Component {
 					trip={trip}
 					location={this.props.location}
 				/>
-				<ButtonBox>
-					<ButtonLikeLink 
+				<div className='IconsDiv'>
+					<LinkIcon 
+					className='blue'
 						to={`/trip/${trip.id}/edit`}
-						className='delete'
 					>
-						Edit trip
-					</ButtonLikeLink>
-					<Button
-						className='delete'
+						<FontAwesomeIcon icon='edit' />
+					</LinkIcon>
+					<ButtonIcon
+						className='blue'
 						onClick={this.handleClickOnDelete}
 					>
-						Delete trip
-					</Button>
-					<ButtonLikeLink 
-						to={`/trip/${trip.id}/add-plan`}
-						className='add'
-					>
-						Add a plan
-					</ButtonLikeLink>
-				</ButtonBox>
+						<FontAwesomeIcon icon='trash-alt' />
+					</ButtonIcon>
+				</div>
+				<LinkButton to={`/trip/${trip.id}/add-plan`}>
+					Create a plan
+				</LinkButton>
 				<div className='TripPage__plan_list'>
 					{this.renderPlans()}
 				</div>

@@ -8,7 +8,8 @@ body {
 	font-family: "Helvetica Neue", "Helvetica", "Roboto", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	color: #1C1C1E;
+	background-color: #242426;
+	color: #FFF;
 	font-size: 14px;
 }
 
@@ -51,36 +52,56 @@ p {
 }
 
 a {
-	color: #1C1C1E;
+	border: 1px solid #99E2FF;
+	color: #99E2FF;
 	text-decoration: none;
 }
 
+button {
+	border: 1px solid #99E2FF;
+	color: #99E2FF;
+	background-color: #242426;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
 .blue {
-	color: #477ACC;
-}
-
-.yellow {
-	color: #EAC435;
-}
-
-.green {
-	color: #09a55e;
+	color: #99E2FF;
 }
 
 .red {
-	color: #CA1551;
-}
-
-.orange {
-	color: #FB4D3D;
+	color: #FF2D55;
 }
 
 .white {
-	color: #fff;
+	color: #FFF;
 }
 
 .grey {
 	color: #AEAEB2;
+}
+
+.black {
+	color: #242426;
+}
+
+.button-blue {
+	border: 1px solid #99E2FF;
+	color: #99E2FF;
+}
+
+.button-blue-em {
+	border: 1px solid #99E2FF;
+	background-color: #99E2FF;
+	color: #FFF;
+}
+
+.button-red-em {
+	border: 1px solid #FF2D55;
+	background-color: #FF2D55;
+	color: #fff;
 }
 
 .add {
@@ -93,4 +114,22 @@ a {
 	border: 1px solid #FF2D55;
 	background-color: #FFF;
 	color: #FF2D55;
+}
+
+.ButtonsDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.IconsDiv {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+@media screen and (min-width: 330px) {
+	.ButtonsDiv {
+		flex-direction: row;
+	}
 }

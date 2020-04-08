@@ -7,23 +7,16 @@ export default class AddPlanPage extends Component {
 	static contextType = TripContext;
 
 	componentDidMount() {
-		const { trip_id } = this.props.match.params;
-		this.context.clearError();
-		
-		TripsApiService.getTripById(trip_id)
-			.then(this.context.setTrip)
-			.catch(this.context.setError);
-	}
-
-	componentWillUnmount() {
-		this.context.clearTrip();
+		if (this.context.needToUpdate) {
+			this.context.updateTrip(this.props.match.params.trip_id);
+		}
 	}
 
 	handleAddPlanSuccess = plans => {
-		const trip_id = this.props.match.params.trip_id;
+		this.context.updateTrip(plans[0].trip_id);
 
 		const { history } = this.props;
-		history.push(`/trip/${trip_id}`);
+		history.push(`/trip/${plans[0].trip_id}`);
 	}
 
 	handleClickOnCancel = () => {

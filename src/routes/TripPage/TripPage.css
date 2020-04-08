@@ -15,6 +15,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	z-index: 10
 }
 
 .TripPage__plan_list {
@@ -27,6 +28,7 @@
 }
 
 .TripPage__date {
+	color: #AEAEB2;
 	margin: 5px 0 0;
 	font-size: 0.9em;
 	font-weight: 400;

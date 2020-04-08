@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import TripsApiService from '../services/trips-api-service';
 
 const TripListContext = React.createContext({
 	tripList: [],
 	hasAuthToken: false,
 	error: null,
+	updateTripList: () => {},
 	setTripList: () => {},
+	setPlanList: () => {},
 	setError: () => {},
 	clearError: () => {},
 	setAuthState: () => {}
@@ -16,6 +19,14 @@ export class TripListProvider extends Component {
 	state = {
 		tripList: [],
 		error: null
+	}
+
+	updateTripList = () => {
+		this.clearError();
+
+		TripsApiService.getTripsByUser()
+			.then(this.setTripList)
+			.catch(this.setError);
 	}
 
 	setTripList = tripList => {
@@ -40,6 +51,7 @@ export class TripListProvider extends Component {
 			tripList: this.state.tripList,
 			hasAuthToken: this.state.hasAuthToken,
 			error: this.state.error,
+			updateTripList: this.updateTripList,
 			setTripList: this.setTripList,
 			setError: this.setError,
 			clearError: this.clearError,
