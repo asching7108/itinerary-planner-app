@@ -1,3 +1,59 @@
-.PlanPage {
-  align-items: start;
+.PlanPage__heading {
+	width: 90vw;
+  max-width: 640px;
+}
+
+.PlanPage__title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.PlanPage__title-left {
+  display: flex;
+  align-items: baseline;
+}
+
+.PlanPage__type {
+  display: flex;
+}
+
+.PlanPage__icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+	justify-content: center;
+	align-items: center;
+  margin: 5px;
+}
+
+.PlanPage__subtype::before {
+  content: '-';
+  margin-right: 10px;
+}
+
+.PlanPage__time {
+  width: 90vw;
+  max-width: 640px;
+  border-top: 1px solid #99E2FF;
+  border-bottom: 1px solid #99E2FF;
+  display: flex;
+  margin-top: 10px;
+}
+
+.PlanPage__time div {
+  width: 100%;
+}
+
+.PlanPage__time div:nth-child(2) {
+  border-left: 1px solid #99E2FF;
+}
+
+.PlanPage__details {
+  width: 90vw;
+  max-width: 640px;
+  margin-top: 10px;
+}
+
+.PlanPage__web {
+  word-break: break-all;
 }

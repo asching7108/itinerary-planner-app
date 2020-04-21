@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import TripListContext from '../../context/TripListContext';
 import TokenService from '../../services/token-service';
-import TripsApiService from '../../services/trips-api-service';
 import TripItem from '../../components/TripItem/TripItem';
 import { LinkButton } from '../../components/Utils/Utils';
 import './TripListPage.css';

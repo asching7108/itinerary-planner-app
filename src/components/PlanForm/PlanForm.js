@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TripsApiService from '../../services/trips-api-service';
 import Autocomplete from '../Autocomplete/Autocomplete';
-import { formattedDate, Button, Select, Input, Textarea } from '../Utils/Utils';
+import { formatDate, toDate, Button, Select, Input, Textarea, CFlatpickr } from '../Utils/Utils';
 import './PlanForm.css';
 
 const TYPES = [
@@ -19,6 +19,8 @@ const TYPES_FOR_DETAILS = [
 
 export default class PlanForm extends Component {
 	static defaultProps = {
+		trip: {},
+		plans: [],
 		onAddPlanSuccess: () => {},
 		onClickOnCancel: () => {}
 	}
@@ -29,62 +31,75 @@ export default class PlanForm extends Component {
 			plan_name: '',
 			plan_type: '',
 			start_date: '',
-			end_date: '',
 			start_time: '',
+			end_date: '',
 			end_time: '',
 			description: '',
 			plan_place_id: '',
 			city_name: '',
 			utc_offset_minutes: '',
+			formatted_address: '',
+			international_phone_number: '',
+			website: '',
 			from_name: '',
 			from_place_id: '',
 			from_utc_offset_minutes: '',
 			to_name: '',
 			to_place_id: '',
 			to_utc_offset_minutes: '',
-			error: null
+			viewport: {},
+			error: null,
 		};
 	}
 	
 	componentDidMount() { this.updateState(); }
 
 	componentDidUpdate(prevProps) {
-		const { plans = [], destCities = [] } = prevProps;
-		if ((!plans[0] && this.props.plans && this.props.plans[0]) ||
-			(!destCities[0] && this.props.destCities && this.props.destCities[0])) {
+		const { trip, plans } = prevProps;
+		if (Object.keys(this.props.trip).length > Object.keys(trip).length || 
+			(!plans[0] && this.props.plans && this.props.plans[0])) {
 			this.updateState();
 		}
 	}
 
 	updateState() {
-		const { plans = [], destCities = [] } = this.props;
+		const { trip, plans } = this.props;
 
 		if (plans[0]) {
 			this.setState({
 				plan_name: plans[0].plan_name,
 				plan_type: plans[0].plan_type,
-				start_date: formattedDate(plans[0].start_date, 'YYYY-MM-DD'),
-				end_date: formattedDate(plans[0].end_date, 'YYYY-MM-DD'),
-				start_time: formattedDate(plans[0].start_date, 'HH:mm'),
-				end_time: formattedDate(plans[0].end_date, 'HH:mm'),
+				start_date: [toDate(plans[0].start_date)],
+				start_time: [toDate(plans[0].start_date)],
+				end_date: [toDate(plans[0].end_date)],
+				end_time: [toDate(plans[0].end_date)],
 				description: plans[0].description,
 				plan_place_id: plans[0].plan_place_id,
 				city_name: plans[0].city_name,
 				utc_offset_minutes: plans[0].utc_offset_minutes,
+				formatted_address: plans[0].formatted_address,
+				international_phone_number: plans[0].international_phone_number,
+				website: plans[0].website,
 				from_name: plans[0].from_name,
 				from_place_id: plans[0].from_place_id,
 				from_utc_offset_minutes: plans[0].from_utc_offset_minutes,
 				to_name: plans[plans.length - 1].to_name,
 				to_place_id: plans[plans.length - 1].to_place_id,
 				to_utc_offset_minutes: plans[plans.length - 1].to_utc_offset_minutes,
+				viewport: plans[0].viewport,
 				error: null
 			});
 		}
-		else if (destCities[0]) {
+		else if (Object.keys(trip).length !== 0) {
 			this.setState({
 				plan_type: 'Flight',
-				city_name: destCities[0].city_name,
-				utc_offset_minutes: destCities[0].utc_offset_minutes,
+				city_name: trip.dest_cities[0].city_name,
+				utc_offset_minutes: trip.dest_cities[0].utc_offset_minutes,
+				viewport: trip.dest_cities[0].viewport,
+				start_date: [toDate(trip.start_date)],
+				start_time: [toDate(trip.start_date)],
+				end_date: [toDate(trip.start_date)],
+				end_time: [toDate(trip.start_date)]
 			});
 		}
 	}
@@ -94,18 +109,22 @@ export default class PlanForm extends Component {
 	}
 
 	cityChanged = (cityId) => {
-		const { destCities } = this.props;
-		const city = destCities.find(dc => dc.id === Number(cityId));
+		const { trip } = this.props;
+		const city = trip.dest_cities.find(dc => dc.id === Number(cityId));
 		this.setState({
 			city_name: city.city_name,
-			utc_offset_minutes: city.utc_offset_minutes
+			utc_offset_minutes: city.utc_offset_minutes,
+			viewport: city.viewport
 		});
 	}
 
 	planNameChanged = (content) => {
 		this.setState({
 			plan_name: content.name,
-			plan_place_id: content.place_id
+			plan_place_id: content.place_id,
+			formatted_address: content.formatted_address,
+			international_phone_number: content.international_phone_number,
+			website: content.website,
 		});
 	}
 
@@ -127,11 +146,10 @@ export default class PlanForm extends Component {
 
 	handleAddSubmit = e => {
 		e.preventDefault();
-		const { tripId } = this.props;
 		const plan = this.getPlan();
 		plan.plan_details = this.getPlanDetails();
 		
-		TripsApiService.postPlan(Number(tripId), plan)
+		TripsApiService.postPlan(this.props.trip.id, plan)
 			.then(plans => {
 				this.resetState();
 				this.props.onAddPlanSuccess(plans);
@@ -143,11 +161,11 @@ export default class PlanForm extends Component {
 
 	handleUpdateSubmit = e => {
 		e.preventDefault();
-		const { tripId, plans } = this.props;
+		const { trip, plans } = this.props;
 		const updatePlan = this.getPlan();
 		updatePlan.plan_details = this.getPlanDetails();
 
-		TripsApiService.updatePlan(Number(tripId), Number(plans[0].id), updatePlan)
+		TripsApiService.updatePlan(trip.id, plans[0].id, updatePlan)
 			.then(plans => {
 				this.resetState();
 				this.props.onUpdatePlanSuccess(plans);
@@ -163,21 +181,29 @@ export default class PlanForm extends Component {
 			plan_type, 
 			start_date, 
 			start_time,
-			end_date, 
-			end_time,
+			end_date,
+			end_time, 
 			description,
 			city_name,
-			utc_offset_minutes
+			utc_offset_minutes,
+			formatted_address,
+			international_phone_number,
+			website,
+			viewport
 		} = this.state;
 
 		return { 
 			plan_name, 
 			plan_type, 
-			start_date: `${start_date}T${start_time}:00.000Z`, 
-			end_date: `${end_date}T${end_time}:00.000Z`, 
+			start_date: `${formatDate(start_date[0], 'YYYY-MM-DD')}T${formatDate(start_time[0], 'HH:mm')}:00.000Z`,
+			end_date: `${formatDate(end_date[0], 'YYYY-MM-DD')}T${formatDate(end_time[0], 'HH:mm')}:00.000Z`,
 			description,
 			city_name,
-			utc_offset_minutes
+			utc_offset_minutes,
+			formatted_address,
+			international_phone_number,
+			website,
+			viewport
 		};
 	}
 	
@@ -235,19 +261,34 @@ export default class PlanForm extends Component {
 			plan_name: '',
 			plan_type: '',
 			start_date: '',
-			end_date: '',
 			start_time: '',
+			end_date: '',
 			end_time: '',
 			description: '',
 			plan_place_id: '',
 			city_name: '',
 			utc_offset_minutes: '',
+			formatted_address: '',
+			international_phone_number: '',
+			website: '',
+			from_name: '',
+			from_place_id: '',
+			from_utc_offset_minutes: '',
+			to_name: '',
+			to_place_id: '',
+			to_utc_offset_minutes: '',
+			viewport: {},
+			default_date: '',
 			error: null
 		});
 	}
 
 	renderCity() {
-		const { destCities } = this.props;
+		const { dest_cities } = this.props.trip;
+		const { city_name } = this.state;
+		const defCity = dest_cities && dest_cities.find(dc => dc.city_name === city_name);
+		const defVal = defCity ? defCity.id : dest_cities && dest_cities[0].id;
+
 		return (
 			<div>
 				<label htmlFor='PlanForm__city'>
@@ -256,10 +297,10 @@ export default class PlanForm extends Component {
 				<Select
 					name='city'
 					id='PlanForm__city'
-					defaultValue={destCities && destCities[0].id}
+					defaultValue={defVal}
 					onChange={e => this.cityChanged(e.target.value)}
 				>
-					{destCities && destCities.map((dc, idx) => 
+					{dest_cities && dest_cities.map((dc, idx) => 
 						<option key={idx} value={dc.id}>{dc.city_name}</option>
 					)}
 				</Select>
@@ -291,7 +332,7 @@ export default class PlanForm extends Component {
 	}
 
 	renderNameInput() {
-		const { plan_type } = this.state;
+		const { plan_type, plan_name, viewport } = this.state;
 		if (plan_type === 'Flight') {
 			return (
 				<Input
@@ -299,7 +340,7 @@ export default class PlanForm extends Component {
 					type='text'
 					id='PlanForm__name'
 					required
-					value={this.state.plan_name}
+					value={plan_name}
 					onChange={e => this.inputChanged('plan_name', e.target.value)}
 				/>
 			);
@@ -307,7 +348,8 @@ export default class PlanForm extends Component {
 		return (
 			<Autocomplete
 				id='PlanForm__name'
-				value={this.state.plan_name}
+				value={plan_name}
+				viewport={viewport}
 				onChange={this.planNameChanged}
 				onSelect={this.planNameChanged}
 			/>
@@ -315,7 +357,7 @@ export default class PlanForm extends Component {
 	}
 
 	renderFromToPlaces() {
-		const { plan_type } = this.state;
+		const { plan_type, from_name, to_name, viewport } = this.state;
 		if (TYPES_FOR_DETAILS.includes(plan_type)) {
 			return (
 				<>
@@ -325,7 +367,8 @@ export default class PlanForm extends Component {
 						</label>
 						<Autocomplete
 							id='PlanForm__from'
-							value={this.state.from_name}
+							value={from_name}
+							viewport={viewport}
 							onChange={this.fromPlaceChanged}
 							onSelect={this.fromPlaceChanged}
 						/>
@@ -336,7 +379,8 @@ export default class PlanForm extends Component {
 						</label>
 						<Autocomplete
 							id='PlanForm__to'
-							value={this.state.to_name}
+							value={to_name}
+							viewport={viewport}
 							onChange={this.toPlaceChanged}
 							onSelect={this.toPlaceChanged}
 						/>
@@ -366,7 +410,7 @@ export default class PlanForm extends Component {
 
 	render() {
 		const { location } = this.props;
-		const { error } = this.state;
+		const { start_date, start_time, end_date, end_time, description, error } = this.state;
 		return (
 			<form
 				className='PlanForm'
@@ -400,58 +444,66 @@ export default class PlanForm extends Component {
 				</div>
 				{this.renderFromToPlaces()}
 				<div className='PlanForm__row'>
-					<div>
+					<div className='PlanForm__date'>
 						<label htmlFor='PlanForm__start-date'>
 							{this.renderStartDateAndTimeText()} date
 						</label>
-						<Input
+						<CFlatpickr
 							name='start-date'
-							type='date'
 							id='PlanForm__start-date'
+							value={start_date}
+							onChange={date => this.inputChanged('start_date', date)}
 							required
-							value={this.state.start_date}
-							onChange={e => this.inputChanged('start_date', e.target.value)}
+							options={{ dateFormat: 'm / d / Y' }}
 						/>
 					</div>
-					<div>
+					<div className='PlanForm__time'>
 						<label htmlFor='PlanForm__start-time'>
 							{this.renderStartDateAndTimeText()} time
 						</label>
-						<Input
+						<CFlatpickr
 							name='start-time'
-							type='time'
 							id='PlanForm__start-time'
+							value={start_time}
+							onChange={date => this.inputChanged('start_time', date)}
 							required
-							value={this.state.start_time}
-							onChange={e => this.inputChanged('start_time', e.target.value)}
+							options={{
+								dateFormat: 'G : i K',
+								enableTime: true,
+								noCalendar: true
+							}}
 						/>
 					</div>
 				</div>
 				<div className='PlanForm__row'>
-					<div>
+					<div className='PlanForm__date'>
 						<label htmlFor='PlanForm__end-date'>
 							{this.renderEndDateAndTimeText()} date
 						</label>
-						<Input
+						<CFlatpickr
 							name='end-date'
-							type='date'
 							id='PlanForm__end-date'
+							value={end_date}
+							onChange={date => this.inputChanged('end_date', date)}
 							required
-							value={this.state.end_date}
-							onChange={e => this.inputChanged('end_date', e.target.value)}
+							options={{ dateFormat: 'm / d / Y' }}
 						/>
 					</div>
-					<div>
+					<div className='PlanForm__time'>
 						<label htmlFor='PlanForm__end-time'>
-							{this.renderEndDateAndTimeText()} time
+							{this.renderStartDateAndTimeText()} time
 						</label>
-						<Input
+						<CFlatpickr
 							name='end-time'
-							type='time'
 							id='PlanForm__end-time'
+							value={end_time}
+							onChange={date => this.inputChanged('end_time', date)}
 							required
-							value={this.state.end_time}
-							onChange={e => this.inputChanged('end_time', e.target.value)}
+							options={{
+								dateFormat: 'G : i K',
+								enableTime: true,
+								noCalendar: true
+							}}
 						/>
 					</div>
 				</div>
@@ -463,7 +515,7 @@ export default class PlanForm extends Component {
 						name='description'
 						type='textarea'
 						id='PlanForm__description'
-						value={this.state.description}
+						value={description}
 						onChange={e => this.inputChanged('description', e.target.value)}
 					/>
 				</div>

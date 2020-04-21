@@ -1,31 +1,32 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TripContext from '../../context/TripContext';
 import TripsApiService from '../../services/trips-api-service';
 import TripItem from '../../components/TripItem/TripItem';
 import PlanItem from '../../components/PlanItem/PlanItem';
-import { formattedDate, ButtonIcon, LinkIcon, LinkButton } from '../../components/Utils/Utils';
+import { formatDate, LinkButton, EditIcon, DeleteIcon, CloseIcon } from '../../components/Utils/Utils';
 import './TripPage.css';
 
 export default class TripPage extends Component {
-	static defaultProps = {
-		match: { params: {} }
-	}
 	static contextType = TripContext;
 	
 	componentDidMount() {
-		if (this.context.needToUpdate) {
-			this.context.updateTrip(this.props.match.params.trip_id);
+		const { trip_id } = this.props.match.params;
+		if (this.context.needToUpdate(trip_id)) {
+			this.context.updateTrip(trip_id);
+		}
+	}
+
+	componentDidUpdate() {
+		if (this.context.error) {
+			this.props.history.push('/page-not-found');
 		}
 	}
 
 	handleClickOnDelete = e => {
-		const { trip_id } = this.props.match.params;
-		TripsApiService.deleteTrip(trip_id)
+		const { match: { params }, history } = this.props;
+		TripsApiService.deleteTrip(params.trip_id)
 			.then(() => {
-				const { history } = this.props;
 				history.push('/');
 			})
 			.catch(res => {
@@ -36,7 +37,7 @@ export default class TripPage extends Component {
 	renderDate(i, date) {
 		return (
 			<p key={i} className='TripPage__date'>
-				{formattedDate(date).toUpperCase()}
+				{formatDate(date).toUpperCase()}
 			</p>
 		);
 	}
@@ -83,31 +84,16 @@ export default class TripPage extends Component {
 		const { trip } = this.context;
 		return (
 			<section className='TripPage'>
-				<div className='TripPage__close-icon-box'>
-					<div 
-						className='TripPage__close-icon'
-						onClick={e => this.props.history.goBack()}
-					>
-						<FontAwesomeIcon className='grey' icon='times' />
-					</div>
+				<div className='TripPage__close-icon-row'>
+					<CloseIcon onClick={e => this.props.history.push('/')} />
 				</div>
 				<TripItem
 					trip={trip}
 					location={this.props.location}
 				/>
 				<div className='IconsDiv'>
-					<LinkIcon 
-					className='blue'
-						to={`/trip/${trip.id}/edit`}
-					>
-						<FontAwesomeIcon icon='edit' />
-					</LinkIcon>
-					<ButtonIcon
-						className='blue'
-						onClick={this.handleClickOnDelete}
-					>
-						<FontAwesomeIcon icon='trash-alt' />
-					</ButtonIcon>
+					<EditIcon to={`/trip/${trip.id}/edit`} />
+					<DeleteIcon onClick={this.handleClickOnDelete} />
 				</div>
 				<LinkButton to={`/trip/${trip.id}/add-plan`}>
 					Create a plan

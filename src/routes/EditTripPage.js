@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
-import TripListContext from '../context/TripListContext';
+import TripContext from '../context/TripContext';
 import TripForm from '../components/TripForm/TripForm';
 
 export default class EditTripPage extends Component {
-	static contextType = TripListContext;
+	static contextType = TripContext;
 
 	componentDidMount() {
-		if (!this.context.tripList[0]) { this.context.updateTripList(); }
+		const { trip_id } = this.props.match.params;
+		if (this.context.needToUpdate(trip_id)) {
+			this.context.updateTrip(trip_id);
+		}
+	}
+
+	componentDidUpdate() {
+		if (this.context.error) {
+			this.props.history.push('/page-not-found');
+		}
 	}
 
 	handleUpdateTripSuccess = trip => {
 		const trip_id = this.props.match.params.trip_id;
-		const { tripList, setTripList } = this.context;
-		tripList.forEach((t, i) => {
-			if (t.id === Number(trip_id)) {
-				tripList[i] = trip;
-			}
-		})
-		setTripList(tripList);
+		this.context.updateTrip(trip_id);
 
 		const { history } = this.props;
 		history.push(`/trip/${trip_id}`);
@@ -28,9 +31,7 @@ export default class EditTripPage extends Component {
 	}
 	
 	render() {
-		const { tripList } = this.context;
-		const trip_id = this.props.match.params.trip_id;
-		const trip = tripList.find(t => t.id === Number(trip_id));
+		const { trip } = this.context;
 		return (
 			<section className='EditTripPage'>
 				<h2>Edit trip</h2>

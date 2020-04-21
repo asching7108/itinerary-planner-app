@@ -1,15 +1,36 @@
 import React, { Component } from 'react';
 import TripContext from '../context/TripContext';
-import TripsApiService from '../services/trips-api-service';
 import PlanForm from '../components/PlanForm/PlanForm';
-import { Button } from '../components/Utils/Utils';
 
 export default class EditPlanPage extends Component {
+	constructor(props) {
+		super(props);
+		this.state = { plans: [] };
+	}
+
 	static contextType = TripContext;
 
 	componentDidMount() {
 		if (this.context.needToUpdate) {
 			this.context.updateTrip(this.props.match.params.trip_id);
+		}
+	}
+
+	componentDidUpdate() {
+		const { match: { params }, history } = this.props;
+		const { planList, error } = this.context;
+		if (error) {
+			history.push('/page-not-found');
+		}
+		else if (!this.state.plans[0] && planList[0]) {
+			if (planList.find(p => p.id === Number(params.plan_id))) {
+				this.setState({
+					plans: planList.filter(p => p.id === Number(params.plan_id))
+				});
+			}
+			else {
+				history.push('/page-not-found');
+			}
 		}
 	}
 
@@ -23,36 +44,14 @@ export default class EditPlanPage extends Component {
 	handleClickOnCancel = () => {
 		this.props.history.goBack();
 	}
-
-	handleClickOnDelete = e => {
-		const { trip_id, plan_id } = this.props.match.params;
-		TripsApiService.deletePlan(trip_id, plan_id)
-			.then(() => {
-				const { history } = this.props;
-				history.push(`/trip/${trip_id}`);
-			})
-			.catch(res => {
-				console.log(res.error);
-			});
-	}
 	
 	render() {
-		const { trip, planList } = this.context;
-		const { trip_id, plan_id } = this.props.match.params;
-		const plans = planList.filter(p => p.id === Number(plan_id));
 		return (
 			<section className='EditPlanPage'>
 				<h2>Edit plan</h2>
-				<Button
-					className='delete'
-					onClick={this.handleClickOnDelete}
-				>
-					Delete plan
-				</Button>
 				<PlanForm 
-					tripId={trip_id}
-					destCities={trip.dest_cities}
-					plans={plans}
+					trip={this.context.trip}
+					plans={this.state.plans}
 					location={this.props.location}
 					onUpdatePlanSuccess={this.handleUpdatePlanSuccess}
 					onClickOnCancel={this.handleClickOnCancel}

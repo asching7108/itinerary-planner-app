@@ -25,7 +25,7 @@ export class TripProvider extends Component {
 
 	needToUpdate = trip_id => {
 		const { trip } = this.state;
-		return Object.keys(trip).length === 0 || trip.id != trip_id;
+		return Object.keys(trip).length === 0 || trip.id !== Number(trip_id);
 	}
 
 	updateTrip = trip_id => {
@@ -54,7 +54,6 @@ export class TripProvider extends Component {
 	}
 
 	setError = error => {
-		console.error(error);
 		this.setState({ error });
 	}
 

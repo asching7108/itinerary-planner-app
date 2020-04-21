@@ -3,4 +3,12 @@
 		display: flex;
 		justify-content: space-between;
 	}
+
+	.PlanForm__date {
+		width: 190px;
+	}
+
+	.PlanForm__time {
+		width: 132px;
+	}
 }

@@ -20,6 +20,7 @@ import {
 	faUtensils,
 	faWalking,
 	faMapMarkerAlt,
+	faPhone,
 	faPlus,
 	faMinus,
 } from '@fortawesome/free-solid-svg-icons';
@@ -36,6 +37,7 @@ library.add(
 	faUtensils, // restaurant
 	faWalking, // activity
 	faMapMarkerAlt,
+	faPhone,
 	faPlus,
 	faMinus,
 );

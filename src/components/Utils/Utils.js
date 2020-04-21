@@ -1,10 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Flatpickr from 'react-flatpickr';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Utils.css';
+import 'flatpickr/dist/themes/dark.css';
 
-export function formattedDate(dateStr, format = 'dddd, MMMM D, YYYY') {
+export function formatDate(dateStr, format = 'dddd, MMMM D, YYYY') {
 	return moment.parseZone(dateStr).format(format);
+}
+
+export function toDate(dateStr) {
+	return moment(formatDate(dateStr, 'YYYY-MM-DDTHH:mm:ss'))
+		.utcOffset(new Date().getTimezoneOffset()).toDate();
 }
 
 export function Button({ className, ...props }) {
@@ -39,21 +47,46 @@ export function Required({ className, ...props }) {
 	);
 }
 
+export function CFlatpickr({ className, options, ...props }) {
+	return (
+		<Flatpickr 
+			className={['Input', className].join(' ')} 
+			options={{
+				shorthandCurrentMonth: true,
+				...options
+			}}
+			{ ...props } 
+		/>
+	);
+}
+
 export function LinkButton({ className, ...props }) {
 	return (
 		<Link className={['LinkButton', className].join(' ')} {...props} />
 	);
 }
 
-export function ButtonIcon({ className, ...props }) {
+export function EditIcon({ className, ...props }) {
 	return (
-		<button className={['ButtonIcon', className].join(' ')} {...props} />
+		<Link className={['Icon blue', className].join(' ')} {...props}>
+			<FontAwesomeIcon icon='edit' />
+		</Link>
 	);
 }
 
-export function LinkIcon({ className, ...props }) {
+export function DeleteIcon({ className, ...props }) {
 	return (
-		<Link className={['LinkIcon', className].join(' ')} {...props} />
+		<button className={['Icon blue', className].join(' ')} {...props}>
+			<FontAwesomeIcon icon='trash-alt' />
+		</button>
+	);
+}
+
+export function CloseIcon({ className, ...props }) {
+	return (
+		<div className={['Icon CloseIcon grey', className].join(' ')} {...props}>
+			<FontAwesomeIcon icon='times' />
+		</div>
 	);
 }
 
@@ -65,4 +98,8 @@ export function getTypeIcon(type) {
 		case 'Restaurant': return 'utensils';
 		default: return 'walking';
 	}
+}
+
+export function getDate(date) {
+	return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 }

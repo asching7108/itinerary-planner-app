@@ -5,6 +5,7 @@
 	border-radius: 15px;
 	margin: 5px;
 	padding: 10px;
+	text-decoration: none;
 }
 
 .TripItem__details {
@@ -14,18 +15,24 @@
 }
 
 .TripItem__heading {
-	background-color: #242426;
-	color: #FFF;
+	width: 90vw;
+  max-width: 640px;
 	margin: 5px;
-	padding: 10px;
+	padding: 8px;
 }
 
-.TripItem:nth-child(2) {
+.TripItem__description {
+	font-style: italic;
+	color: #FF9E99;
+	margin-top: 10px;
+}
+
+.TripItem:nth-child(3n + 2) {
 	background-color: #84DB9A;
 	border: 1px solid #84DB9A;
 }
 
-.TripItem:nth-child(3) {
+.TripItem:nth-child(3n) {
 	background-color: #FF9E99;
 	border: 1px solid #FF9E99;
 }

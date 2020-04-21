@@ -32,6 +32,9 @@
 .Header__sign-in a, .Header__sign-out a {
 	padding: 5px 15px;
 	border-radius: 15px;
+	border: 1px solid #99E2FF;
+	color: #99E2FF;
+	text-decoration: none;
 }
 
 .Header__sign-in a:last-child {

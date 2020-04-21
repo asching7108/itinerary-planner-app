@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import './Autocomplete.css';
 
+/*global google*/
+
 export default class Autocomplete extends Component {
 	static defaultProps = {
 		id: '',
 		value: '',
 		type: [],
 		componentRestrictions: {},
+		viewport: {},
 		onChange: () => {},
 		onSelect: () => {}
 	};
@@ -42,7 +45,6 @@ export default class Autocomplete extends Component {
 	handleSelect = (selection, placeId) => {
 		this.setState({ inputValue: selection });
 		
-		/*global google*/
 		const map = new google.maps.Map(document.createElement('div'), {
 			center: { lat: 0, lng: 0 },
 			zoom: 0
@@ -50,7 +52,15 @@ export default class Autocomplete extends Component {
 		const service = new google.maps.places.PlacesService(map);
 		const request = {
 			placeId,
-			fields: ['place_id', 'name', 'utc_offset_minutes']
+			fields: [
+				'place_id', 
+				'name', 
+				'utc_offset_minutes',
+				'formatted_address',
+				'international_phone_number',
+				'website',
+				'geometry'
+			]
 		};
 		service.getDetails(request, this.handlePlaceDetails);
 	}
@@ -60,7 +70,11 @@ export default class Autocomplete extends Component {
 		const selection = {
 			name: place.name,
 			place_id: place.place_id,
-			utc_offset_minutes: place.utc_offset_minutes
+			utc_offset_minutes: place.utc_offset_minutes,
+			formatted_address: place.formatted_address,
+			international_phone_number: place.international_phone_number,
+			website: place.website,
+			viewport: place.geometry.viewport
 		};
 
 		onSelect(selection, id);
@@ -88,21 +102,24 @@ export default class Autocomplete extends Component {
 	};
 
 	render() {
-		const { types, componentRestrictions } = this.props;
+		const { types, componentRestrictions, viewport } = this.props;
 		const { inputValue } = this.state;
-
-
+		const bounds = new google.maps.LatLngBounds(
+			new google.maps.LatLng(parseFloat(viewport.sw_lat), parseFloat(viewport.sw_lng)),
+			new google.maps.LatLng(parseFloat(viewport.ne_lat), parseFloat(viewport.ne_lng))
+		);
+		
 		const searchOptions = {
+			bounds,
 			types,
 			componentRestrictions
-		 }
+		}
 
 		return (
 			<PlacesAutocomplete
 				value={inputValue}
 				onChange={this.handleChange}
 				onSelect={this.handleSelect}
-				// Pass the search options prop
 				searchOptions={searchOptions}
 				googleCallbackName='callbackFunc'
 			>

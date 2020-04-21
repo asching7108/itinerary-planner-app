@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { formattedDate } from '../Utils/Utils';
+import { formatDate } from '../Utils/Utils';
 import './TripItem.css';
 
 export default class TripItem extends Component {
@@ -32,10 +32,10 @@ export default class TripItem extends Component {
 				<h4 className='TripItem__date'>
 					{
 						hasSameYear(trip.start_date, trip.end_date)
-							? formattedDate(trip.start_date, 'ddd, MMM D')
-							: formattedDate(trip.start_date, 'ddd, MMM D, YYYY')
+							? formatDate(trip.start_date, 'ddd, MMM D')
+							: formatDate(trip.start_date, 'ddd, MMM D, YYYY')
 					} - {
-						formattedDate(trip.end_date, 'ddd, MMM D, YYYY')
+						formatDate(trip.end_date, 'ddd, MMM D, YYYY')
 					}
 				</h4>
 				{this.renderTripItemDetailDesc()}

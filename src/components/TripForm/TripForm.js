@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TripsApiService from '../../services/trips-api-service';
 import Autocomplete from '../Autocomplete/Autocomplete';
-import { formattedDate, Button, Input, Textarea } from '../Utils/Utils';
+import { formatDate, toDate, Button, Input, Textarea, CFlatpickr } from '../Utils/Utils';
 import './TripForm.css';
 
 export default class TripForm extends Component {
 	static defaultProps = {
+		trip: {},
 		onAddTripSuccess: () => {},
 		onClickOnCancel: () => {}
 	}
@@ -27,18 +28,20 @@ export default class TripForm extends Component {
 	componentDidMount() { this.updateState(); }
 
 	componentDidUpdate(prevProps) {
-		if (!prevProps.trip && !!this.props.trip) { this.updateState(); }
+		if (Object.keys(this.props.trip).length > Object.keys(prevProps.trip).length) {
+			this.updateState();
+		}
 	}
 
 	updateState() {
 		const { trip } = this.props;
 		
-		if (trip) {
+		if (Object.keys(trip).length !== 0) {
 			this.setState({
 				trip_name: trip.trip_name,
 				dest_cities: trip.dest_cities,
-				start_date: formattedDate(trip.start_date, 'YYYY-MM-DD'),
-				end_date: formattedDate(trip.end_date, 'YYYY-MM-DD'),
+				start_date: [toDate(trip.start_date)],
+				end_date: [toDate(trip.end_date)],
 				description: trip.description,
 				destCityCount: trip.dest_cities.length,
 				error: null
@@ -68,8 +71,16 @@ export default class TripForm extends Component {
 		const newDestCity = {
 			city_name: content.name,
 			city_place_id: content.place_id,
-			utc_offset_minutes: content.utc_offset_minutes
+			utc_offset_minutes: content.utc_offset_minutes,
 		};
+		if (content.viewport) {
+			newDestCity.viewport = {
+				ne_lat: content.viewport.Ya.j,
+				ne_lng: content.viewport.Ua.j,
+				sw_lat: content.viewport.Ya.i,
+				sw_lng: content.viewport.Ua.i
+			};
+		}
 		newDestCities[serial] = newDestCity;
 		this.setState({ 'dest_cities': newDestCities });
 	}
@@ -87,8 +98,7 @@ export default class TripForm extends Component {
 
 	handleAddSubmit = e => {
 		e.preventDefault();
-		const { trip_name, dest_cities, start_date, end_date, description } = this.state;
-		const trip = { trip_name, dest_cities, start_date, end_date, description };
+		const trip = this.getTrip();
 
 		TripsApiService.postTrip(trip)
 			.then(trip => {
@@ -102,8 +112,7 @@ export default class TripForm extends Component {
 
 	handleUpdateSubmit = e => {
 		e.preventDefault();
-		const { trip_name, dest_cities, start_date, end_date, description } = this.state;
-		const trip = { trip_name, dest_cities, start_date, end_date, description };
+		const trip = this.getTrip();
 		
 		TripsApiService.updateTrip(Number(this.props.trip.id), trip)
 			.then(trip => {
@@ -113,6 +122,17 @@ export default class TripForm extends Component {
 			.catch(res => {
 				this.setState({ error: res.error });
 			});
+	}
+
+	getTrip() {
+		const { trip_name, dest_cities, start_date, end_date, description } = this.state;
+		return {
+			trip_name,
+			dest_cities,
+			start_date: formatDate(start_date[0], 'YYYY-MM-DD'),
+			end_date: formatDate(end_date[0], 'YYYY-MM-DD'),
+			description
+		};
 	}
 
 	renderDestCity() {
@@ -200,7 +220,7 @@ export default class TripForm extends Component {
 
 	render() {
 		const { location } = this.props;
-		const { error } = this.state;
+		const { trip_name, start_date, end_date, description, error } = this.state;
 		return (
 			<form
 				className='TripForm'
@@ -221,7 +241,7 @@ export default class TripForm extends Component {
 						type='text'
 						id='TripForm__trip-name'
 						required
-						value={this.state.trip_name}
+						value={trip_name}
 						onChange={e => this.inputChanged('trip_name', e.target.value)}
 					/>
 				</div>
@@ -235,26 +255,25 @@ export default class TripForm extends Component {
 					<label htmlFor='TripForm__start-date'>
 						Start date
 					</label>
-					<Input
-						name='start-date'
-						type='date'
+					<CFlatpickr
 						id='TripForm__start-date'
+						name='start-date'
+						value={start_date}
+						onChange={date => this.inputChanged('start_date', date)}
 						required
-						value={this.state.start_date}
-						onChange={e => this.inputChanged('start_date', e.target.value)}
+						options={{ dateFormat: 'm / d / Y' }}
 					/>
 				</div>
 				<div>
 					<label htmlFor='TripForm__end-date'>
 						End date
 					</label>
-					<Input
-						name='end-date'
-						type='date'
+					<CFlatpickr
 						id='TripForm__end-date'
-						required
-						value={this.state.end_date}
-						onChange={e => this.inputChanged('end_date', e.target.value)}
+						name='end-date'
+						value={end_date}
+						onChange={date => this.inputChanged('end_date', date)}
+						options={{ dateFormat: 'm / d / Y' }}
 					/>
 				</div>
 				<div>
@@ -265,7 +284,7 @@ export default class TripForm extends Component {
 						name='description'
 						type='textarea'
 						id='TripForm__description'
-						value={this.state.description}
+						value={description}
 						onChange={e => this.inputChanged('description', e.target.value)}
 					/>
 				</div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TripContext from '../context/TripContext';
-import TripsApiService from '../services/trips-api-service';
 import PlanForm from '../components/PlanForm/PlanForm';
 
 export default class AddPlanPage extends Component {
@@ -9,6 +8,12 @@ export default class AddPlanPage extends Component {
 	componentDidMount() {
 		if (this.context.needToUpdate) {
 			this.context.updateTrip(this.props.match.params.trip_id);
+		}
+	}
+
+	componentDidUpdate() {
+		if (this.context.error) {
+			this.props.history.push('/page-not-found');
 		}
 	}
 
@@ -28,8 +33,7 @@ export default class AddPlanPage extends Component {
 			<section className='AddPlanPage'>
 				<h2>Create a plan</h2>
 				<PlanForm 
-					tripId={this.props.match.params.trip_id}
-					destCities={this.context.trip.dest_cities}
+					trip={this.context.trip}
 					location={this.props.location}
 					onAddPlanSuccess={this.handleAddPlanSuccess}
 					onClickOnCancel={this.handleClickOnCancel}
