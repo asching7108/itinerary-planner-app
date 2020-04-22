@@ -13,7 +13,8 @@
   align-items: baseline;
 }
 
-.PlanPage__type {
+.PlanPage__type,
+.PlanPage__detail-row {
   display: flex;
 }
 

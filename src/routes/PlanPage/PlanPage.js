@@ -47,6 +47,7 @@ export default class PlanPage extends Component {
 		const { match: { params }, history } = this.props;
 		TripsApiService.deletePlan(params.trip_id, params.plan_id)
 			.then(() => {
+				this.context.updateTrip(params.trip_id);
 				history.push(`/trip/${params.trip_id}`);
 			})
 			.catch(res => {
@@ -62,7 +63,7 @@ export default class PlanPage extends Component {
 			<div className='PlanPage__heading'>
 				<div className='PlanPage__title'>
 					<div className='PlanPage__title-left'>
-						<h2 className='PlanPage__name'>{plans[0].plan_name}</h2>
+						<h2 className='PlanPage__plan-name'>{plans[0].plan_name}</h2>
 						<EditIcon to={`/trip/${params.trip_id}/plan/${params.plan_id}/edit`} />
 						<DeleteIcon onClick={this.handleClickOnDelete} />
 					</div>
@@ -115,26 +116,43 @@ export default class PlanPage extends Component {
 
 		return (
 			<div className='PlanPage__details'>
-				<div className='PlanPage__type'>
-					<span className='PlanPage__icon'>
-						<FontAwesomeIcon icon='map-marker-alt' />
-					</span>
-					<p className='PlanPage__address'>{plans[0].formatted_address}</p>
-				</div>
-				<div className='PlanPage__type'>
-					<span className='PlanPage__icon'>
-						<FontAwesomeIcon icon='phone' />
-					</span>
-					<p className='PlanPage__phone'>{plans[0].international_phone_number}</p>
-				</div>
-				<div className='PlanPage__type'>
-					<span className='PlanPage__icon'>
-						<FontAwesomeIcon icon='globe-asia' />
-					</span>
-					<p className='PlanPage__web'>
-						<a target='_blank' href={plans[0].website} rel="noopener noreferrer">{plans[0].website}</a>
-					</p>
-				</div>
+				{this.renderPlanDetail(plans[0], '')}
+				{this.renderPlanDetail(plans[0], 'from_')}
+				{plans[1] ? this.renderPlanDetail(plans[1], 'to_') : this.renderPlanDetail(plans[0], 'to_')}
+			</div>
+		);
+	}
+
+	renderPlanDetail(plan, prefix) {
+		return (
+			<div className='PlanPage__detail'>
+				{plan[`${prefix}name`] && (
+					<div className='PlanPage__detail-row'>
+						<p className='PlanPage__name'>{plan[`${prefix}name`]}</p>
+					</div>
+				)}
+				{plan[`${prefix}formatted_address`] && (
+					<div className='PlanPage__detail-row'>
+						<span className='PlanPage__icon'><FontAwesomeIcon icon='map-marker-alt' /></span>
+						<p className='PlanPage__address'>{plan[`${prefix}formatted_address`]}</p>
+					</div>
+				)}
+				{plan[`${prefix}international_phone_number`] && (
+					<div className='PlanPage__detail-row'>
+						<span className='PlanPage__icon'><FontAwesomeIcon icon='phone' /></span>
+						<p className='PlanPage__phone'>{plan[`${prefix}international_phone_number`]}</p>
+					</div>
+				)}
+				{plan[`${prefix}website`] && (
+					<div className='PlanPage__detail-row'>
+						<span className='PlanPage__icon'><FontAwesomeIcon icon='globe-asia' /></span>
+						<p className='PlanPage__web'>
+							<a target='_blank' href={plan[`${prefix}website`]} rel="noopener noreferrer">
+								{plan[`${prefix}website`]}
+							</a>
+						</p>
+					</div>
+				)}
 			</div>
 		);
 	}

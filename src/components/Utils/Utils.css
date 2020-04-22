@@ -63,3 +63,7 @@
 	border: 1px solid #AEAEB2;
 	border-radius: 15px;
 }
+
+.CloseIcon:hover {
+	cursor: pointer;
+}

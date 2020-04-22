@@ -28,14 +28,14 @@ export default class PlanForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			plan_name: '',
+			name: '',
 			plan_type: '',
 			start_date: '',
 			start_time: '',
 			end_date: '',
 			end_time: '',
 			description: '',
-			plan_place_id: '',
+			place_id: '',
 			city_name: '',
 			utc_offset_minutes: '',
 			formatted_address: '',
@@ -44,9 +44,15 @@ export default class PlanForm extends Component {
 			from_name: '',
 			from_place_id: '',
 			from_utc_offset_minutes: '',
+			from_formatted_address: '',
+			from_international_phone_number: '',
+			from_website: '',
 			to_name: '',
 			to_place_id: '',
 			to_utc_offset_minutes: '',
+			to_formatted_address: '',
+			to_international_phone_number: '',
+			to_website: '',
 			viewport: {},
 			error: null,
 		};
@@ -67,14 +73,14 @@ export default class PlanForm extends Component {
 
 		if (plans[0]) {
 			this.setState({
-				plan_name: plans[0].plan_name,
+				name: plans[0].plan_name,
 				plan_type: plans[0].plan_type,
 				start_date: [toDate(plans[0].start_date)],
 				start_time: [toDate(plans[0].start_date)],
 				end_date: [toDate(plans[0].end_date)],
 				end_time: [toDate(plans[0].end_date)],
 				description: plans[0].description,
-				plan_place_id: plans[0].plan_place_id,
+				place_id: plans[0].plan_place_id,
 				city_name: plans[0].city_name,
 				utc_offset_minutes: plans[0].utc_offset_minutes,
 				formatted_address: plans[0].formatted_address,
@@ -83,12 +89,24 @@ export default class PlanForm extends Component {
 				from_name: plans[0].from_name,
 				from_place_id: plans[0].from_place_id,
 				from_utc_offset_minutes: plans[0].from_utc_offset_minutes,
+				from_formatted_address: plans[0].from_formatted_address,
+				from_international_phone_number: plans[0].from_international_phone_number,
+				from_website: plans[0].from_website,
 				to_name: plans[plans.length - 1].to_name,
 				to_place_id: plans[plans.length - 1].to_place_id,
 				to_utc_offset_minutes: plans[plans.length - 1].to_utc_offset_minutes,
-				viewport: plans[0].viewport,
+				to_formatted_address: plans[0].to_formatted_address,
+				to_international_phone_number: plans[0].to_international_phone_number,
+				to_website: plans[0].to_website,
 				error: null
 			});
+
+			if (Object.keys(trip).length !== 0) {
+				const defCity = trip.dest_cities.find(dc => dc.city_name === plans[0].city_name);
+				if (defCity) {
+					this.setState({ viewport: defCity.viewport });
+				}
+			}
 		}
 		else if (Object.keys(trip).length !== 0) {
 			this.setState({
@@ -118,29 +136,25 @@ export default class PlanForm extends Component {
 		});
 	}
 
-	planNameChanged = (content) => {
-		this.setState({
-			plan_name: content.name,
-			plan_place_id: content.place_id,
-			formatted_address: content.formatted_address,
-			international_phone_number: content.international_phone_number,
-			website: content.website,
-		});
-	}
+	planNameChanged = (content) => { this.placeDetailChanged('', content); }
 
 	fromPlaceChanged = (content) => {
-		this.setState({
-			from_name: content.name,
-			from_place_id: content.place_id,
-			from_utc_offset_minutes: content.utc_offset_minutes
-		});
+		this.placeDetailChanged('from_', content);
+		if (content.place_id && this.state.to_name === '') {
+			this.placeDetailChanged('to_', content);
+		}
 	}
 
-	toPlaceChanged = (content) => {
+	toPlaceChanged = (content) => { this.placeDetailChanged('to_', content); }
+
+	placeDetailChanged = (prefix, content) => {
 		this.setState({
-			to_name: content.name,
-			to_place_id: content.place_id,
-			to_utc_offset_minutes: content.utc_offset_minutes
+			[`${prefix}name`]: content.name,
+			[`${prefix}place_id`]: content.place_id,
+			[`${prefix}utc_offset_minutes`]: content.utc_offset_minutes,
+			[`${prefix}formatted_address`]: content.formatted_address,
+			[`${prefix}international_phone_number`]: content.international_phone_number,
+			[`${prefix}website`]: content.website
 		});
 	}
 
@@ -177,8 +191,9 @@ export default class PlanForm extends Component {
 
 	getPlan() {
 		const {
-			plan_name, 
+			name, 
 			plan_type, 
+			place_id, 
 			start_date, 
 			start_time,
 			end_date,
@@ -188,13 +203,13 @@ export default class PlanForm extends Component {
 			utc_offset_minutes,
 			formatted_address,
 			international_phone_number,
-			website,
-			viewport
+			website
 		} = this.state;
 
 		return { 
-			plan_name, 
+			plan_name: name, 
 			plan_type, 
+			plan_place_id: place_id,
 			start_date: `${formatDate(start_date[0], 'YYYY-MM-DD')}T${formatDate(start_time[0], 'HH:mm')}:00.000Z`,
 			end_date: `${formatDate(end_date[0], 'YYYY-MM-DD')}T${formatDate(end_time[0], 'HH:mm')}:00.000Z`,
 			description,
@@ -202,8 +217,7 @@ export default class PlanForm extends Component {
 			utc_offset_minutes,
 			formatted_address,
 			international_phone_number,
-			website,
-			viewport
+			website
 		};
 	}
 	
@@ -213,9 +227,15 @@ export default class PlanForm extends Component {
 			from_name,
 			from_place_id,
 			from_utc_offset_minutes,
+			from_formatted_address,
+			from_international_phone_number,
+			from_website,
 			to_name,
 			to_place_id,
-			to_utc_offset_minutes
+			to_utc_offset_minutes,
+			to_formatted_address,
+			to_international_phone_number,
+			to_website,
 		} = this.state;
 
 		let plan_details;
@@ -243,12 +263,18 @@ export default class PlanForm extends Component {
 					from_name,
 					from_place_id,
 					from_utc_offset_minutes,
+					from_formatted_address,
+					from_international_phone_number,
+					from_website
 				},
 				{
 					plan_subtype: 'Drop off',
 					to_name,
 					to_place_id,
-					to_utc_offset_minutes
+					to_utc_offset_minutes,
+					to_formatted_address,
+					to_international_phone_number,
+					to_website
 				}
 			];
 		}
@@ -258,14 +284,14 @@ export default class PlanForm extends Component {
 
 	resetState() {
 		this.setState({ 
-			plan_name: '',
+			name: '',
 			plan_type: '',
 			start_date: '',
 			start_time: '',
 			end_date: '',
 			end_time: '',
 			description: '',
-			plan_place_id: '',
+			place_id: '',
 			city_name: '',
 			utc_offset_minutes: '',
 			formatted_address: '',
@@ -274,11 +300,16 @@ export default class PlanForm extends Component {
 			from_name: '',
 			from_place_id: '',
 			from_utc_offset_minutes: '',
+			from_formatted_address: '',
+			from_international_phone_number: '',
+			from_website: '',
 			to_name: '',
 			to_place_id: '',
 			to_utc_offset_minutes: '',
+			to_formatted_address: '',
+			to_international_phone_number: '',
+			to_website: '',
 			viewport: {},
-			default_date: '',
 			error: null
 		});
 	}
@@ -288,7 +319,7 @@ export default class PlanForm extends Component {
 		const { city_name } = this.state;
 		const defCity = dest_cities && dest_cities.find(dc => dc.city_name === city_name);
 		const defVal = defCity ? defCity.id : dest_cities && dest_cities[0].id;
-
+		
 		return (
 			<div>
 				<label htmlFor='PlanForm__city'>
@@ -297,7 +328,7 @@ export default class PlanForm extends Component {
 				<Select
 					name='city'
 					id='PlanForm__city'
-					defaultValue={defVal}
+					value={defVal}
 					onChange={e => this.cityChanged(e.target.value)}
 				>
 					{dest_cities && dest_cities.map((dc, idx) => 
@@ -332,23 +363,23 @@ export default class PlanForm extends Component {
 	}
 
 	renderNameInput() {
-		const { plan_type, plan_name, viewport } = this.state;
-		if (plan_type === 'Flight') {
+		const { plan_type, name, viewport } = this.state;
+		if (TYPES_FOR_DETAILS.includes(plan_type)) {
 			return (
 				<Input
 					name='name'
 					type='text'
 					id='PlanForm__name'
 					required
-					value={plan_name}
-					onChange={e => this.inputChanged('plan_name', e.target.value)}
+					value={name}
+					onChange={e => this.inputChanged('name', e.target.value)}
 				/>
 			);
 		}
 		return (
 			<Autocomplete
 				id='PlanForm__name'
-				value={plan_name}
+				value={name}
 				viewport={viewport}
 				onChange={this.planNameChanged}
 				onSelect={this.planNameChanged}

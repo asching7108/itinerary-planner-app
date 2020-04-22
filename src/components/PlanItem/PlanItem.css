@@ -24,7 +24,26 @@
 	margin-right: 5px;
 }
 
-.PlanItem__sub-type {
+.PlanItem__text-row {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.PlanItem__subtype {
+	background-color: #545456;
+	color: #FFF;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.PlanItem__address {
 	font-size: 0.9em;
 	font-weight: 300;
+}
+
+@media screen and (min-width: 365px) {
+	.PlanItem__text-row {
+		flex-direction: row;
+	}
 }

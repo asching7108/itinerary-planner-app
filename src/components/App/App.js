@@ -21,9 +21,17 @@ import config from '../../config';
 import './App.css';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		const script = document.createElement('script');
+		script.async = true;
+		script.defer = true;
+		script.type = 'text/javascript';
+		script.src = `https://maps.googleapis.com/maps/api/js?key=${config.MAPS_API_KEY}&libraries=places&callback=callbackFunc`;
+		document.head.appendChild(script);
+		this.state = { hasError: false };
+	}
 	static contextType = TripListContext;
-
-	state = { hasError: false };
 
 	static getDerivedStateFromError(error) {
 		console.error(error);
@@ -31,13 +39,6 @@ class App extends Component {
 	};
 	
 	componentDidMount() {
-		const script = document.createElement('script');
-		script.async = true;
-		script.defer = true;
-		script.type = 'text/javascript';
-		script.src = `https://maps.googleapis.com/maps/api/js?key=${config.MAPS_API_KEY}&libraries=places&callback=callbackFunc`;
-		document.head.appendChild(script);
-
 		IdleService.setIdleCallback(this.logoutFromIdle);
 
 		if (TokenService.hasAuthToken()) {

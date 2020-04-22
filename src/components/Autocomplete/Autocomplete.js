@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import './Autocomplete.css';
 
-/*global google*/
+let google = window.google;
 
 export default class Autocomplete extends Component {
 	static defaultProps = {
@@ -34,6 +34,7 @@ export default class Autocomplete extends Component {
 				inputValue: this.props.value
 			});
 		}
+		if (!google && window.google) { google = window.google; }
 	}
 
 	handleChange = content => {
@@ -81,21 +82,24 @@ export default class Autocomplete extends Component {
 	}
 
 	renderInput = ({ getInputProps, getSuggestionItemProps, suggestions }) => {
-		const activeStyle = { display: 'block' };
-		const inactiveStyle = { display: 'none' };
-		
+		const dropdownClassName = suggestions.length 
+			? 'Autocomplete__dropdown-active' 
+			: 'Autocomplete__dropdown-inactive';
+
 		return (
 			<div className='Autocomplete'>
 				<input {...getInputProps({ className: 'Input', autoFocus: true })} />
-				<div 
-					className='Autocomplete__dropdown'
-					style={suggestions.length ? activeStyle : inactiveStyle}
-				>
-					{suggestions.map(suggestion => (
-						<div {...getSuggestionItemProps(suggestion)} className='Autocomplete__suggestion'>
-							<span place_id={suggestions.place_id}>{suggestion.description}</span>
-						</div>
-					))}
+				<div className={dropdownClassName}>
+					{suggestions.map(suggestion => {
+						const suggestionClassName = suggestion.active
+							? 'Autocomplete__suggestion-focus'
+							: 'Autocomplete__suggestion';
+						return (
+							<div className={suggestionClassName} {...getSuggestionItemProps(suggestion)}>
+								<span place_id={suggestions.place_id}>{suggestion.description}</span>
+							</div>
+						);
+					})}
 				</div>
 			</div>
 		);
@@ -104,15 +108,17 @@ export default class Autocomplete extends Component {
 	render() {
 		const { types, componentRestrictions, viewport } = this.props;
 		const { inputValue } = this.state;
-		const bounds = new google.maps.LatLngBounds(
-			new google.maps.LatLng(parseFloat(viewport.sw_lat), parseFloat(viewport.sw_lng)),
-			new google.maps.LatLng(parseFloat(viewport.ne_lat), parseFloat(viewport.ne_lng))
-		);
 		
 		const searchOptions = {
-			bounds,
 			types,
 			componentRestrictions
+		}
+		
+		if (google) {
+			searchOptions.bounds = new google.maps.LatLngBounds(
+				new google.maps.LatLng(parseFloat(viewport.sw_lat), parseFloat(viewport.sw_lng)),
+				new google.maps.LatLng(parseFloat(viewport.ne_lat), parseFloat(viewport.ne_lng))
+			);
 		}
 
 		return (
