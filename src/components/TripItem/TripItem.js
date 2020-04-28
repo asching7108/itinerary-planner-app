@@ -32,10 +32,10 @@ export default class TripItem extends Component {
 				<h4 className='TripItem__date'>
 					{
 						hasSameYear(trip.start_date, trip.end_date)
-							? formatDate(trip.start_date, 'ddd, MMM D')
-							: formatDate(trip.start_date, 'ddd, MMM D, YYYY')
+							? formatDate(trip.start_date, 'MMM D')
+							: formatDate(trip.start_date, 'MMM D, YYYY')
 					} - {
-						formatDate(trip.end_date, 'ddd, MMM D, YYYY')
+						formatDate(trip.end_date, 'MMM D, YYYY')
 					}
 				</h4>
 				{this.renderTripItemDetailDesc()}

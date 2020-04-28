@@ -11,6 +11,7 @@ export default class Autocomplete extends Component {
 		type: [],
 		componentRestrictions: {},
 		viewport: {},
+		required: false,
 		onChange: () => {},
 		onSelect: () => {}
 	};
@@ -82,13 +83,14 @@ export default class Autocomplete extends Component {
 	}
 
 	renderInput = ({ getInputProps, getSuggestionItemProps, suggestions }) => {
+		const { required } = this.props;
 		const dropdownClassName = suggestions.length 
 			? 'Autocomplete__dropdown-active' 
 			: 'Autocomplete__dropdown-inactive';
 
 		return (
 			<div className='Autocomplete'>
-				<input {...getInputProps({ className: 'Input', autoFocus: true })} />
+				<input {...getInputProps({ className: 'Input', autoFocus: true, required })} />
 				<div className={dropdownClassName}>
 					{suggestions.map(suggestion => {
 						const suggestionClassName = suggestion.active

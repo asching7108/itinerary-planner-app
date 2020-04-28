@@ -72,6 +72,7 @@ export default class TripForm extends Component {
 			city_name: content.name,
 			city_place_id: content.place_id,
 			utc_offset_minutes: content.utc_offset_minutes,
+			viewport: {}
 		};
 		if (content.viewport) {
 			newDestCity.viewport = {
@@ -114,7 +115,7 @@ export default class TripForm extends Component {
 		e.preventDefault();
 		const trip = this.getTrip();
 		
-		TripsApiService.updateTrip(Number(this.props.trip.id), trip)
+		TripsApiService.updateTrip(this.props.trip.id, trip)
 			.then(trip => {
 				this.resetState();
 				this.props.onUpdateTripSuccess(trip);

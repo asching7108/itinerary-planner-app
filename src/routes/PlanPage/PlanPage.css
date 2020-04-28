@@ -45,7 +45,7 @@
   width: 100%;
 }
 
-.PlanPage__time div:nth-child(2) {
+.PlanPage__time-item:nth-child(2) {
   border-left: 1px solid #99E2FF;
 }
 
@@ -55,6 +55,47 @@
   margin-top: 10px;
 }
 
+.PlanPage__detail {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.PlanPage__detail-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.PlanPage__detail-type {
+  background-color: #545456;
+  color: #FFF;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.PlanPage__detail-row {
+  color: #99E2FF;
+}
+
 .PlanPage__web {
   word-break: break-all;
+}
+
+.PlanPage__flight {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 365px) {
+  .PlanPage__flight {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .PlanPage__detail-title {
+    flex-direction: row;
+    align-items: baseline;
+  }
 }

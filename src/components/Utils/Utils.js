@@ -62,7 +62,7 @@ export function CFlatpickr({ className, options, ...props }) {
 
 export function LinkButton({ className, ...props }) {
 	return (
-		<Link className={['LinkButton', className].join(' ')} {...props} />
+		<Link className={['LinkButton Button', className].join(' ')} {...props} />
 	);
 }
 

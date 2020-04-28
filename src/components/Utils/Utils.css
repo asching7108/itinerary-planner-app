@@ -1,10 +1,9 @@
 .Button {
-	align-self: center;
-	min-width: 120px;
-	padding: 10px 25px;
 	border-radius: 20px;
-	font-size: 1.1em;
-	margin: 10px;
+	margin: 5px;
+	min-width: 90px;
+	padding: 6px 16px;
+	font-size: 1em;
 }
 
 .Select,
@@ -36,16 +35,10 @@
 
 .LinkButton {
 	display: block;
-	min-width: 120px;
-	padding: 10px 25px;
-	border-radius: 20px;
-	font-size: 1.1em;
 	text-decoration: none;
 	text-align: center;
-	margin: 10px;
 	border: 1px solid #99E2FF;
 	color: #99E2FF;
-	text-decoration: none;
 }
 
 .Icon {
@@ -62,8 +55,17 @@
 .CloseIcon {
 	border: 1px solid #AEAEB2;
 	border-radius: 15px;
+	flex-shrink: 0;
 }
 
 .CloseIcon:hover {
 	cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+	.Button {
+		min-width: 110px;
+		padding: 8px 22px;
+		font-size: 1.1em;
+	}
 }

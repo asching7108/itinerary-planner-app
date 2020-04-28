@@ -32,19 +32,23 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 5px;
 }
 
-h2 {
+h1 {
 	font-size: 1.6em;
+}
+
+h2 {
+	font-size: 1.2em;
 	font-weight: 500;
 }
 
 h3 {
-	font-size: 1.2em;
+	font-size: 1em;
 	font-weight: 400;
 }
 
 h4 {
-	font-size: 1em;
-	font-weight: 300;
+	font-size: 0.9em;
+	font-weight: 400;
 }
 
 p {
@@ -118,6 +122,7 @@ button:hover {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 }
 
 .IconsDiv {
@@ -126,8 +131,14 @@ button:hover {
 	justify-content: center;
 }
 
-@media screen and (min-width: 330px) {
+@media screen and (min-width: 250px) {
 	.ButtonsDiv {
 		flex-direction: row;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	body {
+		font-size: 16px;
 	}
 }

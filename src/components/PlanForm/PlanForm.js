@@ -9,12 +9,16 @@ const TYPES = [
 	'Lodging',
 	'Car Rental',
 	'Restaurant',
-	'Activity'
+	'Activity',
+	'Sightseeing',
+	'Meeting',
+	'Transportation'
 ];
 
 const TYPES_FOR_DETAILS = [
 	'Flight',
-	'Car Rental'
+	'Car Rental',
+	'Transportation'
 ];
 
 export default class PlanForm extends Component {
@@ -47,12 +51,16 @@ export default class PlanForm extends Component {
 			from_formatted_address: '',
 			from_international_phone_number: '',
 			from_website: '',
+			from_terminal: '',
+			from_gate: '',
 			to_name: '',
 			to_place_id: '',
 			to_utc_offset_minutes: '',
 			to_formatted_address: '',
 			to_international_phone_number: '',
 			to_website: '',
+			to_terminal: '',
+			to_gate: '',
 			viewport: {},
 			error: null,
 		};
@@ -90,14 +98,18 @@ export default class PlanForm extends Component {
 				from_place_id: plans[0].from_place_id,
 				from_utc_offset_minutes: plans[0].from_utc_offset_minutes,
 				from_formatted_address: plans[0].from_formatted_address,
+				from_terminal: plans[0].from_terminal,
+				from_gate: plans[0].from_gate,
 				from_international_phone_number: plans[0].from_international_phone_number,
 				from_website: plans[0].from_website,
 				to_name: plans[plans.length - 1].to_name,
 				to_place_id: plans[plans.length - 1].to_place_id,
 				to_utc_offset_minutes: plans[plans.length - 1].to_utc_offset_minutes,
-				to_formatted_address: plans[0].to_formatted_address,
-				to_international_phone_number: plans[0].to_international_phone_number,
-				to_website: plans[0].to_website,
+				to_formatted_address: plans[plans.length - 1].to_formatted_address,
+				to_international_phone_number: plans[plans.length - 1].to_international_phone_number,
+				to_website: plans[plans.length - 1].to_website,
+				to_terminal: plans[plans.length - 1].to_terminal,
+				to_gate: plans[plans.length - 1].to_gate,
 				error: null
 			});
 
@@ -230,12 +242,16 @@ export default class PlanForm extends Component {
 			from_formatted_address,
 			from_international_phone_number,
 			from_website,
+			from_terminal,
+			from_gate,
 			to_name,
 			to_place_id,
 			to_utc_offset_minutes,
 			to_formatted_address,
 			to_international_phone_number,
 			to_website,
+			to_terminal,
+			to_gate
 		} = this.state;
 
 		let plan_details;
@@ -246,14 +262,18 @@ export default class PlanForm extends Component {
 				{ plan_subtype: 'Check out' }
 			];
 		}
-		else if (plan_type === 'Flight') {
+		else if (plan_type === 'Flight' || plan_type === 'Transportation') {
 			plan_details = [{
 				from_name,
 				from_place_id,
-				// from_utc_offset_minutes,
+				from_utc_offset_minutes,
+				from_terminal,
+				from_gate,
 				to_name,
 				to_place_id,
-				// to_utc_offset_minutes
+				to_terminal,
+				to_gate,
+				to_utc_offset_minutes
 			}];
 		}
 		else if (plan_type === 'Car Rental') {
@@ -303,12 +323,16 @@ export default class PlanForm extends Component {
 			from_formatted_address: '',
 			from_international_phone_number: '',
 			from_website: '',
+			from_terminal: '',
+			from_gate: '',
 			to_name: '',
 			to_place_id: '',
 			to_utc_offset_minutes: '',
 			to_formatted_address: '',
 			to_international_phone_number: '',
 			to_website: '',
+			to_terminal: '',
+			to_gate: '',
 			viewport: {},
 			error: null
 		});
@@ -339,9 +363,10 @@ export default class PlanForm extends Component {
 		);
 	}
 
-	renderTypeOptions() {
+	renderType() {
 		const { plan_type } = this.state;
 		const elements = [];
+
 		TYPES.forEach(t => {
 			if (t === plan_type) {
 				elements.push(<option key={t} value={t} selected>{t}</option>);
@@ -350,22 +375,35 @@ export default class PlanForm extends Component {
 				elements.push(<option key={t} value={t}>{t}</option>);
 			}
 		})
-		return elements;
+
+		return (
+			<div>
+				<label htmlFor='PlanForm__type'>Type</label>
+				<Select
+					name='type'
+					id='PlanForm__type'
+					required
+					onChange={e => this.inputChanged('plan_type', e.target.value)}
+				>
+					{elements}
+				</Select>
+			</div>
+		);
 	}
 
-	renderNameText() {
-		const { plan_type } = this.state;
-		switch (plan_type) {
-			case 'Flight': return 'Flight Number';
-			case 'Car Rental': return 'Rental agency';
-			default: return 'Name';
-		}
-	}
-
-	renderNameInput() {
+	renderName() {
 		const { plan_type, name, viewport } = this.state;
+		let nameText = '', nameInput = '';
+
+		switch(plan_type) {
+			case 'Flight': nameText = 'Flight Number'; break;
+			case 'Car Rental': nameText = 'Rental Agency'; break;
+			case 'Transportation': nameText = 'Carrier Name'; break;
+			default: nameText = 'Name';
+		}
+
 		if (TYPES_FOR_DETAILS.includes(plan_type)) {
-			return (
+			nameInput = (
 				<Input
 					name='name'
 					type='text'
@@ -376,109 +414,39 @@ export default class PlanForm extends Component {
 				/>
 			);
 		}
+		else {
+			nameInput = (
+				<Autocomplete
+					id='PlanForm__name'
+					value={name}
+					viewport={viewport}
+					required
+					onChange={this.planNameChanged}
+					onSelect={this.planNameChanged}
+				/>
+			);
+		}
+
 		return (
-			<Autocomplete
-				id='PlanForm__name'
-				value={name}
-				viewport={viewport}
-				onChange={this.planNameChanged}
-				onSelect={this.planNameChanged}
-			/>
+			<div>
+				<label htmlFor='PlanForm__name'>{nameText}</label>
+				{nameInput}
+			</div>
 		);
 	}
 
-	renderFromToPlaces() {
-		const { plan_type, from_name, to_name, viewport } = this.state;
-		if (TYPES_FOR_DETAILS.includes(plan_type)) {
-			return (
-				<>
-					<div>
-						<label htmlFor='PlanForm__from'>
-							From
-						</label>
-						<Autocomplete
-							id='PlanForm__from'
-							value={from_name}
-							viewport={viewport}
-							onChange={this.fromPlaceChanged}
-							onSelect={this.fromPlaceChanged}
-						/>
-					</div>
-					<div>
-						<label htmlFor='PlanForm__to'>
-							To
-						</label>
-						<Autocomplete
-							id='PlanForm__to'
-							value={to_name}
-							viewport={viewport}
-							onChange={this.toPlaceChanged}
-							onSelect={this.toPlaceChanged}
-						/>
-					</div>
-				</>
-			);
-		}
-	}
+	renderDateAndTime() {
+		const { plan_type, start_date, start_time, end_date, end_time } = this.state;
+		let startText = 'Start', endText = 'End';
+		
+		if (plan_type === 'Flight') { startText = 'Departure'; endText = 'Arrival'; }
+		else if (plan_type === 'Lodging') { startText = 'Check In'; endText = 'Check Out'; }
 
-	renderStartDateAndTimeText() {
-		const { plan_type } = this.state;
-		switch (plan_type) {
-			case 'Flight': return 'Departure';
-			case 'Lodging': return 'Check In';
-			default: return 'Start';
-		}
-	}
-
-	renderEndDateAndTimeText() {
-		const { plan_type } = this.state;
-		switch (plan_type) {
-			case 'Flight': return 'Arrival';
-			case 'Lodging': return 'Check Out';
-			default: return 'End';
-		}
-	}
-
-	render() {
-		const { location } = this.props;
-		const { start_date, start_time, end_date, end_time, description, error } = this.state;
 		return (
-			<form
-				className='PlanForm'
-				onSubmit={location.pathname.includes('add')
-					? this.handleAddSubmit
-					: this.handleUpdateSubmit
-				}
-			>
-				<div role='alert'>
-					{error && <p className='red'>{error}</p>}
-				</div>
-				{this.renderCity()}
-				<div>
-					<label htmlFor='PlanForm__type'>
-						Type
-					</label>
-					<Select
-						name='type'
-						id='PlanForm__type'
-						required
-						onChange={e => this.inputChanged('plan_type', e.target.value)}
-					>
-						{this.renderTypeOptions()}
-					</Select>
-				</div>
-				<div>
-					<label htmlFor='PlanForm__name'>
-					{this.renderNameText()}
-					</label>
-					{this.renderNameInput()}
-				</div>
-				{this.renderFromToPlaces()}
+			<>
 				<div className='PlanForm__row'>
 					<div className='PlanForm__date'>
-						<label htmlFor='PlanForm__start-date'>
-							{this.renderStartDateAndTimeText()} date
-						</label>
+						<label htmlFor='PlanForm__start-date'>{startText} Date</label>
 						<CFlatpickr
 							name='start-date'
 							id='PlanForm__start-date'
@@ -489,9 +457,7 @@ export default class PlanForm extends Component {
 						/>
 					</div>
 					<div className='PlanForm__time'>
-						<label htmlFor='PlanForm__start-time'>
-							{this.renderStartDateAndTimeText()} time
-						</label>
+						<label htmlFor='PlanForm__start-time'>{startText} Time</label>
 						<CFlatpickr
 							name='start-time'
 							id='PlanForm__start-time'
@@ -508,9 +474,7 @@ export default class PlanForm extends Component {
 				</div>
 				<div className='PlanForm__row'>
 					<div className='PlanForm__date'>
-						<label htmlFor='PlanForm__end-date'>
-							{this.renderEndDateAndTimeText()} date
-						</label>
+						<label htmlFor='PlanForm__end-date'>{endText} Date</label>
 						<CFlatpickr
 							name='end-date'
 							id='PlanForm__end-date'
@@ -521,9 +485,7 @@ export default class PlanForm extends Component {
 						/>
 					</div>
 					<div className='PlanForm__time'>
-						<label htmlFor='PlanForm__end-time'>
-							{this.renderStartDateAndTimeText()} time
-						</label>
+						<label htmlFor='PlanForm__end-time'>{endText} Time</label>
 						<CFlatpickr
 							name='end-time'
 							id='PlanForm__end-time'
@@ -538,10 +500,152 @@ export default class PlanForm extends Component {
 						/>
 					</div>
 				</div>
+			</>
+		);
+	}
+
+	renderDetails() {
+		if (!TYPES_FOR_DETAILS.includes(this.state.plan_type)) {
+			this.renderPlaceDetails('');
+		}
+	}
+
+	renderFromToPlaces() {
+		const { plan_type, from_name, to_name, viewport } = this.state;
+
+		const fromText = {
+			'Flight': 'Departure',
+			'Car Rental': 'Pick Up Store',
+			'Transportation': 'Departure'
+		};
+		const toText = {
+			'Flight': 'Arrival',
+			'Car Rental': 'Drop Off Store',
+			'Transportation': 'Arrival'
+		};
+
+		return (
+			<>
+				<span className='PlanForm__subtitle'>{fromText[plan_type]}</span>
 				<div>
-					<label htmlFor='PlanForm__description'>
-						Description
-					</label>
+					<label htmlFor='PlanForm__from-name'>Name</label>
+					<Autocomplete
+						id='PlanForm__from-name'
+						value={from_name}
+						viewport={viewport}
+						required
+						onChange={this.fromPlaceChanged}
+						onSelect={this.fromPlaceChanged}
+					/>
+				</div>
+				{this.renderPlaceDetails('from_')}
+				{plan_type === 'Flight' && this.renderFlightDetails('from_')}
+				<span className='PlanForm__subtitle'>{toText[plan_type]}</span>
+				<div>
+					<label htmlFor='PlanForm__to-name'>Name</label>
+					<Autocomplete
+						id='PlanForm__to-name'
+						value={to_name}
+						viewport={viewport}
+						required
+						onChange={this.toPlaceChanged}
+						onSelect={this.toPlaceChanged}
+					/>
+				</div>
+				{this.renderPlaceDetails('to_')}
+				{plan_type === 'Flight' && this.renderFlightDetails('to_')}
+			</>
+		);
+	}
+
+	renderPlaceDetails(prefix) {
+		return (
+			<>
+				<div>
+					<label htmlFor={`PlanForm__${prefix}address`}>Address</label>
+					<Input
+						name='address'
+						type='text'
+						id={`PlanForm__${prefix}address`}
+						value={this.state[`${prefix}formatted_address`]}
+						onChange={e => this.inputChanged(`${prefix}formatted_address`, e.target.value)}
+					/>
+				</div>
+				<div>
+					<label htmlFor={`PlanForm__${prefix}phone`}>Phone Number</label>
+					<Input
+						name='phone'
+						type='text'
+						id={`PlanForm__${prefix}phone`}
+						value={this.state[`${prefix}international_phone_number`]}
+						onChange={e => this.inputChanged(`${prefix}international_phone_number`, e.target.value)}
+					/>
+				</div>
+				<div>
+					<label htmlFor={`PlanForm__${prefix}website`}>Website</label>
+					<Input
+						name='website'
+						type='text'
+						id={`PlanForm__${prefix}website`}
+						value={this.state[`${prefix}website`]}
+						onChange={e => this.inputChanged(`${prefix}website`, e.target.value)}
+					/>
+				</div>
+			</>
+		);
+	}
+
+	renderFlightDetails(prefix) {
+		return (
+			<div className='PlanForm__row'>
+				<div className='PlanForm__terminal'>
+					<label htmlFor={`PlanForm__${prefix}terminal`}>Terminal</label>
+					<Input
+						name='terminal'
+						type='text'
+						id={`PlanForm__${prefix}terminal`}
+						value={this.state[`${prefix}terminal`]}
+						onChange={e => this.inputChanged(`${prefix}terminal`, e.target.value)}
+					/>
+				</div>
+				<div className='PlanForm__gate'>
+					<label htmlFor={`PlanForm__${prefix}gate`}>Gate</label>
+					<Input
+						name='gate'
+						type='text'
+						id={`PlanForm__${prefix}gate`}
+						value={this.state[`${prefix}gate`]}
+						onChange={e => this.inputChanged(`${prefix}gate`, e.target.value)}
+					/>
+				</div>
+			</div>
+		);
+	}
+
+	render() {
+		const { location } = this.props;
+		const { plan_type, description, error } = this.state;
+		return (
+			<form
+				className='PlanForm'
+				onSubmit={location.pathname.includes('add')
+					? this.handleAddSubmit
+					: this.handleUpdateSubmit
+				}
+			>
+				<div role='alert'>
+					{error && <p className='red'>{error}</p>}
+				</div>
+				{this.renderCity()}
+				{this.renderType()}
+				{this.renderName()}
+				{this.renderDateAndTime()}
+				{TYPES_FOR_DETAILS.includes(plan_type)
+					? this.renderFromToPlaces()
+					: this.renderPlaceDetails('')
+				}
+				<div>
+					<label htmlFor='PlanForm__description'>Description</label>
 					<Textarea
 						name='description'
 						type='textarea'

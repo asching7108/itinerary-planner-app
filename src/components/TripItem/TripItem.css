@@ -4,7 +4,7 @@
 	color: #242426;
 	border-radius: 15px;
 	margin: 5px;
-	padding: 10px;
+	padding: 5px 10px;
 	text-decoration: none;
 }
 
@@ -18,7 +18,6 @@
 	width: 90vw;
   max-width: 640px;
 	margin: 5px;
-	padding: 8px;
 }
 
 .TripItem__description {

@@ -22,10 +22,10 @@ export default class PlanItem extends Component {
 					<h4>{formatDate(plan.comparable_date, 'hh:mm a')}</h4>
 					<div className='PlanItem__text'>
 						<div className='PlanItem__text-row'>
-							<p className='PlanItem__name'>{plan.plan_name}</p>
-							{plan.plan_subtype && <p className='PlanItem__subtype'>{plan.plan_subtype}</p>}
+							<h3>{plan.plan_name}</h3>
+							{plan.plan_subtype && <h3 className='PlanItem__subtype'>{plan.plan_subtype}</h3>}
 						</div>
-						{address && <p className='PlanItem__address'>{address}</p>}
+						{address && <h4 className='PlanItem__address'>{address}</h4>}
 					</div>
 				</div>
 			</Link>

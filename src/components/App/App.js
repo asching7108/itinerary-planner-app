@@ -4,6 +4,7 @@ import TripListContext from '../../context/TripListContext';
 import Header from '../Header/Header';
 import PrivateRoute from '../Utils/PrivateRoute';
 import PublicRoute from '../Utils/PublicRoute';
+import IntroPage from '../../routes/IntroPage/IntroPage';
 import LoginPage from '../../routes/LoginPage/LoginPage';
 import RegisterPage from '../../routes/RegisterPage';
 import TripListPage from '../../routes/TripListPage/TripListPage';
@@ -81,6 +82,11 @@ class App extends Component {
 							exact
 							path={'/'}
 							component={TripListPage}
+						/>
+						<Route
+							exact
+							path={'/intro'}
+							component={IntroPage}
 						/>
 						<PublicRoute
 							path={'/signin'}

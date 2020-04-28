@@ -1,14 +1,26 @@
-@media screen and (min-width: 365px) {
+.PlanForm__subtitle {
+	background-color: #545456;
+	color: #FFF;
+	margin-bottom: 5px;
+	padding: 2px;
+	text-align: center;
+}
+
+@media screen and (min-width: 280px) {
 	.PlanForm__row {
 		display: flex;
 		justify-content: space-between;
 	}
 
 	.PlanForm__date {
-		width: 190px;
+		margin-right: 10px;
 	}
 
 	.PlanForm__time {
-		width: 132px;
+		flex-shrink: 1.5;
+	}
+
+	.PlanForm__terminal {
+		margin-right: 10px;
 	}
 }

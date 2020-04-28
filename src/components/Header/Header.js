@@ -44,21 +44,20 @@ export default class Header extends Component {
 	render() {
 		return <>
 			<nav className='Header'>
-				<h1>
-					<Link to='/'>
-						<FontAwesomeIcon className='blue' icon='globe-asia' />
-						Vamos
-					</Link>
-				</h1>
-				<span className='Header__tagline--wide'>Itinerary Planner</span>
+				<div className='Header__left'>
+					<span className='Header__icon'>
+						<Link to='/'><FontAwesomeIcon icon='paper-plane' /></Link>
+					</span>
+					<h1 className='Header__title'><Link to='/'>Vamos</Link></h1>
+				</div>
+				<span className='Header__tagline--wide'>- Itinerary Planner -</span>
 				<span className='Header__links'>
 					{this.context.hasAuthToken
 						? this.renderLogoutLink()
 						: this.renderLoginLink()}
 				</span>
 			</nav>
-
-			<span className='Header__tagline--narrow'>Itinerary Planner</span>
+			<span className='Header__tagline--narrow'>- Itinerary Planner -</span>
 		</>
 	}
 }

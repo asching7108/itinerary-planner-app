@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { far } from '@fortawesome/free-regular-svg-icons';
 import * as serviceWorker from './serviceWorker';
 import { TripListProvider } from './context/TripListContext';
 import { TripProvider } from './context/TripContext';
@@ -23,6 +24,7 @@ import {
 	faPhone,
 	faPlus,
 	faMinus,
+	faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -40,6 +42,8 @@ library.add(
 	faPhone,
 	faPlus,
 	faMinus,
+	faPaperPlane,
+	far
 );
 
 ReactDOM.render(

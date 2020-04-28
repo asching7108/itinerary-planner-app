@@ -95,18 +95,18 @@ export default class PlanPage extends Component {
 
 		return (
 			<div className='PlanPage__time'>
-				<div className='PlanPage__start_time'>
+				<div className='PlanPage__time-item'>
 					<h4>{startText[plans[0].plan_type] || 'From'}</h4>
 					<h3>{formatDate(plans[0].start_date, 'ddd, MMM D').toUpperCase()}</h3>
-					<h2>{formatDate(plans[0].start_date, 'hh:mm a')}</h2>
+					<h3>{formatDate(plans[0].start_date, 'hh:mm a')}</h3>
+					{plans[0].plan_type === 'Flight' && this.renderFlightDetails(plans[0], 'from_')}
 				</div>
-				{plans[0].end_date && 
-					<div className='PlanPage__end_time'>
-						<h4>{endText[plans[0].plan_type] || 'To'}</h4>
-						<h3>{formatDate(plans[0].end_date, 'ddd, MMM D').toUpperCase()}</h3>
-						<h2>{formatDate(plans[0].end_date, 'hh:mm a')}</h2>
-					</div>
-				}
+				<div className='PlanPage__time-item'>
+					<h4>{endText[plans[0].plan_type] || 'To'}</h4>
+					<p>{formatDate(plans[0].end_date, 'ddd, MMM D').toUpperCase()}</p>
+					<h3>{formatDate(plans[0].end_date, 'hh:mm a')}</h3>
+					{plans[0].plan_type === 'Flight' && this.renderFlightDetails(plans[0], 'to_')}
+				</div>
 			</div>
 		);
 	}
@@ -116,21 +116,42 @@ export default class PlanPage extends Component {
 
 		return (
 			<div className='PlanPage__details'>
-				{this.renderPlanDetail(plans[0], '')}
-				{this.renderPlanDetail(plans[0], 'from_')}
-				{plans[1] ? this.renderPlanDetail(plans[1], 'to_') : this.renderPlanDetail(plans[0], 'to_')}
+				{!plans[0].from_name && this.renderPlanDetail(plans[0], '')}
+				{plans[0].from_name && this.renderPlanDetail(plans[0], 'from_')}
+				{plans[plans.length - 1].to_name && this.renderPlanDetail(plans[plans.length - 1], 'to_')}
+				{plans[0].description && (
+					<div className='PlanPage__detail-row'>
+						<span className='PlanPage__icon'><FontAwesomeIcon icon={['far', 'sticky-note']} /></span>
+						<p>{plans[0].description}</p>
+					</div>
+				)}
 			</div>
 		);
 	}
 
 	renderPlanDetail(plan, prefix) {
+		const startText = {
+			'Flight': 'Departure',
+			'Transportation': 'Departure',
+			'Car Rental': 'Pick Up'
+		};
+		const endText = {
+			'Flight': 'Arrival',
+			'Transportation': 'Arrival',
+			'Car Rental': 'Drop Off'
+		};
+
 		return (
 			<div className='PlanPage__detail'>
-				{plan[`${prefix}name`] && (
-					<div className='PlanPage__detail-row'>
-						<p className='PlanPage__name'>{plan[`${prefix}name`]}</p>
-					</div>
-				)}
+				<div className='PlanPage__detail-title'>
+					{plan[`${prefix}name`] && (
+						<h3 className='PlanPage__detail-name'>{plan[`${prefix}name`]}</h3>
+					)}
+					{startText[plan.plan_type] && (prefix === 'from_'
+						? <p className='PlanPage__detail-type'>{startText[plan.plan_type]}</p>
+						: <p className='PlanPage__detail-type'>{endText[plan.plan_type]}</p>
+					)}
+				</div>
 				{plan[`${prefix}formatted_address`] && (
 					<div className='PlanPage__detail-row'>
 						<span className='PlanPage__icon'><FontAwesomeIcon icon='map-marker-alt' /></span>
@@ -153,6 +174,21 @@ export default class PlanPage extends Component {
 						</p>
 					</div>
 				)}
+			</div>
+		);
+	}
+
+	renderFlightDetails(plan, prefix) {
+		return (
+			<div className='PlanPage__flight'>
+				<div className='PlanPage__flight-item'>
+					<h4>Terminal</h4>
+					<h3>{plan[`${prefix}terminal`] || '-'}</h3>
+				</div>
+				<div className='PlanPage__flight-item'>
+					<h4>Gate</h4>
+					<h3>{plan[`${prefix}gate`] || '-'}</h3>
+				</div>
 			</div>
 		);
 	}
