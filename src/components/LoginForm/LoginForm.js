@@ -48,7 +48,6 @@ export default class LoginForm extends Component {
 						name='email'
 						type='email'
 						id='LoginForm__email'
-						defaultValue='demo@gmail.com'	// to be modified
 						required
 					/>
 				</div>
@@ -60,7 +59,6 @@ export default class LoginForm extends Component {
 						name='password'
 						type='password'
 						id='LoginForm__password'
-						defaultValue='P@ssw0rd'	// to be modified
 						required
 					/>
 				</div>
