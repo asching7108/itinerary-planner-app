@@ -28,7 +28,7 @@ form {
 	max-width: 360px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p {
 	margin: 5px;
 }
 
@@ -51,10 +51,6 @@ h4 {
 	font-weight: 400;
 }
 
-p {
-	margin: 5px;
-}
-
 a {
 	color: inherit;
 }
@@ -74,48 +70,11 @@ button:hover {
 }
 
 .red {
-	color: #FF2D55;
-}
-
-.white {
-	color: #FFF;
+	color: #FF3B30;
 }
 
 .grey {
 	color: #AEAEB2;
-}
-
-.black {
-	color: #242426;
-}
-
-.button-blue {
-	border: 1px solid #99E2FF;
-	color: #99E2FF;
-}
-
-.button-blue-em {
-	border: 1px solid #99E2FF;
-	background-color: #99E2FF;
-	color: #FFF;
-}
-
-.button-red-em {
-	border: 1px solid #FF2D55;
-	background-color: #FF2D55;
-	color: #fff;
-}
-
-.add {
-	border: 1px solid #FF2D55;
-	background-color: #FF2D55;
-	color: #FFF;
-}
-
-.delete {
-	border: 1px solid #FF2D55;
-	background-color: #FFF;
-	color: #FF2D55;
 }
 
 .ButtonsDiv {

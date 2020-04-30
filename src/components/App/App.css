@@ -11,12 +11,16 @@
 }
 
 .App__main {
-	margin-top: 20px;
+	margin-top: 15px;
 }
 
 @media screen and (min-width: 600px) {
 	.App {
 		padding-top: 20px;
 		padding-bottom: 20px;
+	}
+
+	.App__main {
+		margin-top: 30px;
 	}
 }

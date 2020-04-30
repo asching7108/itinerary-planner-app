@@ -102,7 +102,7 @@ export default class RegisterForm extends Component {
 						Cancel
 					</Button>
 					<Button type='submit'>
-						Create acount
+						Create
 					</Button>
 				</div>
 			</form>

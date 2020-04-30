@@ -3,11 +3,21 @@
 	max-width: 640px;
 	display: flex;
 	flex-direction: column;
-	margin: 15px 0;
+	margin: 8px 0;
 }
 
 .TripListPage__no-trip {
 	display: block;
 	color: #AEAEB2;
 	margin: 40px auto;
+}
+
+.TripListPage__past-ctrl {
+	font-size: 0.9em;
+	border: none;
+	color: #AEAEB2;
+	margin: 10px;
+	align-self: center;
+	text-decoration: underline;
+	outline: none;
 }

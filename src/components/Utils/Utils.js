@@ -96,6 +96,9 @@ export function getTypeIcon(type) {
 		case 'Lodging': return 'bed';
 		case 'Car Rental': return 'car';
 		case 'Restaurant': return 'utensils';
+		case 'Sightseeing': return 'heart';
+		case 'Meeting': return 'meeting';
+		case 'Transportation': return 'subway';
 		default: return 'walking';
 	}
 }

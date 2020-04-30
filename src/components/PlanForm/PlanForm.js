@@ -41,13 +41,13 @@ export default class PlanForm extends Component {
 			description: '',
 			place_id: '',
 			city_name: '',
-			utc_offset_minutes: '',
+			utc_offset_minutes: null,
 			formatted_address: '',
 			international_phone_number: '',
 			website: '',
 			from_name: '',
 			from_place_id: '',
-			from_utc_offset_minutes: '',
+			from_utc_offset_minutes: null,
 			from_formatted_address: '',
 			from_international_phone_number: '',
 			from_website: '',
@@ -55,7 +55,7 @@ export default class PlanForm extends Component {
 			from_gate: '',
 			to_name: '',
 			to_place_id: '',
-			to_utc_offset_minutes: '',
+			to_utc_offset_minutes: null,
 			to_formatted_address: '',
 			to_international_phone_number: '',
 			to_website: '',
@@ -163,11 +163,16 @@ export default class PlanForm extends Component {
 		this.setState({
 			[`${prefix}name`]: content.name,
 			[`${prefix}place_id`]: content.place_id,
-			[`${prefix}utc_offset_minutes`]: content.utc_offset_minutes,
 			[`${prefix}formatted_address`]: content.formatted_address,
 			[`${prefix}international_phone_number`]: content.international_phone_number,
 			[`${prefix}website`]: content.website
 		});
+
+		if (content.utc_offset_minutes) {
+			this.setState({
+				[`${prefix}utc_offset_minutes`]: content.utc_offset_minutes
+			})
+		}
 	}
 
 	handleAddSubmit = e => {
@@ -313,13 +318,13 @@ export default class PlanForm extends Component {
 			description: '',
 			place_id: '',
 			city_name: '',
-			utc_offset_minutes: '',
+			utc_offset_minutes: null,
 			formatted_address: '',
 			international_phone_number: '',
 			website: '',
 			from_name: '',
 			from_place_id: '',
-			from_utc_offset_minutes: '',
+			from_utc_offset_minutes: null,
 			from_formatted_address: '',
 			from_international_phone_number: '',
 			from_website: '',
@@ -327,7 +332,7 @@ export default class PlanForm extends Component {
 			from_gate: '',
 			to_name: '',
 			to_place_id: '',
-			to_utc_offset_minutes: '',
+			to_utc_offset_minutes: null,
 			to_formatted_address: '',
 			to_international_phone_number: '',
 			to_website: '',

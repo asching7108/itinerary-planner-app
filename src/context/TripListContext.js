@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import TripsApiService from '../services/trips-api-service';
+import { formatDate } from '../components/Utils/Utils';
 
 const TripListContext = React.createContext({
-	tripList: [],
+	upcomingTrips: [],
+	pastTrips: [],
 	hasAuthToken: false,
 	error: null,
 	updateTripList: () => {},
@@ -17,7 +20,8 @@ export default TripListContext;
 
 export class TripListProvider extends Component {
 	state = {
-		tripList: [],
+		upcomingTrips: [],
+		pastTrips: [],
 		error: null
 	}
 
@@ -29,8 +33,25 @@ export class TripListProvider extends Component {
 			.catch(this.setError);
 	}
 
-	setTripList = tripList => {
-		this.setState({ tripList });
+	setTripList = trips => {
+		if (trips.length === 0) {
+			this.setState({
+				upcomingTrips: [],
+				pastTrips: []
+			});
+		}
+		else {
+			const upcomingTrips = trips.filter(trip => 
+				moment(formatDate(trip.end_date, 'YYYY-MM-DDTHH:mm:ss')).diff(moment().startOf('day')) >= 0
+			);
+			const pastTrips = trips.filter(trip => 
+				moment(formatDate(trip.end_date, 'YYYY-MM-DDTHH:mm:ss')).diff(moment().startOf('day')) < 0
+			);
+			this.setState({
+				upcomingTrips,
+				pastTrips: pastTrips.reverse()
+			});
+		}
 	}
 
 	setError = error => {
@@ -48,7 +69,8 @@ export class TripListProvider extends Component {
 
 	render() {
 		const contextValue = {
-			tripList: this.state.tripList,
+			upcomingTrips: this.state.upcomingTrips,
+			pastTrips: this.state.pastTrips,
 			hasAuthToken: this.state.hasAuthToken,
 			error: this.state.error,
 			updateTripList: this.updateTripList,

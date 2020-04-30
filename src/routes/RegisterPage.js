@@ -6,9 +6,7 @@ export default class RegisterPage extends Component {
 	static contextType = TripListContext;
 
 	static defaultProps = {
-		history: {
-			push: () => {},
-		}
+		history: { push: () => {} }
 	}
 
 	handleRegisterSuccess = () => {

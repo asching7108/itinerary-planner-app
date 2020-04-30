@@ -4,6 +4,7 @@ import TripListContext from '../../context/TripListContext';
 import Header from '../Header/Header';
 import PrivateRoute from '../Utils/PrivateRoute';
 import PublicRoute from '../Utils/PublicRoute';
+import IntroRoute from '../Utils/IntroRoute';
 import IntroPage from '../../routes/IntroPage/IntroPage';
 import LoginPage from '../../routes/LoginPage/LoginPage';
 import RegisterPage from '../../routes/RegisterPage';
@@ -78,7 +79,7 @@ class App extends Component {
 						<p className='red'>Something went wrong. Please refresh the page or try again later.</p>
 					}
 					<Switch>
-						<Route
+						<IntroRoute
 							exact
 							path={'/'}
 							component={TripListPage}

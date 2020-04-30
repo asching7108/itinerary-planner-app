@@ -41,12 +41,19 @@ export default class Autocomplete extends Component {
 	handleChange = content => {
 		const { id, onChange } = this.props;
 		this.setState({ inputValue: content });
-		onChange({ name: content }, id);
+		onChange({
+			name: content,
+			place_id: '',
+			formatted_address: '',
+			international_phone_number: '',
+			website: ''
+		}, id);
 	}
 
 	handleSelect = (selection, placeId) => {
 		this.setState({ inputValue: selection });
-		
+
+		if (!placeId) { return; }
 		const map = new google.maps.Map(document.createElement('div'), {
 			center: { lat: 0, lng: 0 },
 			zoom: 0
@@ -90,7 +97,7 @@ export default class Autocomplete extends Component {
 
 		return (
 			<div className='Autocomplete'>
-				<input {...getInputProps({ className: 'Input', autoFocus: true, required })} />
+				<input {...getInputProps({ className: 'Input', required })} />
 				<div className={dropdownClassName}>
 					{suggestions.map(suggestion => {
 						const suggestionClassName = suggestion.active

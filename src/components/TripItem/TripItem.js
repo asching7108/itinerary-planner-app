@@ -9,15 +9,21 @@ export default class TripItem extends Component {
 		trip: {}
 	};
 
-	renderTripItemDetailDesc() {
-		const { trip } = this.props;
-		if (this.props.location.pathname !== '/' && trip.description) {
-			return (
-				<p className='TripItem__description'>
-					{trip.description}
-				</p>
-			);
-		}
+	renderTripItem() {
+		return (
+			<div className='TripItem__heading'>
+				{this.renderTripItemDetail()}
+			</div>
+		);
+	}
+	
+	renderTripItemLink() {
+		const { trip, text } = this.props;
+		return (
+			<Link to={`/trip/${trip.id}`} className={`TripItem TripItem__${text}`}>
+				{this.renderTripItemDetail()}
+			</Link>
+		);
 	}
 
 	renderTripItemDetail() {
@@ -42,22 +48,14 @@ export default class TripItem extends Component {
 			</div>
 		);
 	}
-	
-	renderTripItem() {
-		return (
-			<div className='TripItem__heading'>
-				{this.renderTripItemDetail()}
-			</div>
-		);
-	}
-	
-	renderTripItemLink() {
+
+	renderTripItemDetailDesc() {
 		const { trip } = this.props;
-		return (
-			<Link to={`/trip/${trip.id}`} className='TripItem'>
-				{this.renderTripItemDetail()}
-			</Link>
-		);
+		if (this.props.location.pathname !== '/' && trip.description) {
+			return (
+				<p className='TripItem__description'>{trip.description}</p>
+			);
+		}
 	}
 	
 	render() {

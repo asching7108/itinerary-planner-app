@@ -166,7 +166,7 @@ export default class PlanPage extends Component {
 				)}
 				{plan[`${prefix}website`] && (
 					<div className='PlanPage__detail-row'>
-						<span className='PlanPage__icon'><FontAwesomeIcon icon='globe-asia' /></span>
+						<span className='PlanPage__icon'><FontAwesomeIcon icon='globe' /></span>
 						<p className='PlanPage__web'>
 							<a target='_blank' href={plan[`${prefix}website`]} rel="noopener noreferrer">
 								{plan[`${prefix}website`]}

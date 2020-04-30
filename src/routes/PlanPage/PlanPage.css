@@ -91,6 +91,11 @@
   .PlanPage__flight {
     flex-direction: row;
   }
+
+  .PlanPage__detail-title {
+    flex-direction: row;
+    align-items: baseline;
+  }
 }
 
 @media screen and (min-width: 600px) {

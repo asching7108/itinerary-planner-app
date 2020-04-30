@@ -1,9 +1,22 @@
 .Button {
+	border: 1px solid #99E2FF;
+	color: #99E2FF;
+	background-color: #242426;
 	border-radius: 20px;
 	margin: 5px;
 	min-width: 90px;
 	padding: 6px 16px;
 	font-size: 1em;
+	-webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.Button:hover {
+	cursor: pointer;
+	background-color: #99E2FF;
+	color: #1C1C1E;
 }
 
 .Select,
@@ -39,6 +52,15 @@
 	text-align: center;
 	border: 1px solid #99E2FF;
 	color: #99E2FF;
+	-webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.LinkButton:hover {
+	background-color: #99E2FF;
+	color: #1C1C1E;
 }
 
 .Icon {
@@ -53,6 +75,9 @@
 }
 
 .CloseIcon {
+	width: 25px;
+	height: 25px;
+	font-size: 14px;
 	border: 1px solid #AEAEB2;
 	border-radius: 15px;
 	flex-shrink: 0;

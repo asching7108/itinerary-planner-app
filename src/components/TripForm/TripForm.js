@@ -17,8 +17,8 @@ export default class TripForm extends Component {
 		this.state = {
 			trip_name: '',
 			dest_cities: [],
-			start_date: '',
-			end_date: '',
+			start_date: toDate(),
+			end_date: toDate(),
 			description: '',
 			destCityCount: 1,
 			error: null
@@ -244,6 +244,7 @@ export default class TripForm extends Component {
 						required
 						value={trip_name}
 						onChange={e => this.inputChanged('trip_name', e.target.value)}
+						autoComplete='no'
 					/>
 				</div>
 				<div className='TripForm__dest-cities'>
@@ -274,6 +275,7 @@ export default class TripForm extends Component {
 						name='end-date'
 						value={end_date}
 						onChange={date => this.inputChanged('end_date', date)}
+						required
 						options={{ dateFormat: 'm / d / Y' }}
 					/>
 				</div>
