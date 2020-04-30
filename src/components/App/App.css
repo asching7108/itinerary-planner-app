@@ -1,0 +1,26 @@
+.App {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+.App__header {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.App__main {
+	margin-top: 15px;
+}
+
+@media screen and (min-width: 600px) {
+	.App {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+	.App__main {
+		margin-top: 30px;
+	}
+}

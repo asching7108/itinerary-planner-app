@@ -1,0 +1,50 @@
+.TripItem {
+	border: 1px solid #99E2FF;
+	border-radius: 15px;
+	margin: 5px;
+	padding: 5px 10px;
+	text-decoration: none;
+}
+
+.TripItem__upcoming {
+	background-color: #99E2FF;
+	color: #242426;
+}
+
+.TripItem__past {
+	border: 1px solid #AEAEB2;
+	color: #AEAEB2;
+}
+
+.TripItem__details {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.TripItem__heading {
+	width: 90vw;
+  max-width: 640px;
+	margin: 5px;
+}
+
+.TripItem__heading .TripItem__title {
+	font-size: 1.5em;
+}
+
+.TripItem__description {
+	font-style: italic;
+	color: #FF9E99;
+	margin-top: 10px;
+}
+
+.TripItem__upcoming:nth-child(3n + 2) {
+	background-color: #84DB9A;
+	border: 1px solid #84DB9A;
+}
+
+.TripItem__upcoming:nth-child(3n) {
+	background-color: #FF9E99;
+	border: 1px solid #FF9E99;
+}

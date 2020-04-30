@@ -1,0 +1,101 @@
+.Header {
+	height: 40px;
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+}
+
+.Header__div {
+	color: #99E2FF;
+	margin: 0;
+	display: flex;
+	align-items: center;
+}
+
+.Header__icon {
+	font-size: 1.2em;
+	margin-right: 5px;
+}
+
+.Header__title a {
+	font-family: 'Great Vibes';
+	font-size: 1.2em;
+	text-decoration: none;
+	margin-right: 3px;
+}
+
+.Header__tagline--wide {
+	display: none;
+	font-family: 'Amatic SC';
+	font-size: 1.2em;
+	font-weight: 600;
+	color: #99E2FF;
+	margin-left: -1.8em;
+}
+
+.Header__tagline--narrow {
+	font-family: 'Amatic SC';
+	font-size: 1.2em;
+	font-weight: 600;
+	color: #99E2FF;
+	display: block;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.Header__button {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.Header__button a {
+	font-size: 0.9em;
+	padding: 3px 10px;
+	border-radius: 15px;
+	border: 1px solid #99E2FF;
+	color: #99E2FF;
+	text-decoration: none;
+	white-space: nowrap;
+	position: relative;
+	top: -3px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.Header__button a:hover {
+	background-color: #99E2FF;
+	color: #1C1C1E;
+}
+
+@media screen and (min-width: 360px) {
+	.Header__tagline--wide {
+		display: inherit;
+	}
+
+	.Header__tagline--narrow {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 450px) {
+	.Header__icon,
+	.Header__title a,
+	.Header__tagline--wide {
+		font-size: 1.5em;
+	}
+
+	.Header__tagline--wide {
+		position: relative;
+		top: 2px;
+	}
+
+	.Header__button a {
+		font-size: 1em;
+		padding: 5px 15px;
+		border-radius: 15px;
+	}
+}

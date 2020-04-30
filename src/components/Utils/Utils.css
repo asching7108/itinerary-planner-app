@@ -1,0 +1,96 @@
+.Button {
+	border: 1px solid #99E2FF;
+	color: #99E2FF;
+	background-color: #242426;
+	border-radius: 20px;
+	margin: 5px;
+	min-width: 90px;
+	padding: 6px 16px;
+	font-size: 1em;
+	-webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.Button:hover {
+	cursor: pointer;
+	background-color: #99E2FF;
+	color: #1C1C1E;
+}
+
+.Select,
+.Input,
+.Textarea {
+	border: 1px solid #FFF;
+	display: block;
+	font-size: 1.1em;
+	margin-bottom: 10px;
+	padding: 10px;
+	text-align: left;
+	width: 100%;
+	border-radius: 4px;
+}
+
+.Select {
+	height: 44px;
+}
+
+.Textarea {
+	resize: vertical;
+}
+
+.Required {
+	color: #CA1551;
+	font-family: Arial;
+	font-weight: bold;
+}
+
+.LinkButton {
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	border: 1px solid #99E2FF;
+	color: #99E2FF;
+	-webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.LinkButton:hover {
+	background-color: #99E2FF;
+	color: #1C1C1E;
+}
+
+.Icon {
+	width: 30px;
+	height: 30px;
+	font-size: 16px;
+	font-weight: 200;
+	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.CloseIcon {
+	width: 25px;
+	height: 25px;
+	font-size: 14px;
+	border: 1px solid #AEAEB2;
+	border-radius: 15px;
+	flex-shrink: 0;
+}
+
+.CloseIcon:hover {
+	cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+	.Button {
+		min-width: 110px;
+		padding: 8px 22px;
+		font-size: 1.1em;
+	}
+}

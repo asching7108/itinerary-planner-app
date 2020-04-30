@@ -1,0 +1,106 @@
+.PlanPage__heading {
+	width: 90vw;
+  max-width: 640px;
+}
+
+.PlanPage__title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.PlanPage__title-left {
+  display: flex;
+  align-items: baseline;
+}
+
+.PlanPage__type,
+.PlanPage__detail-row {
+  display: flex;
+}
+
+.PlanPage__icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+	justify-content: center;
+	align-items: center;
+  margin: 5px;
+}
+
+.PlanPage__subtype::before {
+  content: '-';
+  margin-right: 10px;
+}
+
+.PlanPage__time {
+  width: 90vw;
+  max-width: 640px;
+  border-top: 1px solid #99E2FF;
+  border-bottom: 1px solid #99E2FF;
+  display: flex;
+  margin-top: 10px;
+}
+
+.PlanPage__time div {
+  width: 100%;
+}
+
+.PlanPage__time-item:nth-child(2) {
+  border-left: 1px solid #99E2FF;
+}
+
+.PlanPage__details {
+  width: 90vw;
+  max-width: 640px;
+  margin-top: 10px;
+}
+
+.PlanPage__detail {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.PlanPage__detail-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.PlanPage__detail-type {
+  background-color: #545456;
+  color: #FFF;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.PlanPage__detail-row {
+  color: #99E2FF;
+}
+
+.PlanPage__web {
+  word-break: break-all;
+}
+
+.PlanPage__flight {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 365px) {
+  .PlanPage__flight {
+    flex-direction: row;
+  }
+
+  .PlanPage__detail-title {
+    flex-direction: row;
+    align-items: baseline;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .PlanPage__detail-title {
+    flex-direction: row;
+    align-items: baseline;
+  }
+}

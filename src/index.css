@@ -1,13 +1,103 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+	box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Helvetica Neue", "Helvetica", "Roboto", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #242426;
+	color: #FFF;
+	font-size: 14px;
+}
+
+section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 360px;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin: 5px;
+}
+
+h1 {
+	font-size: 1.6em;
+}
+
+h2 {
+	font-size: 1.2em;
+	font-weight: 500;
+}
+
+h3 {
+	font-size: 1em;
+	font-weight: 400;
+}
+
+h4 {
+	font-size: 0.9em;
+	font-weight: 400;
+}
+
+a {
+	color: inherit;
+}
+
+button {
+	border: 1px solid #99E2FF;
+	color: #99E2FF;
+	background-color: #242426;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+.blue {
+	color: #99E2FF;
+}
+
+.red {
+	color: #FF3B30;
+}
+
+.grey {
+	color: #AEAEB2;
+}
+
+.ButtonsDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.IconsDiv {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+@media screen and (min-width: 250px) {
+	.ButtonsDiv {
+		flex-direction: row;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	body {
+		font-size: 16px;
+	}
 }

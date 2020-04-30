@@ -1,0 +1,36 @@
+.TripPage__heading {
+	display: flex;
+	justify-content: space-between;
+}
+
+.TripPage__close-icon-row {
+	width: 90vw;
+	max-width: 640px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	margin-bottom: -30px;
+	z-index: 10;
+}
+
+.TripPage__plan_list {
+	width: 90vw;
+	max-width: 640px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	margin: 5px;
+}
+
+.TripPage__date {
+	color: #AEAEB2;
+	margin: 5px 0 0;
+	font-size: 0.9em;
+	font-weight: 400;
+}
+
+.TripPage__no-plan {
+	display: block;
+	color: #AEAEB2;
+	margin: 40px auto;
+}
