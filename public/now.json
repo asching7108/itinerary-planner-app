@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "itinerary-planner-app",
+  "name": "vamos-itinerary-planner",
   "routes": [
     { "handle": "filesystem" },
     { "src": "/.*", "dest": "/index.html" }

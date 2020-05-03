@@ -3,6 +3,8 @@ import TripContext from '../context/TripContext';
 import PlanForm from '../components/PlanForm/PlanForm';
 
 export default class EditPlanPage extends Component {
+	static defaultProps = { match: { params: '' } };
+
 	constructor(props) {
 		super(props);
 		this.state = { plans: [] };
@@ -11,7 +13,7 @@ export default class EditPlanPage extends Component {
 	static contextType = TripContext;
 
 	componentDidMount() {
-		if (this.context.needToUpdate) {
+		if (this.context.needToUpdate()) {
 			this.context.updateTrip(this.props.match.params.trip_id);
 		}
 	}

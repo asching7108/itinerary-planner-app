@@ -1,0 +1,70 @@
+.ReactModal__cus-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(174, 174, 178, 0.1);
+}
+
+.ReactModal__cus-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #AEAEB2;
+	border: 1px solid #AEAEB2;
+	border-radius: 5px;
+	width: 80vw;
+	max-width: 320px;
+	padding: 20px;
+	background-color: #242426;
+}
+
+.ReactModal__cus-content div {
+	margin-top: 5px;
+}
+
+.ReactModal__cus-content h4 {
+	display: none;
+}
+
+.ReactModal__btn-delete,
+.ReactModal__btn-cancel {
+	font-size: 0.9em;
+	padding: 3px 15px;
+	border-radius: 15px;
+}
+
+.ReactModal__btn-delete {
+	border: 1px solid #FF3B30;
+	color: #FF3B30;
+	margin: 5px 10px;
+}
+
+.ReactModal__btn-cancel {
+	border: 1px solid #AEAEB2;
+	color: #AEAEB2;
+}
+
+@media screen and (min-width: 280px) {
+	.ReactModal__cus-content h4 {
+		display: inherit;
+	}
+}
+
+@media screen and (min-width: 450px) {
+	.ReactModal__btn-delete,
+	.ReactModal__btn-cancel {
+		font-size: 1em;
+		padding: 5px 20px;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	.ReactModal__cus-content {
+		max-width: 360px;
+	}
+}

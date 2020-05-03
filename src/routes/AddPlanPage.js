@@ -3,10 +3,12 @@ import TripContext from '../context/TripContext';
 import PlanForm from '../components/PlanForm/PlanForm';
 
 export default class AddPlanPage extends Component {
+	static defaultProps = { match: { params: '' } };
+
 	static contextType = TripContext;
 
 	componentDidMount() {
-		if (this.context.needToUpdate) {
+		if (this.context.needToUpdate()) {
 			this.context.updateTrip(this.props.match.params.trip_id);
 		}
 	}

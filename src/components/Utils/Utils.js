@@ -2,9 +2,31 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Flatpickr from 'react-flatpickr';
 import moment from 'moment';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Utils.css';
 import 'flatpickr/dist/themes/dark.css';
+import {
+	faEdit,
+	faTrashAlt,
+	faTimes,
+	faPlane,
+	faBed,
+	faCar,
+	faUtensils,
+	faWalking,
+	faHeart,
+	faLaptop,
+	faSubway,
+	faMapMarkerAlt,
+	faPhone,
+	faGlobe,
+	faPlus,
+	faMinus,
+	faPaperPlane,
+} from '@fortawesome/free-solid-svg-icons';
 
 export function formatDate(dateStr, format = 'dddd, MMMM D, YYYY') {
 	return moment.parseZone(dateStr).format(format);
@@ -103,6 +125,26 @@ export function getTypeIcon(type) {
 	}
 }
 
-export function getDate(date) {
-	return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+export function registerIcons() {
+	library.add(
+		faEdit,
+		faTrashAlt,
+		faTimes,	// close icon
+		faPlane,	// type: flight
+		faBed,	// type: lodging
+		faCar,	// type: car rental
+		faUtensils,	// type: restaurant
+		faWalking,	// type: activity
+		faHeart,	// type: sightseeing
+		faLaptop,	// type: meeting
+		faSubway,	// type: transportation
+		faMapMarkerAlt,	// address
+		faPhone,	// phone number
+		faGlobe,	// website
+		faPlus,
+		faMinus,
+		faPaperPlane,	// favicon
+		far,
+		fab
+	);
 }

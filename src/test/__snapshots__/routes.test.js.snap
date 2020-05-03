@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddTripPage Component renders the UI as expected 1`] = `
+<section
+  className="AddTripPage"
+>
+  <h2>
+    Create a trip
+  </h2>
+  <TripForm
+    location={
+      Object {
+        "pathname": "",
+      }
+    }
+    onAddTripSuccess={[Function]}
+    onClickOnCancel={[Function]}
+    trip={Object {}}
+  />
+</section>
+`;
+
+exports[`IntroPage Component renders the UI as expected 1`] = `
+<Fragment>
+  <section
+    className="IntroPage"
+  >
+    <div
+      role="alert"
+    />
+    <div
+      className="IntroPage__content-wide"
+    >
+      <h1>
+        Create itineraries can be a breeze.
+      </h1>
+      <img
+        alt="Trip list page screenshot"
+        src="tlp.png"
+      />
+      <h1>
+        Easily managed. Smartly displayed.
+      </h1>
+      <img
+        alt="Trip page screenshot"
+        src="tp.png"
+      />
+      <h1>
+        Have all the travel infos you need at hand.
+      </h1>
+      <img
+        alt="Plan page screenshot"
+        src="pp.png"
+      />
+      <Button
+        className="IntroPage__btn"
+        onClick={[Function]}
+        type="button"
+      >
+        EXPLORE VAMOS
+      </Button>
+    </div>
+    <div
+      className="IntroPage__content-narrow"
+    >
+      <h2>
+        Create, manage and display itineraries like a breeze.
+      </h2>
+      <Button
+        className="IntroPage__btn"
+        onClick={[Function]}
+        type="button"
+      >
+        EXPLORE VAMOS
+      </Button>
+    </div>
+  </section>
+  <footer>
+    <p
+      className="footer__author"
+    >
+      Created by 
+      <a
+        href="http://asching7108.github.io/portfolio"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Esther Lin
+      </a>
+    </p>
+    <div
+      className="IconsDiv"
+    >
+      <a
+        className="footer__icon"
+        href="https://github.com/asching7108/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Array [
+              "fab",
+              "github",
+            ]
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </a>
+      <a
+        className="footer__icon"
+        href="http://www.linkedin.com/in/esther-lin-tw/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Array [
+              "fab",
+              "linkedin",
+            ]
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </a>
+    </div>
+    <p
+      className="footer__copyright"
+    >
+      Copyright ©2020
+    </p>
+  </footer>
+</Fragment>
+`;
+
+exports[`LoginPage Component renders the UI as expected 1`] = `
+<section
+  className="LoginPage"
+>
+  <h2>
+    Login
+  </h2>
+  <LoginForm
+    onClickOnCancel={[Function]}
+    onLoginSuccess={[Function]}
+  />
+  <p
+    className="LoginPage__text"
+  >
+    Doesn't have an account?
+  </p>
+  <LinkButton
+    className="LoginPage__sign-up"
+    to="/signup"
+  >
+    Sign up
+  </LinkButton>
+</section>
+`;
+
+exports[`NotFoundPage Component renders the UI as expected 1`] = `
+<section
+  className="NotFoundPage"
+>
+  <h2>
+    404 - Page not found
+  </h2>
+</section>
+`;
+
+exports[`RegisterPage Component renders the UI as expected 1`] = `
+<section
+  className="RegisterPage"
+>
+  <h2>
+    Create an acount
+  </h2>
+  <RegisterForm
+    onClickOnCancel={[Function]}
+    onRegisterSuccess={[Function]}
+  />
+</section>
+`;

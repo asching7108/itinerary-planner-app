@@ -1,0 +1,4161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Autocomplete Component renders the UI as expected 1`] = `
+<PlacesAutocomplete
+  debounce={200}
+  googleCallbackName="callbackFunc"
+  highlightFirstSuggestion={false}
+  onChange={[Function]}
+  onError={[Function]}
+  onSelect={[Function]}
+  searchOptions={
+    Object {
+      "componentRestrictions": Object {},
+      "types": undefined,
+    }
+  }
+  shouldFetchSuggestions={true}
+  value=""
+>
+  <Component />
+</PlacesAutocomplete>
+`;
+
+exports[`Header Component renders the UI as expected 1`] = `
+<Fragment>
+  <nav
+    className="Header"
+  >
+    <div
+      className="Header__div"
+    >
+      <span
+        className="Header__icon"
+      >
+        <Link
+          to="/"
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={false}
+            flip={null}
+            icon="paper-plane"
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+        </Link>
+      </span>
+      <h1
+        className="Header__title"
+      >
+        <Link
+          to="/"
+        >
+          Vamos
+        </Link>
+      </h1>
+    </div>
+    <span
+      className="Header__tagline--wide"
+    >
+      - Itinerary Planner -
+    </span>
+    <div
+      className="Header__div"
+    >
+      <Link
+        className="Header__link"
+        to="/signin"
+      >
+        Sign in
+      </Link>
+    </div>
+  </nav>
+  <span
+    className="Header__tagline--narrow"
+  >
+    - Itinerary Planner -
+  </span>
+</Fragment>
+`;
+
+exports[`LoginForm Component renders the UI as expected 1`] = `
+<form
+  className="LoginForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="LoginForm__email"
+    >
+      Email
+    </label>
+    <Input
+      id="LoginForm__email"
+      name="email"
+      required={true}
+      type="email"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="LoginForm__password"
+    >
+      Password
+    </label>
+    <Input
+      id="LoginForm__password"
+      name="password"
+      required={true}
+      type="password"
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Sign in
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`PlanForm Component renders given existing trip and plans props' 1`] = `
+<form
+  className="PlanForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="PlanForm__city"
+    >
+      City
+    </label>
+    <Select
+      id="PlanForm__city"
+      name="city"
+      onChange={[Function]}
+      value={1}
+    >
+      <option
+        key="0"
+        value={1}
+      >
+        Barcelona
+      </option>
+      <option
+        key="1"
+        value={2}
+      >
+        Florence
+      </option>
+    </Select>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__type"
+    >
+      Type
+    </label>
+    <Select
+      id="PlanForm__type"
+      name="type"
+      onChange={[Function]}
+      required={true}
+    >
+      <option
+        key="Flight"
+        value="Flight"
+      >
+        Flight
+      </option>
+      <option
+        key="Lodging"
+        value="Lodging"
+      >
+        Lodging
+      </option>
+      <option
+        key="Car Rental"
+        selected={true}
+        value="Car Rental"
+      >
+        Car Rental
+      </option>
+      <option
+        key="Restaurant"
+        value="Restaurant"
+      >
+        Restaurant
+      </option>
+      <option
+        key="Activity"
+        value="Activity"
+      >
+        Activity
+      </option>
+      <option
+        key="Sightseeing"
+        value="Sightseeing"
+      >
+        Sightseeing
+      </option>
+      <option
+        key="Meeting"
+        value="Meeting"
+      >
+        Meeting
+      </option>
+      <option
+        key="Transportation"
+        value="Transportation"
+      >
+        Transportation
+      </option>
+    </Select>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__name"
+    >
+      Rental Agency
+    </label>
+    <Input
+      id="PlanForm__name"
+      name="name"
+      onChange={[Function]}
+      required={true}
+      type="text"
+      value="AutoEuropa"
+    />
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__start-date"
+      >
+        Start
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-date"
+        name="start-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value={
+          Array [
+            2021-04-08T16:00:00.000Z,
+          ]
+        }
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__start-time"
+      >
+        Start
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-time"
+        name="start-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value={
+          Array [
+            2021-04-08T16:00:00.000Z,
+          ]
+        }
+      />
+    </div>
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__end-date"
+      >
+        End
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-date"
+        name="end-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value={
+          Array [
+            2021-04-11T00:00:00.000Z,
+          ]
+        }
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__end-time"
+      >
+        End
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-time"
+        name="end-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value={
+          Array [
+            2021-04-11T00:00:00.000Z,
+          ]
+        }
+      />
+    </div>
+  </div>
+  <span
+    className="PlanForm__subtitle"
+  >
+    Pick Up Store
+  </span>
+  <div>
+    <label
+      htmlFor="PlanForm__from-name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__from-name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value="Sicily By Car - AutoEuropa"
+      viewport={
+        Object {
+          "ne_lat": 41.4695761,
+          "ne_lng": 2.2280099,
+          "sw_lat": 41.320004,
+          "sw_lng": 2.0695258,
+        }
+      }
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__from_address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__from_address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+      value="R, Borgo Ognissanti, 100, 50123 Firenze FI, Italy"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__from_phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__from_phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+      value="+39 055 213333"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__from_website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__from_website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+      value="http://www.sbc.it/"
+    />
+  </div>
+  <span
+    className="PlanForm__subtitle"
+  >
+    Drop Off Store
+  </span>
+  <div>
+    <label
+      htmlFor="PlanForm__to-name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__to-name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value="AutoEuropa"
+      viewport={
+        Object {
+          "ne_lat": 41.4695761,
+          "ne_lng": 2.2280099,
+          "sw_lat": 41.320004,
+          "sw_lng": 2.0695258,
+        }
+      }
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__to_address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__to_address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+      value="Piazza dei Cinquecento, 26, 00185 Roma RM, Italy"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__to_phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__to_phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+      value="+39 06 488 1287"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__to_website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__to_website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+      value="http://www.autoeuropa.it/"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__description"
+    >
+      Description
+    </label>
+    <Textarea
+      id="PlanForm__description"
+      name="description"
+      onChange={[Function]}
+      type="textarea"
+      value=""
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Update
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`PlanForm Component renders the UI as expected' 1`] = `
+<form
+  className="PlanForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="PlanForm__city"
+    >
+      City
+    </label>
+    <Select
+      id="PlanForm__city"
+      name="city"
+      onChange={[Function]}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__type"
+    >
+      Type
+    </label>
+    <Select
+      id="PlanForm__type"
+      name="type"
+      onChange={[Function]}
+      required={true}
+    >
+      <option
+        key="Flight"
+        value="Flight"
+      >
+        Flight
+      </option>
+      <option
+        key="Lodging"
+        value="Lodging"
+      >
+        Lodging
+      </option>
+      <option
+        key="Car Rental"
+        value="Car Rental"
+      >
+        Car Rental
+      </option>
+      <option
+        key="Restaurant"
+        value="Restaurant"
+      >
+        Restaurant
+      </option>
+      <option
+        key="Activity"
+        value="Activity"
+      >
+        Activity
+      </option>
+      <option
+        key="Sightseeing"
+        value="Sightseeing"
+      >
+        Sightseeing
+      </option>
+      <option
+        key="Meeting"
+        value="Meeting"
+      >
+        Meeting
+      </option>
+      <option
+        key="Transportation"
+        value="Transportation"
+      >
+        Transportation
+      </option>
+    </Select>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value=""
+      viewport={Object {}}
+    />
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__start-date"
+      >
+        Start
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-date"
+        name="start-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__start-time"
+      >
+        Start
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-time"
+        name="start-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__end-date"
+      >
+        End
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-date"
+        name="end-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__end-time"
+      >
+        End
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-time"
+        name="end-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__description"
+    >
+      Description
+    </label>
+    <Textarea
+      id="PlanForm__description"
+      name="description"
+      onChange={[Function]}
+      type="textarea"
+      value=""
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Update
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`PlanForm Component renders the UI given type equals 'Activity' 1`] = `
+<form
+  className="PlanForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="PlanForm__city"
+    >
+      City
+    </label>
+    <Select
+      id="PlanForm__city"
+      name="city"
+      onChange={[Function]}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__type"
+    >
+      Type
+    </label>
+    <Select
+      id="PlanForm__type"
+      name="type"
+      onChange={[Function]}
+      required={true}
+    >
+      <option
+        key="Flight"
+        value="Flight"
+      >
+        Flight
+      </option>
+      <option
+        key="Lodging"
+        value="Lodging"
+      >
+        Lodging
+      </option>
+      <option
+        key="Car Rental"
+        value="Car Rental"
+      >
+        Car Rental
+      </option>
+      <option
+        key="Restaurant"
+        value="Restaurant"
+      >
+        Restaurant
+      </option>
+      <option
+        key="Activity"
+        selected={true}
+        value="Activity"
+      >
+        Activity
+      </option>
+      <option
+        key="Sightseeing"
+        value="Sightseeing"
+      >
+        Sightseeing
+      </option>
+      <option
+        key="Meeting"
+        value="Meeting"
+      >
+        Meeting
+      </option>
+      <option
+        key="Transportation"
+        value="Transportation"
+      >
+        Transportation
+      </option>
+    </Select>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value=""
+      viewport={Object {}}
+    />
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__start-date"
+      >
+        Start
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-date"
+        name="start-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__start-time"
+      >
+        Start
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-time"
+        name="start-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__end-date"
+      >
+        End
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-date"
+        name="end-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__end-time"
+      >
+        End
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-time"
+        name="end-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__description"
+    >
+      Description
+    </label>
+    <Textarea
+      id="PlanForm__description"
+      name="description"
+      onChange={[Function]}
+      type="textarea"
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Update
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`PlanForm Component renders the UI given type equals 'Car Rental' 1`] = `
+<form
+  className="PlanForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="PlanForm__city"
+    >
+      City
+    </label>
+    <Select
+      id="PlanForm__city"
+      name="city"
+      onChange={[Function]}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__type"
+    >
+      Type
+    </label>
+    <Select
+      id="PlanForm__type"
+      name="type"
+      onChange={[Function]}
+      required={true}
+    >
+      <option
+        key="Flight"
+        value="Flight"
+      >
+        Flight
+      </option>
+      <option
+        key="Lodging"
+        value="Lodging"
+      >
+        Lodging
+      </option>
+      <option
+        key="Car Rental"
+        selected={true}
+        value="Car Rental"
+      >
+        Car Rental
+      </option>
+      <option
+        key="Restaurant"
+        value="Restaurant"
+      >
+        Restaurant
+      </option>
+      <option
+        key="Activity"
+        value="Activity"
+      >
+        Activity
+      </option>
+      <option
+        key="Sightseeing"
+        value="Sightseeing"
+      >
+        Sightseeing
+      </option>
+      <option
+        key="Meeting"
+        value="Meeting"
+      >
+        Meeting
+      </option>
+      <option
+        key="Transportation"
+        value="Transportation"
+      >
+        Transportation
+      </option>
+    </Select>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__name"
+    >
+      Rental Agency
+    </label>
+    <Input
+      id="PlanForm__name"
+      name="name"
+      onChange={[Function]}
+      required={true}
+      type="text"
+    />
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__start-date"
+      >
+        Start
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-date"
+        name="start-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__start-time"
+      >
+        Start
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-time"
+        name="start-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__end-date"
+      >
+        End
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-date"
+        name="end-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__end-time"
+      >
+        End
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-time"
+        name="end-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <span
+    className="PlanForm__subtitle"
+  >
+    Pick Up Store
+  </span>
+  <div>
+    <label
+      htmlFor="PlanForm__from-name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__from-name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value=""
+      viewport={Object {}}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__from_address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__from_address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__from_phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__from_phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__from_website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__from_website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <span
+    className="PlanForm__subtitle"
+  >
+    Drop Off Store
+  </span>
+  <div>
+    <label
+      htmlFor="PlanForm__to-name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__to-name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value=""
+      viewport={Object {}}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__to_address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__to_address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__to_phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__to_phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__to_website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__to_website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__description"
+    >
+      Description
+    </label>
+    <Textarea
+      id="PlanForm__description"
+      name="description"
+      onChange={[Function]}
+      type="textarea"
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Update
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`PlanForm Component renders the UI given type equals 'Flight' 1`] = `
+<form
+  className="PlanForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="PlanForm__city"
+    >
+      City
+    </label>
+    <Select
+      id="PlanForm__city"
+      name="city"
+      onChange={[Function]}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__type"
+    >
+      Type
+    </label>
+    <Select
+      id="PlanForm__type"
+      name="type"
+      onChange={[Function]}
+      required={true}
+    >
+      <option
+        key="Flight"
+        selected={true}
+        value="Flight"
+      >
+        Flight
+      </option>
+      <option
+        key="Lodging"
+        value="Lodging"
+      >
+        Lodging
+      </option>
+      <option
+        key="Car Rental"
+        value="Car Rental"
+      >
+        Car Rental
+      </option>
+      <option
+        key="Restaurant"
+        value="Restaurant"
+      >
+        Restaurant
+      </option>
+      <option
+        key="Activity"
+        value="Activity"
+      >
+        Activity
+      </option>
+      <option
+        key="Sightseeing"
+        value="Sightseeing"
+      >
+        Sightseeing
+      </option>
+      <option
+        key="Meeting"
+        value="Meeting"
+      >
+        Meeting
+      </option>
+      <option
+        key="Transportation"
+        value="Transportation"
+      >
+        Transportation
+      </option>
+    </Select>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__name"
+    >
+      Flight Number
+    </label>
+    <Input
+      id="PlanForm__name"
+      name="name"
+      onChange={[Function]}
+      required={true}
+      type="text"
+    />
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__start-date"
+      >
+        Departure
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-date"
+        name="start-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__start-time"
+      >
+        Departure
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-time"
+        name="start-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__end-date"
+      >
+        Arrival
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-date"
+        name="end-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__end-time"
+      >
+        Arrival
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-time"
+        name="end-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <span
+    className="PlanForm__subtitle"
+  >
+    Departure
+  </span>
+  <div>
+    <label
+      htmlFor="PlanForm__from-name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__from-name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value=""
+      viewport={Object {}}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__from_address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__from_address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__from_phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__from_phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__from_website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__from_website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__terminal"
+    >
+      <label
+        htmlFor="PlanForm__from_terminal"
+      >
+        Terminal
+      </label>
+      <Input
+        id="PlanForm__from_terminal"
+        name="terminal"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <div
+      className="PlanForm__gate"
+    >
+      <label
+        htmlFor="PlanForm__from_gate"
+      >
+        Gate
+      </label>
+      <Input
+        id="PlanForm__from_gate"
+        name="gate"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+  </div>
+  <span
+    className="PlanForm__subtitle"
+  >
+    Arrival
+  </span>
+  <div>
+    <label
+      htmlFor="PlanForm__to-name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__to-name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value=""
+      viewport={Object {}}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__to_address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__to_address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__to_phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__to_phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__to_website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__to_website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__terminal"
+    >
+      <label
+        htmlFor="PlanForm__to_terminal"
+      >
+        Terminal
+      </label>
+      <Input
+        id="PlanForm__to_terminal"
+        name="terminal"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <div
+      className="PlanForm__gate"
+    >
+      <label
+        htmlFor="PlanForm__to_gate"
+      >
+        Gate
+      </label>
+      <Input
+        id="PlanForm__to_gate"
+        name="gate"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__description"
+    >
+      Description
+    </label>
+    <Textarea
+      id="PlanForm__description"
+      name="description"
+      onChange={[Function]}
+      type="textarea"
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Update
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`PlanForm Component renders the UI given type equals 'Lodging' 1`] = `
+<form
+  className="PlanForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="PlanForm__city"
+    >
+      City
+    </label>
+    <Select
+      id="PlanForm__city"
+      name="city"
+      onChange={[Function]}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__type"
+    >
+      Type
+    </label>
+    <Select
+      id="PlanForm__type"
+      name="type"
+      onChange={[Function]}
+      required={true}
+    >
+      <option
+        key="Flight"
+        value="Flight"
+      >
+        Flight
+      </option>
+      <option
+        key="Lodging"
+        selected={true}
+        value="Lodging"
+      >
+        Lodging
+      </option>
+      <option
+        key="Car Rental"
+        value="Car Rental"
+      >
+        Car Rental
+      </option>
+      <option
+        key="Restaurant"
+        value="Restaurant"
+      >
+        Restaurant
+      </option>
+      <option
+        key="Activity"
+        value="Activity"
+      >
+        Activity
+      </option>
+      <option
+        key="Sightseeing"
+        value="Sightseeing"
+      >
+        Sightseeing
+      </option>
+      <option
+        key="Meeting"
+        value="Meeting"
+      >
+        Meeting
+      </option>
+      <option
+        key="Transportation"
+        value="Transportation"
+      >
+        Transportation
+      </option>
+    </Select>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value=""
+      viewport={Object {}}
+    />
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__start-date"
+      >
+        Check In
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-date"
+        name="start-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__start-time"
+      >
+        Check In
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-time"
+        name="start-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__end-date"
+      >
+        Check Out
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-date"
+        name="end-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__end-time"
+      >
+        Check Out
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-time"
+        name="end-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__description"
+    >
+      Description
+    </label>
+    <Textarea
+      id="PlanForm__description"
+      name="description"
+      onChange={[Function]}
+      type="textarea"
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Update
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`PlanForm Component renders the UI given type equals 'Meeting' 1`] = `
+<form
+  className="PlanForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="PlanForm__city"
+    >
+      City
+    </label>
+    <Select
+      id="PlanForm__city"
+      name="city"
+      onChange={[Function]}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__type"
+    >
+      Type
+    </label>
+    <Select
+      id="PlanForm__type"
+      name="type"
+      onChange={[Function]}
+      required={true}
+    >
+      <option
+        key="Flight"
+        value="Flight"
+      >
+        Flight
+      </option>
+      <option
+        key="Lodging"
+        value="Lodging"
+      >
+        Lodging
+      </option>
+      <option
+        key="Car Rental"
+        value="Car Rental"
+      >
+        Car Rental
+      </option>
+      <option
+        key="Restaurant"
+        value="Restaurant"
+      >
+        Restaurant
+      </option>
+      <option
+        key="Activity"
+        value="Activity"
+      >
+        Activity
+      </option>
+      <option
+        key="Sightseeing"
+        value="Sightseeing"
+      >
+        Sightseeing
+      </option>
+      <option
+        key="Meeting"
+        selected={true}
+        value="Meeting"
+      >
+        Meeting
+      </option>
+      <option
+        key="Transportation"
+        value="Transportation"
+      >
+        Transportation
+      </option>
+    </Select>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value=""
+      viewport={Object {}}
+    />
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__start-date"
+      >
+        Start
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-date"
+        name="start-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__start-time"
+      >
+        Start
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-time"
+        name="start-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__end-date"
+      >
+        End
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-date"
+        name="end-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__end-time"
+      >
+        End
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-time"
+        name="end-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__description"
+    >
+      Description
+    </label>
+    <Textarea
+      id="PlanForm__description"
+      name="description"
+      onChange={[Function]}
+      type="textarea"
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Update
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`PlanForm Component renders the UI given type equals 'Restaurant' 1`] = `
+<form
+  className="PlanForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="PlanForm__city"
+    >
+      City
+    </label>
+    <Select
+      id="PlanForm__city"
+      name="city"
+      onChange={[Function]}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__type"
+    >
+      Type
+    </label>
+    <Select
+      id="PlanForm__type"
+      name="type"
+      onChange={[Function]}
+      required={true}
+    >
+      <option
+        key="Flight"
+        value="Flight"
+      >
+        Flight
+      </option>
+      <option
+        key="Lodging"
+        value="Lodging"
+      >
+        Lodging
+      </option>
+      <option
+        key="Car Rental"
+        value="Car Rental"
+      >
+        Car Rental
+      </option>
+      <option
+        key="Restaurant"
+        selected={true}
+        value="Restaurant"
+      >
+        Restaurant
+      </option>
+      <option
+        key="Activity"
+        value="Activity"
+      >
+        Activity
+      </option>
+      <option
+        key="Sightseeing"
+        value="Sightseeing"
+      >
+        Sightseeing
+      </option>
+      <option
+        key="Meeting"
+        value="Meeting"
+      >
+        Meeting
+      </option>
+      <option
+        key="Transportation"
+        value="Transportation"
+      >
+        Transportation
+      </option>
+    </Select>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value=""
+      viewport={Object {}}
+    />
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__start-date"
+      >
+        Start
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-date"
+        name="start-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__start-time"
+      >
+        Start
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-time"
+        name="start-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__end-date"
+      >
+        End
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-date"
+        name="end-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__end-time"
+      >
+        End
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-time"
+        name="end-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__description"
+    >
+      Description
+    </label>
+    <Textarea
+      id="PlanForm__description"
+      name="description"
+      onChange={[Function]}
+      type="textarea"
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Update
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`PlanForm Component renders the UI given type equals 'Sightseeing' 1`] = `
+<form
+  className="PlanForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="PlanForm__city"
+    >
+      City
+    </label>
+    <Select
+      id="PlanForm__city"
+      name="city"
+      onChange={[Function]}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__type"
+    >
+      Type
+    </label>
+    <Select
+      id="PlanForm__type"
+      name="type"
+      onChange={[Function]}
+      required={true}
+    >
+      <option
+        key="Flight"
+        value="Flight"
+      >
+        Flight
+      </option>
+      <option
+        key="Lodging"
+        value="Lodging"
+      >
+        Lodging
+      </option>
+      <option
+        key="Car Rental"
+        value="Car Rental"
+      >
+        Car Rental
+      </option>
+      <option
+        key="Restaurant"
+        value="Restaurant"
+      >
+        Restaurant
+      </option>
+      <option
+        key="Activity"
+        value="Activity"
+      >
+        Activity
+      </option>
+      <option
+        key="Sightseeing"
+        selected={true}
+        value="Sightseeing"
+      >
+        Sightseeing
+      </option>
+      <option
+        key="Meeting"
+        value="Meeting"
+      >
+        Meeting
+      </option>
+      <option
+        key="Transportation"
+        value="Transportation"
+      >
+        Transportation
+      </option>
+    </Select>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value=""
+      viewport={Object {}}
+    />
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__start-date"
+      >
+        Start
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-date"
+        name="start-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__start-time"
+      >
+        Start
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-time"
+        name="start-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__end-date"
+      >
+        End
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-date"
+        name="end-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__end-time"
+      >
+        End
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-time"
+        name="end-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__description"
+    >
+      Description
+    </label>
+    <Textarea
+      id="PlanForm__description"
+      name="description"
+      onChange={[Function]}
+      type="textarea"
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Update
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`PlanForm Component renders the UI given type equals 'Transportation' 1`] = `
+<form
+  className="PlanForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="PlanForm__city"
+    >
+      City
+    </label>
+    <Select
+      id="PlanForm__city"
+      name="city"
+      onChange={[Function]}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__type"
+    >
+      Type
+    </label>
+    <Select
+      id="PlanForm__type"
+      name="type"
+      onChange={[Function]}
+      required={true}
+    >
+      <option
+        key="Flight"
+        value="Flight"
+      >
+        Flight
+      </option>
+      <option
+        key="Lodging"
+        value="Lodging"
+      >
+        Lodging
+      </option>
+      <option
+        key="Car Rental"
+        value="Car Rental"
+      >
+        Car Rental
+      </option>
+      <option
+        key="Restaurant"
+        value="Restaurant"
+      >
+        Restaurant
+      </option>
+      <option
+        key="Activity"
+        value="Activity"
+      >
+        Activity
+      </option>
+      <option
+        key="Sightseeing"
+        value="Sightseeing"
+      >
+        Sightseeing
+      </option>
+      <option
+        key="Meeting"
+        value="Meeting"
+      >
+        Meeting
+      </option>
+      <option
+        key="Transportation"
+        selected={true}
+        value="Transportation"
+      >
+        Transportation
+      </option>
+    </Select>
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__name"
+    >
+      Carrier Name
+    </label>
+    <Input
+      id="PlanForm__name"
+      name="name"
+      onChange={[Function]}
+      required={true}
+      type="text"
+    />
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__start-date"
+      >
+        Start
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-date"
+        name="start-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__start-time"
+      >
+        Start
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__start-time"
+        name="start-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="PlanForm__row"
+  >
+    <div
+      className="PlanForm__date"
+    >
+      <label
+        htmlFor="PlanForm__end-date"
+      >
+        End
+         Date
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-date"
+        name="end-date"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "m / d / Y",
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="PlanForm__time"
+    >
+      <label
+        htmlFor="PlanForm__end-time"
+      >
+        End
+         Time
+      </label>
+      <CFlatpickr
+        id="PlanForm__end-time"
+        name="end-time"
+        onChange={[Function]}
+        options={
+          Object {
+            "dateFormat": "G : i K",
+            "enableTime": true,
+            "noCalendar": true,
+          }
+        }
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+  <span
+    className="PlanForm__subtitle"
+  >
+    Departure
+  </span>
+  <div>
+    <label
+      htmlFor="PlanForm__from-name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__from-name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value=""
+      viewport={Object {}}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__from_address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__from_address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__from_phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__from_phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__from_website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__from_website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <span
+    className="PlanForm__subtitle"
+  >
+    Arrival
+  </span>
+  <div>
+    <label
+      htmlFor="PlanForm__to-name"
+    >
+      Name
+    </label>
+    <Autocomplete
+      componentRestrictions={Object {}}
+      id="PlanForm__to-name"
+      onChange={[Function]}
+      onSelect={[Function]}
+      required={true}
+      type={Array []}
+      value=""
+      viewport={Object {}}
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__to_address"
+    >
+      Address
+    </label>
+    <Input
+      id="PlanForm__to_address"
+      name="address"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__to_phone"
+    >
+      Phone Number
+    </label>
+    <Input
+      id="PlanForm__to_phone"
+      name="phone"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__to_website"
+    >
+      Website
+    </label>
+    <Input
+      id="PlanForm__to_website"
+      name="website"
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="PlanForm__description"
+    >
+      Description
+    </label>
+    <Textarea
+      id="PlanForm__description"
+      name="description"
+      onChange={[Function]}
+      type="textarea"
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Update
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`PlanItem Component renders given existing plan props' 1`] = `
+<Link
+  className="PlanItem"
+  to="/trip//plan/1"
+>
+  <div
+    className="PlanItem__details"
+  >
+    <span
+      className="PlanItem__icon"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="plane"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </span>
+    <h4>
+      04:15 pm
+    </h4>
+    <div
+      className="PlanItem__text"
+    >
+      <div
+        className="PlanItem__text-row"
+      >
+        <h3>
+          BCN (T1)  -  FLR (MAIN)
+        </h3>
+      </div>
+      <div
+        className="PlanItem__text-row"
+      >
+        <h4
+          className="PlanItem__address"
+        >
+          VY6001
+        </h4>
+      </div>
+    </div>
+  </div>
+</Link>
+`;
+
+exports[`PlanItem Component renders given existing plan props' 2`] = `
+<Link
+  className="PlanItem"
+  to="/trip//plan/2"
+>
+  <div
+    className="PlanItem__details"
+  >
+    <span
+      className="PlanItem__icon"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="car"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </span>
+    <h4>
+      12:00 pm
+    </h4>
+    <div
+      className="PlanItem__text"
+    >
+      <div
+        className="PlanItem__text-row"
+      >
+        <h3>
+          AutoEuropa
+        </h3>
+        <h3
+          className="PlanItem__subtype"
+        >
+          Pick up
+        </h3>
+      </div>
+      <div
+        className="PlanItem__text-row"
+      >
+        <h4
+          className="PlanItem__address"
+        >
+          R, Borgo Ognissanti, 100, 50123 Firenze FI, Italy
+        </h4>
+      </div>
+    </div>
+  </div>
+</Link>
+`;
+
+exports[`PlanItem Component renders given existing plan props' 3`] = `
+<Link
+  className="PlanItem"
+  to="/trip//plan/2"
+>
+  <div
+    className="PlanItem__details"
+  >
+    <span
+      className="PlanItem__icon"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="car"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </span>
+    <h4>
+      08:00 pm
+    </h4>
+    <div
+      className="PlanItem__text"
+    >
+      <div
+        className="PlanItem__text-row"
+      >
+        <h3>
+          AutoEuropa
+        </h3>
+        <h3
+          className="PlanItem__subtype"
+        >
+          Drop off
+        </h3>
+      </div>
+      <div
+        className="PlanItem__text-row"
+      >
+        <h4
+          className="PlanItem__address"
+        >
+          Piazza dei Cinquecento, 26, 00185 Roma RM, Italy
+        </h4>
+      </div>
+    </div>
+  </div>
+</Link>
+`;
+
+exports[`PlanItem Component renders given existing plan props' 4`] = `
+<Link
+  className="PlanItem"
+  to="/trip//plan/3"
+>
+  <div
+    className="PlanItem__details"
+  >
+    <span
+      className="PlanItem__icon"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="utensils"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </span>
+    <h4>
+      07:00 pm
+    </h4>
+    <div
+      className="PlanItem__text"
+    >
+      <div
+        className="PlanItem__text-row"
+      >
+        <h3>
+          Pinotxo Bar
+        </h3>
+      </div>
+      <div
+        className="PlanItem__text-row"
+      >
+        <h4
+          className="PlanItem__address"
+        >
+          465- 470 Mercat de la Boqueria, 08002 Barcelona, Spain
+        </h4>
+      </div>
+    </div>
+  </div>
+</Link>
+`;
+
+exports[`PlanItem Component renders the UI as expected' 1`] = `
+<Link
+  className="PlanItem"
+  to="/trip//plan/undefined"
+>
+  <div
+    className="PlanItem__details"
+  >
+    <span
+      className="PlanItem__icon"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="walking"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </span>
+    <div
+      className="PlanItem__text"
+    >
+      <div
+        className="PlanItem__text-row"
+      >
+        <h3 />
+      </div>
+      <div
+        className="PlanItem__text-row"
+      />
+    </div>
+  </div>
+</Link>
+`;
+
+exports[`ReactModal Component renders the UI as expected 1`] = `
+<Modal
+  ariaHideApp={true}
+  bodyOpenClassName="ReactModal__Body--open"
+  className="ReactModal__cus-content"
+  closeTimeoutMS={0}
+  contentLabel="Confirm Delete"
+  isOpen={false}
+  onRequestClose={[Function]}
+  overlayClassName="ReactModal__cus-overlay"
+  parentSelector={[Function]}
+  portalClassName="ReactModalPortal"
+  role="dialog"
+  shouldCloseOnEsc={true}
+  shouldCloseOnOverlayClick={true}
+  shouldFocusAfterRender={false}
+  shouldReturnFocusAfterClose={true}
+>
+  <h2>
+    Delete 
+  </h2>
+  <h4>
+    It will be deleted permanently.
+  </h4>
+  <div
+    className="ButtonsDiv"
+  >
+    <button
+      className="ReactModal__btn-cancel"
+      onClick={[Function]}
+    >
+      Cancel
+    </button>
+    <button
+      className="ReactModal__btn-delete"
+      onClick={[Function]}
+    >
+      Delete
+    </button>
+  </div>
+</Modal>
+`;
+
+exports[`ReactModal Component renders the UI when 'showModal' props is set to false 1`] = `
+<Modal
+  ariaHideApp={true}
+  bodyOpenClassName="ReactModal__Body--open"
+  className="ReactModal__cus-content"
+  closeTimeoutMS={0}
+  contentLabel="Confirm Delete"
+  isOpen={false}
+  onRequestClose={[Function]}
+  overlayClassName="ReactModal__cus-overlay"
+  parentSelector={[Function]}
+  portalClassName="ReactModalPortal"
+  role="dialog"
+  shouldCloseOnEsc={true}
+  shouldCloseOnOverlayClick={true}
+  shouldFocusAfterRender={false}
+  shouldReturnFocusAfterClose={true}
+>
+  <h2>
+    Delete 
+  </h2>
+  <h4>
+    It will be deleted permanently.
+  </h4>
+  <div
+    className="ButtonsDiv"
+  >
+    <button
+      className="ReactModal__btn-cancel"
+      onClick={[Function]}
+    >
+      Cancel
+    </button>
+    <button
+      className="ReactModal__btn-delete"
+      onClick={[Function]}
+    >
+      Delete
+    </button>
+  </div>
+</Modal>
+`;
+
+exports[`ReactModal Component renders the UI when 'showModal' props is set to true 1`] = `
+<Modal
+  ariaHideApp={true}
+  bodyOpenClassName="ReactModal__Body--open"
+  className="ReactModal__cus-content"
+  closeTimeoutMS={0}
+  contentLabel="Confirm Delete"
+  isOpen={true}
+  onRequestClose={[Function]}
+  overlayClassName="ReactModal__cus-overlay"
+  parentSelector={[Function]}
+  portalClassName="ReactModalPortal"
+  role="dialog"
+  shouldCloseOnEsc={true}
+  shouldCloseOnOverlayClick={true}
+  shouldFocusAfterRender={false}
+  shouldReturnFocusAfterClose={true}
+>
+  <h2>
+    Delete 
+  </h2>
+  <h4>
+    It will be deleted permanently.
+  </h4>
+  <div
+    className="ButtonsDiv"
+  >
+    <button
+      className="ReactModal__btn-cancel"
+      onClick={[Function]}
+    >
+      Cancel
+    </button>
+    <button
+      className="ReactModal__btn-delete"
+      onClick={[Function]}
+    >
+      Delete
+    </button>
+  </div>
+</Modal>
+`;
+
+exports[`RegisterForm Component renders the UI as expected 1`] = `
+<form
+  className="RegisterForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="RegisterForm__email"
+    >
+      Email 
+      <Required />
+    </label>
+    <Input
+      id="RegisterForm__email"
+      name="email"
+      required={true}
+      type="email"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="RegisterForm__password"
+    >
+      Password 
+      <Required />
+    </label>
+    <Input
+      id="RegisterForm__password"
+      name="password"
+      required={true}
+      type="password"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="RegisterForm__cf_password"
+    >
+      Confirm password 
+      <Required />
+    </label>
+    <Input
+      id="RegisterForm__cf_password"
+      name="cf_password"
+      required={true}
+      type="password"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="RegisterForm__user_name"
+    >
+      Your name 
+      <Required />
+    </label>
+    <Input
+      id="RegisterForm__user_name"
+      name="user_name"
+      required={true}
+      type="text"
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Create
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`TripForm Component renders given existing trip props' 1`] = `
+<form
+  className="TripForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="TripForm__trip-name"
+    >
+      Trip name
+    </label>
+    <Input
+      autoComplete="no"
+      id="TripForm__trip-name"
+      name="trip-name"
+      onChange={[Function]}
+      required={true}
+      type="text"
+      value="Sunny Mediterranean"
+    />
+  </div>
+  <div
+    className="TripForm__dest-cities"
+  >
+    <label
+      htmlFor="TripForm__dest-city-1"
+    >
+      Destination city
+    </label>
+    <div
+      className="TripForm__dest-city"
+      key="1"
+    >
+      <Autocomplete
+        componentRestrictions={Object {}}
+        id="TripForm__dest-city-1"
+        onChange={[Function]}
+        onSelect={[Function]}
+        required={false}
+        type={Array []}
+        types={
+          Array [
+            "(cities)",
+          ]
+        }
+        value="Barcelona"
+        viewport={Object {}}
+      />
+    </div>
+    <div
+      className="TripForm__dest-city"
+      key="2"
+    >
+      <Autocomplete
+        componentRestrictions={Object {}}
+        id="TripForm__dest-city-2"
+        onChange={[Function]}
+        onSelect={[Function]}
+        required={false}
+        type={Array []}
+        types={
+          Array [
+            "(cities)",
+          ]
+        }
+        value="Florence"
+        viewport={Object {}}
+      />
+      <button
+        className="TripForm__minus-button"
+        onClick={[Function]}
+        type="button"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className="white"
+          fixedWidth={false}
+          flip={null}
+          icon="minus"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </button>
+    </div>
+    <button
+      className="TripForm__plus-button TripForm__plus-button-row"
+      key="3"
+      onClick={[Function]}
+      type="button"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className="white"
+        fixedWidth={false}
+        flip={null}
+        icon="plus"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </button>
+  </div>
+  <div>
+    <label
+      htmlFor="TripForm__start-date"
+    >
+      Start date
+    </label>
+    <CFlatpickr
+      id="TripForm__start-date"
+      name="start-date"
+      onChange={[Function]}
+      options={
+        Object {
+          "dateFormat": "m / d / Y",
+        }
+      }
+      required={true}
+      value={
+        Array [
+          2019-04-01T04:00:00.000Z,
+        ]
+      }
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="TripForm__end-date"
+    >
+      End date
+    </label>
+    <CFlatpickr
+      id="TripForm__end-date"
+      name="end-date"
+      onChange={[Function]}
+      options={
+        Object {
+          "dateFormat": "m / d / Y",
+        }
+      }
+      required={true}
+      value={
+        Array [
+          2019-04-14T04:00:00.000Z,
+        ]
+      }
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="TripForm__description"
+    >
+      Description
+    </label>
+    <Textarea
+      id="TripForm__description"
+      name="description"
+      onChange={[Function]}
+      type="textarea"
+      value=""
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Update
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`TripForm Component renders the UI as expected' 1`] = `
+<form
+  className="TripForm"
+  onSubmit={[Function]}
+>
+  <div
+    role="alert"
+  />
+  <div>
+    <label
+      htmlFor="TripForm__trip-name"
+    >
+      Trip name
+    </label>
+    <Input
+      autoComplete="no"
+      id="TripForm__trip-name"
+      name="trip-name"
+      onChange={[Function]}
+      required={true}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="TripForm__dest-cities"
+  >
+    <label
+      htmlFor="TripForm__dest-city-1"
+    >
+      Destination city
+    </label>
+    <div
+      className="TripForm__dest-city"
+      key="1"
+    >
+      <Autocomplete
+        componentRestrictions={Object {}}
+        field="dest_cities"
+        id="TripForm__dest-city-1"
+        onChange={[Function]}
+        onSelect={[Function]}
+        required={false}
+        type={Array []}
+        types={
+          Array [
+            "(cities)",
+          ]
+        }
+        value=""
+        viewport={Object {}}
+      />
+      <button
+        className="TripForm__plus-button"
+        onClick={[Function]}
+        type="button"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className="white"
+          fixedWidth={false}
+          flip={null}
+          icon="plus"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </button>
+    </div>
+  </div>
+  <div>
+    <label
+      htmlFor="TripForm__start-date"
+    >
+      Start date
+    </label>
+    <CFlatpickr
+      id="TripForm__start-date"
+      name="start-date"
+      onChange={[Function]}
+      options={
+        Object {
+          "dateFormat": "m / d / Y",
+        }
+      }
+      required={true}
+      value=""
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="TripForm__end-date"
+    >
+      End date
+    </label>
+    <CFlatpickr
+      id="TripForm__end-date"
+      name="end-date"
+      onChange={[Function]}
+      options={
+        Object {
+          "dateFormat": "m / d / Y",
+        }
+      }
+      required={true}
+      value=""
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="TripForm__description"
+    >
+      Description
+    </label>
+    <Textarea
+      id="TripForm__description"
+      name="description"
+      onChange={[Function]}
+      type="textarea"
+      value=""
+    />
+  </div>
+  <div
+    className="ButtonsDiv"
+  >
+    <Button
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      type="submit"
+    >
+      Update
+    </Button>
+  </div>
+</form>
+`;
+
+exports[`TripItem Component renders the UI as expected' 1`] = `
+<div
+  className="TripItem__heading"
+>
+  <div
+    className="TripItem__details"
+  >
+    <h2
+      className="TripItem__title"
+    />
+    <h3
+      className="TripItem__dest_city"
+    />
+    <h4
+      className="TripItem__date"
+    >
+      May 2
+       - 
+      May 2, 2020
+    </h4>
+  </div>
+</div>
+`;

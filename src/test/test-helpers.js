@@ -1,0 +1,180 @@
+export function makeTripsArray() {
+	return [
+		{
+			id: 1,
+			trip_name: 'Sunny Mediterranean',
+			dest_cities: [
+				{
+					id: 1,
+					city_name: 'Barcelona',
+					city_place_id: '123',
+					utc_offset_minutes: 180,
+					viewport: {
+						ne_lat: 41.4695761,
+						ne_lng: 2.2280099,
+						sw_lat: 41.3200040,
+						sw_lng: 2.0695258
+					},
+					trip_id: 1
+				},
+				{
+					id: 2,
+					city_name: 'Florence',
+					city_place_id: '456',
+					utc_offset_minutes: 180,
+					viewport: {},
+					trip_id: 1
+				}
+			],
+			start_date: '2019-04-01T00:00:00.000Z',
+			end_date: '2019-04-14T00:00:00.000Z',
+			description: '',
+			user_id: 1
+		},
+		{
+			id: 2,
+			trip_name: 'Family Trip 2020',
+			dest_cities: [
+				{
+					id: 3,
+					city_name: 'Tokyo',
+					city_place_id: '321',
+					utc_offset_minutes: 720,
+					viewport: {},
+					trip_id: 2
+				}
+			],
+			start_date: '2019-04-30T00:00:00.000Z',
+			end_date: '2019-05-05T00:00:00.000Z',
+			description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
+			user_id: 1
+		}
+	];
+}
+
+export function makePlansArray() {
+	return [
+		{
+			id: 1,
+			plan_type: "Flight",
+			plan_name: "VY6001",
+			start_date: "2021-04-06T16:15:00.000Z",
+			end_date: "2021-04-06T13:20:00.000Z",
+			description: "",
+			trip_id: 1,
+			city_name: "Barcelona",
+			utc_offset_minutes: 120,
+			formatted_address: "",
+			international_phone_number: "",
+			website: "",
+			plan_detail_id: 1,
+			from_name: "BCN",
+			from_place_id: "ChIJpY58hGSepBIR15tv-0LpK_M",
+			from_utc_offset_minutes: 120,
+			from_formatted_address: "08820 El Prat de Llobregat, Barcelona, Spain",
+			from_terminal: "T1",
+			from_gate: "451-514",
+			from_international_phone_number: "+34 913 21 10 00",
+			from_website: "http://www.aena.es/es/aeropuerto-barcelona/index.html",
+			to_name: "FLR",
+			to_place_id: "ChIJV8LI2QBXKhMRsibZbXbkEvI",
+			to_utc_offset_minutes: 120,
+			to_formatted_address: "Via del Termine, 11, 50127 Firenze FI, Italy",
+			to_international_phone_number: "+39 055 30615",
+			to_website: "http://www.aeroporto.firenze.it/",
+			to_terminal: "MAIN",
+			to_gate: "",
+			comparable_date: "2021-04-06T16:15:00.000Z"
+		},
+		{
+			id: 2,
+			plan_type: "Car Rental",
+			plan_name: "AutoEuropa",
+			start_date: "2021-04-08T12:00:00.000Z",
+			end_date: "2021-04-10T20:00:00.000Z",
+			description: "",
+			trip_id: 1,
+			city_name: "Barcelona",
+			utc_offset_minutes: 120,
+			formatted_address: "",
+			international_phone_number: "",
+			website: "",
+			plan_detail_id: 6,
+			plan_subtype: "Pick up",
+			from_name: "Sicily By Car - AutoEuropa",
+			from_place_id: "ChIJCwTjKaxWKhMRoWTZJO1xK3Y",
+			from_utc_offset_minutes: 120,
+			from_formatted_address: "R, Borgo Ognissanti, 100, 50123 Firenze FI, Italy",
+			from_terminal: "",
+			from_gate: "",
+			from_international_phone_number: "+39 055 213333",
+			from_website: "http://www.sbc.it/",
+			to_name: "",
+			to_formatted_address: "",
+			to_international_phone_number: "",
+			to_website: "",
+			to_terminal: "",
+			to_gate: "",
+			comparable_date: "2021-04-08T12:00:00.000Z"
+		},
+		{
+			id: 2,
+			plan_type: "Car Rental",
+			plan_name: "AutoEuropa",
+			start_date: "2021-04-08T12:00:00.000Z",
+			end_date: "2021-04-10T20:00:00.000Z",
+			description: "",
+			trip_id: 1,
+			city_name: "Barcelona",
+			utc_offset_minutes: 120,
+			formatted_address: "",
+			international_phone_number: "",
+			website: "",
+			plan_detail_id: 7,
+			plan_subtype: "Drop off",
+			from_name: "",
+			from_formatted_address: "",
+			from_terminal: "",
+			from_gate: "",
+			from_international_phone_number: "",
+			from_website: "",
+			to_name: "AutoEuropa",
+			to_place_id: "ChIJEzAkGphhLxMRdJmxDU5IQJA",
+			to_utc_offset_minutes: 120,
+			to_formatted_address: "Piazza dei Cinquecento, 26, 00185 Roma RM, Italy",
+			to_international_phone_number: "+39 06 488 1287",
+			to_website: "http://www.autoeuropa.it/",
+			to_terminal: "",
+			to_gate: "",
+			comparable_date: "2021-04-10T20:00:00.000Z"
+		},
+		{
+			id: 3,
+			plan_type: "Restaurant",
+			plan_name: "Pinotxo Bar",
+			plan_place_id: "ChIJ-QmOyfeipBIREHQngnjkAVE",
+			start_date: "2021-04-02T19:00:00.000Z",
+			end_date: "2021-04-02T21:00:00.000Z",
+			description: "",
+			trip_id: 1,
+			city_name: "Barcelona",
+			utc_offset_minutes: 120,
+			formatted_address: "465- 470 Mercat de la Boqueria, 08002 Barcelona, Spain",
+			international_phone_number: "+34 933 17 17 31",
+			website: "http://pinotxobar.com/",
+			from_name: "",
+			from_formatted_address: "",
+			from_terminal: "",
+			from_gate: "",
+			from_international_phone_number: "",
+			from_website: "",
+			to_name: "",
+			to_formatted_address: "",
+			to_international_phone_number: "",
+			to_website: "",
+			to_terminal: "",
+			to_gate: "",
+			comparable_date: "2021-04-02T19:00:00.000Z"
+		}
+	];
+}

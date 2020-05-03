@@ -2,13 +2,21 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TripContext from '../../context/TripContext';
 import TripsApiService from '../../services/trips-api-service';
+import ReactModal from '../../components/ReactModal/ReactModal';
 import { formatDate, getTypeIcon, EditIcon, DeleteIcon, CloseIcon } from '../../components/Utils/Utils';
 import './PlanPage.css';
 
 export default class PlanPage extends Component {
+	static defaultProps = {
+		match: { params: '' }
+	};
+
 	constructor(props) {
 		super(props);
-		this.state = { plans: [] };
+		this.state = {
+			plans: [],
+			showModal: false
+		};
 	}
 
 	static contextType = TripContext;
@@ -43,6 +51,10 @@ export default class PlanPage extends Component {
 		});
 	}
 
+	handleOpenModal = () => { this.setState({ showModal: true }); }
+
+	handleCloseModal = () => { this.setState({ showModal: false }); }
+
 	handleClickOnDelete = e => {
 		const { match: { params }, history } = this.props;
 		TripsApiService.deletePlan(params.trip_id, params.plan_id)
@@ -65,7 +77,7 @@ export default class PlanPage extends Component {
 					<div className='PlanPage__title-left'>
 						<h2 className='PlanPage__plan-name'>{plans[0].plan_name}</h2>
 						<EditIcon to={`/trip/${params.trip_id}/plan/${params.plan_id}/edit`} />
-						<DeleteIcon onClick={this.handleClickOnDelete} />
+						<DeleteIcon onClick={this.handleOpenModal} />
 					</div>
 					<CloseIcon onClick={e => history.push(`/trip/${params.trip_id}`)} />
 				</div>
@@ -200,6 +212,12 @@ export default class PlanPage extends Component {
 				{this.renderPlanHeading()}
 				{this.renderPlanTime()}
 				{this.renderPlanDetails()}
+				<ReactModal 
+					showModal={this.state.showModal}
+					onCloseModal={this.handleCloseModal}
+					onClickOnDelete={this.handleClickOnDelete}
+					name='Plan'
+				/>
 			</section>
 		);
 	}

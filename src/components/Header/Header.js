@@ -19,45 +19,43 @@ export default class Header extends Component {
 
 	renderLoginLink() {
 		return (
-			<div className='Header__button'>
-				<Link className='Link' to='/signin'>
-					Sign in
-				</Link>
-			</div>
+			<Link className='Header__link' to='/signin'>
+				Sign in
+			</Link>
 		);
 	}
 
 	renderLogoutLink() {
 		return (
-			<div className='Header__button'>
-				<Link 
-					className='Link'
-					onClick={this.handleLogoutClick}
-					to='/'
-				>
-					Sign out
-				</Link>
-			</div>
+			<Link 
+				className='Header__link'
+				onClick={this.handleLogoutClick}
+				to='/'
+			>
+				Sign out
+			</Link>
 		);
 	}
 
 	render() {
-		return <>
-			<nav className='Header'>
-				<div className='Header__div'>
-					<span className='Header__icon'>
-						<Link to='/'><FontAwesomeIcon icon='paper-plane' /></Link>
-					</span>
-					<h1 className='Header__title'><Link to='/'>Vamos</Link></h1>
-				</div>
-				<span className='Header__tagline--wide'>- Itinerary Planner -</span>
-				<div className='Header__div'>
-					{this.context.hasAuthToken
-						? this.renderLogoutLink()
-						: this.renderLoginLink()}
-				</div>
-			</nav>
-			<span className='Header__tagline--narrow'>- Itinerary Planner -</span>
-		</>
+		return (
+			<>
+				<nav className='Header'>
+					<div className='Header__div'>
+						<span className='Header__icon'>
+							<Link to='/'><FontAwesomeIcon icon='paper-plane' /></Link>
+						</span>
+						<h1 className='Header__title'><Link to='/'>Vamos</Link></h1>
+					</div>
+					<span className='Header__tagline--wide'>- Itinerary Planner -</span>
+					<div className='Header__div'>
+						{this.context.hasAuthToken
+							? this.renderLogoutLink()
+							: this.renderLoginLink()}
+					</div>
+				</nav>
+				<span className='Header__tagline--narrow'>- Itinerary Planner -</span>
+			</>
+		);
 	}
 }
