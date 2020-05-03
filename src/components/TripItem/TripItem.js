@@ -6,7 +6,8 @@ import './TripItem.css';
 
 export default class TripItem extends Component {
 	static defaultProps = {
-		trip: {}
+		trip: {},
+		location: { pathname: '' }
 	};
 
 	renderTripItem() {
@@ -16,7 +17,7 @@ export default class TripItem extends Component {
 			</div>
 		);
 	}
-	
+
 	renderTripItemLink() {
 		const { trip, text } = this.props;
 		return (

@@ -10,6 +10,11 @@ const TYPES_FOR_DETAILS = [
 ];
 
 export default class PlanItem extends Component {
+	static defaultProps = {
+		trip_id: '',
+		plan: {}
+	};
+
 	renderMainTextRow() {
 		const { plan } = this.props;
 		const text = TYPES_FOR_DETAILS.includes(plan.plan_type)
@@ -52,7 +57,7 @@ export default class PlanItem extends Component {
 					<span className='PlanItem__icon'>
 						<FontAwesomeIcon icon={getTypeIcon(plan.plan_type)} />
 					</span>
-					<h4>{formatDate(plan.comparable_date, 'hh:mm a')}</h4>
+					{plan.comparable_date && <h4>{formatDate(plan.comparable_date, 'hh:mm a')}</h4>}
 					<div className='PlanItem__text'>
 						{this.renderMainTextRow()}
 						{this.renderSubTextRow()}

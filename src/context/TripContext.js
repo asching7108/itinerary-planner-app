@@ -5,7 +5,7 @@ const TripContext = React.createContext({
 	trip: {},
 	planList: [],
 	error: null,
-	needToUpdate: true,
+	needToUpdate: () => {},
 	updateTrip: () => {},
 	setTrip: () => {},
 	setPlanList: () => {},

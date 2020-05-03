@@ -4,10 +4,18 @@ import TripContext from '../../context/TripContext';
 import TripsApiService from '../../services/trips-api-service';
 import TripItem from '../../components/TripItem/TripItem';
 import PlanItem from '../../components/PlanItem/PlanItem';
+import ReactModal from '../../components/ReactModal/ReactModal';
 import { formatDate, LinkButton, EditIcon, DeleteIcon, CloseIcon } from '../../components/Utils/Utils';
 import './TripPage.css';
 
 export default class TripPage extends Component {
+	static defaultProps = { match: { params: '' } };
+
+	constructor(props) {
+		super(props);
+		this.state = { showModal: false };
+	}
+
 	static contextType = TripContext;
 	
 	componentDidMount() {
@@ -22,6 +30,10 @@ export default class TripPage extends Component {
 			this.props.history.push('/page-not-found');
 		}
 	}
+
+	handleOpenModal = () => { this.setState({ showModal: true }); }
+
+	handleCloseModal = () => { this.setState({ showModal: false }); }
 
 	handleClickOnDelete = e => {
 		const { match: { params }, history } = this.props;
@@ -53,15 +65,12 @@ export default class TripPage extends Component {
 			);
 		}
 
-		const elements = [];
 		let currDate = getDateStrWithoutTime(planList[0].comparable_date);
-		
-		elements.push(
-			this.renderDate(0, currDate)
-		);
+
+		const elements = [];
+		elements.push(this.renderDate(0, currDate));
 		for(let i = 0; i < planList.length; i++) {
 			const plan = planList[i];
-			
 			if (getDateStrWithoutTime(plan.comparable_date) > currDate) {
 				currDate = getDateStrWithoutTime(plan.comparable_date);
 				elements.push(
@@ -93,7 +102,7 @@ export default class TripPage extends Component {
 				/>
 				<div className='IconsDiv'>
 					<EditIcon to={`/trip/${trip.id}/edit`} />
-					<DeleteIcon onClick={this.handleClickOnDelete} />
+					<DeleteIcon onClick={this.handleOpenModal} />
 				</div>
 				<LinkButton to={`/trip/${trip.id}/add-plan`}>
 					Create a plan
@@ -101,6 +110,12 @@ export default class TripPage extends Component {
 				<div className='TripPage__plan_list'>
 					{this.renderPlans()}
 				</div>
+				<ReactModal 
+					showModal={this.state.showModal}
+					onCloseModal={this.handleCloseModal}
+					onClickOnDelete={this.handleClickOnDelete}
+					name='Trip'
+				/>
 			</section>
 		);
 	}

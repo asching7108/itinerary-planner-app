@@ -8,9 +8,9 @@
 	padding: 6px 16px;
 	font-size: 1em;
 	-webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 .Button:hover {
@@ -53,9 +53,9 @@
 	border: 1px solid #99E2FF;
 	color: #99E2FF;
 	-webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 .LinkButton:hover {

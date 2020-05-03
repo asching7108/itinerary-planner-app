@@ -26,8 +26,9 @@ export default class PlanForm extends Component {
 		trip: {},
 		plans: [],
 		onAddPlanSuccess: () => {},
-		onClickOnCancel: () => {}
-	}
+		onClickOnCancel: () => {},
+		location: { pathname: '' }
+	};
 
 	constructor(props) {
 		super(props);

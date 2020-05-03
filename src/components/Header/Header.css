@@ -43,14 +43,8 @@
 	margin-top: 10px;
 }
 
-.Header__button {
-	display: flex;
+.Header__link {
 	flex: 1;
-	align-items: center;
-	justify-content: flex-end;
-}
-
-.Header__button a {
 	font-size: 0.9em;
 	padding: 3px 10px;
 	border-radius: 15px;
@@ -60,13 +54,13 @@
 	white-space: nowrap;
 	position: relative;
 	top: -3px;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
-.Header__button a:hover {
+.Header__link:hover {
 	background-color: #99E2FF;
 	color: #1C1C1E;
 }
@@ -93,9 +87,8 @@
 		top: 2px;
 	}
 
-	.Header__button a {
+	.Header__link {
 		font-size: 1em;
 		padding: 5px 15px;
-		border-radius: 15px;
 	}
 }

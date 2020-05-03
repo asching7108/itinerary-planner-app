@@ -7,10 +7,7 @@ import './LoginPage.css';
 export default class LoginPage extends Component {
 	static contextType = TripListContext;
 
-	static defaultProps = {
-		location: {},
-		history: { push: () => {} }
-	}
+	static defaultProps = { location: {} };
 
 	handleLoginSuccess = () => {
 		const { location, history } = this.props;

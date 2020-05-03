@@ -9,8 +9,9 @@ export default class TripForm extends Component {
 	static defaultProps = {
 		trip: {},
 		onAddTripSuccess: () => {},
-		onClickOnCancel: () => {}
-	}
+		onClickOnCancel: () => {},
+		location: { pathname: '' }
+	};
 
 	constructor(props) {
 		super(props);

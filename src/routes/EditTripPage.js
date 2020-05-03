@@ -3,6 +3,8 @@ import TripContext from '../context/TripContext';
 import TripForm from '../components/TripForm/TripForm';
 
 export default class EditTripPage extends Component {
+	static defaultProps = { match: { params: '' } };
+	
 	static contextType = TripContext;
 
 	componentDidMount() {
