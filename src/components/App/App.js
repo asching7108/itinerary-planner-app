@@ -84,7 +84,7 @@ class App extends Component {
 							path={'/'}
 							component={TripListPage}
 						/>
-						<Route
+						<PublicRoute
 							exact
 							path={'/intro'}
 							component={IntroPage}

@@ -28,15 +28,20 @@ export default class IntroPage extends Component {
 				this.props.history.push('/');
 			})
 			.catch(res => {
-				this.setState({ error: res.error });
+				this.setState({ error: 'The demo is not available temporarily. Please come back later.' });
 			});
 	}
 
 	renderExploreBtn() {
 		return (
-			<Button type='button' className='IntroPage__btn' onClick={e => this.handleClickOnExplore()}>
-				EXPLORE VAMOS
-			</Button>
+			<>
+				<Button type='button' className='IntroPage__btn' onClick={e => this.handleClickOnExplore()}>
+					EXPLORE VAMOS
+				</Button>
+				<div role='alert'>
+					{this.state.error && <p className='red'>{this.state.error}</p>}
+				</div>
+			</>
 		);
 	}
 
@@ -63,13 +68,9 @@ export default class IntroPage extends Component {
 	}
 
 	render() {
-		const { error } = this.state;
 		return (
 			<>
 				<section className='IntroPage'>
-					<div role='alert'>
-						{error && <p className='red'>{error}</p>}
-					</div>
 					<div className='IntroPage__content-wide'>
 						<h1>Create itineraries can be a breeze.</h1>
 						<img src={tlp} alt='Trip list page screenshot' />

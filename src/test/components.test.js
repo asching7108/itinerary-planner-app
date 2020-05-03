@@ -216,6 +216,10 @@ describe(`TripItem Component`, () => {
 
 	it(`renders the UI as expected'`, () => {
 		const wrapper = shallow(<TripItem />);
+		wrapper.setState({
+			start_date: '',
+			end_date: ''
+		});
 		expect(toJson(wrapper)).toMatchSnapshot();
 	})
 

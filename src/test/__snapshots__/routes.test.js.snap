@@ -26,9 +26,6 @@ exports[`IntroPage Component renders the UI as expected 1`] = `
     className="IntroPage"
   >
     <div
-      role="alert"
-    />
-    <div
       className="IntroPage__content-wide"
     >
       <h1>
@@ -59,6 +56,9 @@ exports[`IntroPage Component renders the UI as expected 1`] = `
       >
         EXPLORE VAMOS
       </Button>
+      <div
+        role="alert"
+      />
     </div>
     <div
       className="IntroPage__content-narrow"
@@ -73,6 +73,9 @@ exports[`IntroPage Component renders the UI as expected 1`] = `
       >
         EXPLORE VAMOS
       </Button>
+      <div
+        role="alert"
+      />
     </div>
   </section>
   <footer>

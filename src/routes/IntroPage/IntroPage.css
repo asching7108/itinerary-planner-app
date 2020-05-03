@@ -42,8 +42,13 @@
 	margin-top: 100px;
 }
 
+.IntroPage__content-wide div {
+	margin-top: 15px;
+}
+
 .IntroPage__content-narrow h2,
-.IntroPage__content-narrow button {
+.IntroPage__content-narrow button,
+.IntroPage__content-narrow div {
 	position: relative;
 	top: -10vh;
 	margin: 15px auto;
