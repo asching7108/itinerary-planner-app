@@ -13,7 +13,10 @@ export default class TripPage extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { showModal: false };
+		this.state = {
+			showModal: false,
+			error: true
+		};
 	}
 
 	static contextType = TripContext;
@@ -21,14 +24,21 @@ export default class TripPage extends Component {
 	componentDidMount() {
 		const { trip_id } = this.props.match.params;
 		if (this.context.needToUpdate(trip_id)) {
-			this.context.updateTrip(trip_id);
+			this.context.updateTrip(trip_id, this.updateState);
+		}
+		else {
+			this.updateState();
 		}
 	}
 
 	componentDidUpdate() {
-		if (this.context.error) {
-			this.props.history.push('/page-not-found');
+		if (!this.state.error && this.context.error) {
+			this.setState({ error: this.context.error });
 		}
+	}
+
+	updateState = () => {
+		this.setState({ error: null });
 	}
 
 	handleOpenModal = () => { this.setState({ showModal: true }); }
@@ -55,7 +65,7 @@ export default class TripPage extends Component {
 	}
 
 	renderPlans() {
-		const { trip, planList = [] } = this.context;
+		const { trip, planList } = this.context;
 		
 		if (!planList.length) {
 			return (
@@ -91,6 +101,12 @@ export default class TripPage extends Component {
 
 	render() {
 		const { trip } = this.context;
+		const { error } = this.state;
+		
+		if (error) {
+			return <section><h2>{error}</h2></section>;
+		}
+
 		return (
 			<section className='TripPage'>
 				<div className='TripPage__close-icon-row'>

@@ -29,7 +29,7 @@ exports[`IntroPage Component renders the UI as expected 1`] = `
       className="IntroPage__content-wide"
     >
       <h1>
-        Create itineraries can be a breeze.
+        Creating itineraries can be a breeze.
       </h1>
       <img
         alt="Trip list page screenshot"
@@ -63,9 +63,9 @@ exports[`IntroPage Component renders the UI as expected 1`] = `
     <div
       className="IntroPage__content-narrow"
     >
-      <h2>
+      <h1>
         Create, manage and display itineraries like a breeze.
-      </h2>
+      </h1>
       <Button
         className="IntroPage__btn"
         onClick={[Function]}

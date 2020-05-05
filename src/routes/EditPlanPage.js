@@ -7,7 +7,10 @@ export default class EditPlanPage extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { plans: [] };
+		this.state = {
+			plans: [],
+			error: null
+		};
 	}
 
 	static contextType = TripContext;
@@ -19,19 +22,21 @@ export default class EditPlanPage extends Component {
 	}
 
 	componentDidUpdate() {
-		const { match: { params }, history } = this.props;
+		const { plan_id } = this.props.match.params;
 		const { planList, error } = this.context;
-		if (error) {
-			history.push('/page-not-found');
+
+		if (!this.state.error && error) {
+			this.setState({ error });
 		}
-		else if (!this.state.plans[0] && planList[0]) {
-			if (planList.find(p => p.id === Number(params.plan_id))) {
+		
+		else if (!this.state.error && !this.state.plans[0] && planList[0]) {
+			if (planList.find(p => p.id === Number(plan_id))) {
 				this.setState({
-					plans: planList.filter(p => p.id === Number(params.plan_id))
+					plans: planList.filter(p => p.id === Number(plan_id))
 				});
 			}
 			else {
-				history.push('/page-not-found');
+				this.setState({ error: `Plan doesn't exist` });
 			}
 		}
 	}
@@ -40,20 +45,28 @@ export default class EditPlanPage extends Component {
 		this.context.updateTrip(plans[0].trip_id);
 
 		const { history } = this.props;
-		history.push(`/trip/${plans[0].trip_id}`);
+		history.push(`/trip/${plans[0].trip_id}/plan/${plans[0].id}`);
 	}
 
 	handleClickOnCancel = () => {
-		this.props.history.goBack();
+		const { match: { params }, history } = this.props;
+		history.push(`/trip/${params.trip_id}/plan/${params.plan_id}`);
 	}
 	
 	render() {
+		const { trip } = this.context;
+		const { plans, error } = this.state;
+		
+		if (error) {
+			return <section><h2>{error}</h2></section>;
+		}
+
 		return (
 			<section className='EditPlanPage'>
 				<h2>Edit plan</h2>
 				<PlanForm 
-					trip={this.context.trip}
-					plans={this.state.plans}
+					trip={trip}
+					plans={plans}
 					location={this.props.location}
 					onUpdatePlanSuccess={this.handleUpdatePlanSuccess}
 					onClickOnCancel={this.handleClickOnCancel}

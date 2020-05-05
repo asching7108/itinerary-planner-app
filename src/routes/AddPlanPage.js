@@ -5,6 +5,11 @@ import PlanForm from '../components/PlanForm/PlanForm';
 export default class AddPlanPage extends Component {
 	static defaultProps = { match: { params: '' } };
 
+	constructor(props) {
+		super(props);
+		this.state = { error: null };
+	}
+
 	static contextType = TripContext;
 
 	componentDidMount() {
@@ -14,8 +19,8 @@ export default class AddPlanPage extends Component {
 	}
 
 	componentDidUpdate() {
-		if (this.context.error) {
-			this.props.history.push('/page-not-found');
+		if (!this.state.error && this.context.error) {
+			this.setState({ error: this.context.error });
 		}
 	}
 
@@ -27,15 +32,23 @@ export default class AddPlanPage extends Component {
 	}
 
 	handleClickOnCancel = () => {
-		this.props.history.goBack();
+		const { match: { params }, history } = this.props;
+		history.push(`/trip/${params.trip_id}`);
 	}
 	
 	render() {
+		const { trip } = this.context;
+		const { error } = this.state;
+
+		if (error) {
+			return <section><h2>{error}</h2></section>;
+		}
+
 		return (
 			<section className='AddPlanPage'>
 				<h2>Create a plan</h2>
 				<PlanForm 
-					trip={this.context.trip}
+					trip={trip}
 					location={this.props.location}
 					onAddPlanSuccess={this.handleAddPlanSuccess}
 					onClickOnCancel={this.handleClickOnCancel}

@@ -6,6 +6,8 @@ import ReactModal from '../../components/ReactModal/ReactModal';
 import { formatDate, getTypeIcon, EditIcon, DeleteIcon, CloseIcon } from '../../components/Utils/Utils';
 import './PlanPage.css';
 
+const TRANS_TYPES = ['Flight', 'Transportation'];
+
 export default class PlanPage extends Component {
 	static defaultProps = {
 		match: { params: '' }
@@ -15,7 +17,8 @@ export default class PlanPage extends Component {
 		super(props);
 		this.state = {
 			plans: [],
-			showModal: false
+			showModal: false,
+			error: null
 		};
 	}
 
@@ -24,28 +27,30 @@ export default class PlanPage extends Component {
 	componentDidMount() {
 		const { trip_id } = this.props.match.params;
 		if (this.context.needToUpdate(trip_id)) {
-			this.context.updateTrip(trip_id);
+			this.context.updateTrip(trip_id, this.updateState);
 		}
 		this.updateState();
 	}
 
 	componentDidUpdate() {
-		const { match: { params }, history } = this.props;
+		const { plan_id } = this.props.match.params;
 		const { planList, error } = this.context;
-		if (error) {
-			history.push('/page-not-found');
+
+		if (!this.state.error && error) {
+			this.setState({ error });
 		}
-		else if (!this.state.plans[0] && planList[0]) {
-			if (planList.find(p => p.id === Number(params.plan_id))) {
+
+		else if (!this.state.error && !this.state.plans[0] && planList[0]) {
+			if (planList.find(p => p.id === Number(plan_id))) {
 				this.updateState();
 			}
 			else {
-				history.push('/page-not-found');
+				this.setState({ error: `Plan doesn't exist` });
 			}
 		}
 	}
 
-	updateState() {
+	updateState = () => {
 		this.setState({
 			plans: this.context.planList.filter(p => p.id === Number(this.props.match.params.plan_id))
 		});
@@ -170,13 +175,13 @@ export default class PlanPage extends Component {
 						<p className='PlanPage__address'>{plan[`${prefix}formatted_address`]}</p>
 					</div>
 				)}
-				{plan[`${prefix}international_phone_number`] && (
+				{plan[`${prefix}international_phone_number`] && !TRANS_TYPES.includes(plan.plan_type) && (
 					<div className='PlanPage__detail-row'>
 						<span className='PlanPage__icon'><FontAwesomeIcon icon='phone' /></span>
 						<p className='PlanPage__phone'>{plan[`${prefix}international_phone_number`]}</p>
 					</div>
 				)}
-				{plan[`${prefix}website`] && (
+				{plan[`${prefix}website`] && !TRANS_TYPES.includes(plan.plan_type) && (
 					<div className='PlanPage__detail-row'>
 						<span className='PlanPage__icon'><FontAwesomeIcon icon='globe' /></span>
 						<p className='PlanPage__web'>
@@ -206,7 +211,14 @@ export default class PlanPage extends Component {
 	}
 
 	render() {
+		const { error } = this.state;
+
+		if (error) {
+			return <section><h2>{error}</h2></section>;
+		}
+		
 		if (!this.state.plans[0]) return <></>;
+
 		return (
 			<section className='PlanPage'>
 				{this.renderPlanHeading()}

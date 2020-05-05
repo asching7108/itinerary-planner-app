@@ -246,6 +246,7 @@ exports[`PlanForm Component renders given existing trip and plans props' 1`] = `
       Rental Agency
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__name"
       name="name"
       onChange={[Function]}
@@ -379,7 +380,7 @@ exports[`PlanForm Component renders given existing trip and plans props' 1`] = `
     <label
       htmlFor="PlanForm__from-name"
     >
-      Name
+      Store Name
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -406,6 +407,7 @@ exports[`PlanForm Component renders given existing trip and plans props' 1`] = `
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__from_address"
       name="address"
       onChange={[Function]}
@@ -420,6 +422,7 @@ exports[`PlanForm Component renders given existing trip and plans props' 1`] = `
       Phone Number
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__from_phone"
       name="phone"
       onChange={[Function]}
@@ -434,6 +437,7 @@ exports[`PlanForm Component renders given existing trip and plans props' 1`] = `
       Website
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__from_website"
       name="website"
       onChange={[Function]}
@@ -450,7 +454,7 @@ exports[`PlanForm Component renders given existing trip and plans props' 1`] = `
     <label
       htmlFor="PlanForm__to-name"
     >
-      Name
+      Store Name
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -477,6 +481,7 @@ exports[`PlanForm Component renders given existing trip and plans props' 1`] = `
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__to_address"
       name="address"
       onChange={[Function]}
@@ -491,6 +496,7 @@ exports[`PlanForm Component renders given existing trip and plans props' 1`] = `
       Phone Number
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__to_phone"
       name="phone"
       onChange={[Function]}
@@ -505,6 +511,7 @@ exports[`PlanForm Component renders given existing trip and plans props' 1`] = `
       Website
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__to_website"
       name="website"
       onChange={[Function]}
@@ -629,9 +636,7 @@ exports[`PlanForm Component renders the UI as expected' 1`] = `
   <div>
     <label
       htmlFor="PlanForm__name"
-    >
-      Name
-    </label>
+    />
     <Autocomplete
       componentRestrictions={Object {}}
       id="PlanForm__name"
@@ -750,6 +755,7 @@ exports[`PlanForm Component renders the UI as expected' 1`] = `
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__address"
       name="address"
       onChange={[Function]}
@@ -764,6 +770,7 @@ exports[`PlanForm Component renders the UI as expected' 1`] = `
       Phone Number
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__phone"
       name="phone"
       onChange={[Function]}
@@ -778,6 +785,7 @@ exports[`PlanForm Component renders the UI as expected' 1`] = `
       Website
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__website"
       name="website"
       onChange={[Function]}
@@ -904,7 +912,7 @@ exports[`PlanForm Component renders the UI given type equals 'Activity' 1`] = `
     <label
       htmlFor="PlanForm__name"
     >
-      Name
+      Event Name
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -1024,6 +1032,7 @@ exports[`PlanForm Component renders the UI given type equals 'Activity' 1`] = `
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__address"
       name="address"
       onChange={[Function]}
@@ -1037,6 +1046,7 @@ exports[`PlanForm Component renders the UI given type equals 'Activity' 1`] = `
       Phone Number
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__phone"
       name="phone"
       onChange={[Function]}
@@ -1050,6 +1060,7 @@ exports[`PlanForm Component renders the UI given type equals 'Activity' 1`] = `
       Website
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__website"
       name="website"
       onChange={[Function]}
@@ -1177,6 +1188,7 @@ exports[`PlanForm Component renders the UI given type equals 'Car Rental' 1`] = 
       Rental Agency
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__name"
       name="name"
       onChange={[Function]}
@@ -1293,7 +1305,7 @@ exports[`PlanForm Component renders the UI given type equals 'Car Rental' 1`] = 
     <label
       htmlFor="PlanForm__from-name"
     >
-      Name
+      Store Name
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -1313,6 +1325,7 @@ exports[`PlanForm Component renders the UI given type equals 'Car Rental' 1`] = 
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__from_address"
       name="address"
       onChange={[Function]}
@@ -1326,6 +1339,7 @@ exports[`PlanForm Component renders the UI given type equals 'Car Rental' 1`] = 
       Phone Number
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__from_phone"
       name="phone"
       onChange={[Function]}
@@ -1339,6 +1353,7 @@ exports[`PlanForm Component renders the UI given type equals 'Car Rental' 1`] = 
       Website
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__from_website"
       name="website"
       onChange={[Function]}
@@ -1354,7 +1369,7 @@ exports[`PlanForm Component renders the UI given type equals 'Car Rental' 1`] = 
     <label
       htmlFor="PlanForm__to-name"
     >
-      Name
+      Store Name
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -1374,6 +1389,7 @@ exports[`PlanForm Component renders the UI given type equals 'Car Rental' 1`] = 
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__to_address"
       name="address"
       onChange={[Function]}
@@ -1387,6 +1403,7 @@ exports[`PlanForm Component renders the UI given type equals 'Car Rental' 1`] = 
       Phone Number
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__to_phone"
       name="phone"
       onChange={[Function]}
@@ -1400,6 +1417,7 @@ exports[`PlanForm Component renders the UI given type equals 'Car Rental' 1`] = 
       Website
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__to_website"
       name="website"
       onChange={[Function]}
@@ -1527,6 +1545,7 @@ exports[`PlanForm Component renders the UI given type equals 'Flight' 1`] = `
       Flight Number
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__name"
       name="name"
       onChange={[Function]}
@@ -1643,7 +1662,7 @@ exports[`PlanForm Component renders the UI given type equals 'Flight' 1`] = `
     <label
       htmlFor="PlanForm__from-name"
     >
-      Name
+      From
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -1663,34 +1682,9 @@ exports[`PlanForm Component renders the UI given type equals 'Flight' 1`] = `
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__from_address"
       name="address"
-      onChange={[Function]}
-      type="text"
-    />
-  </div>
-  <div>
-    <label
-      htmlFor="PlanForm__from_phone"
-    >
-      Phone Number
-    </label>
-    <Input
-      id="PlanForm__from_phone"
-      name="phone"
-      onChange={[Function]}
-      type="text"
-    />
-  </div>
-  <div>
-    <label
-      htmlFor="PlanForm__from_website"
-    >
-      Website
-    </label>
-    <Input
-      id="PlanForm__from_website"
-      name="website"
       onChange={[Function]}
       type="text"
     />
@@ -1707,6 +1701,7 @@ exports[`PlanForm Component renders the UI given type equals 'Flight' 1`] = `
         Terminal
       </label>
       <Input
+        autoComplete="no"
         id="PlanForm__from_terminal"
         name="terminal"
         onChange={[Function]}
@@ -1722,6 +1717,7 @@ exports[`PlanForm Component renders the UI given type equals 'Flight' 1`] = `
         Gate
       </label>
       <Input
+        autoComplete="no"
         id="PlanForm__from_gate"
         name="gate"
         onChange={[Function]}
@@ -1738,7 +1734,7 @@ exports[`PlanForm Component renders the UI given type equals 'Flight' 1`] = `
     <label
       htmlFor="PlanForm__to-name"
     >
-      Name
+      To
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -1758,34 +1754,9 @@ exports[`PlanForm Component renders the UI given type equals 'Flight' 1`] = `
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__to_address"
       name="address"
-      onChange={[Function]}
-      type="text"
-    />
-  </div>
-  <div>
-    <label
-      htmlFor="PlanForm__to_phone"
-    >
-      Phone Number
-    </label>
-    <Input
-      id="PlanForm__to_phone"
-      name="phone"
-      onChange={[Function]}
-      type="text"
-    />
-  </div>
-  <div>
-    <label
-      htmlFor="PlanForm__to_website"
-    >
-      Website
-    </label>
-    <Input
-      id="PlanForm__to_website"
-      name="website"
       onChange={[Function]}
       type="text"
     />
@@ -1802,6 +1773,7 @@ exports[`PlanForm Component renders the UI given type equals 'Flight' 1`] = `
         Terminal
       </label>
       <Input
+        autoComplete="no"
         id="PlanForm__to_terminal"
         name="terminal"
         onChange={[Function]}
@@ -1817,6 +1789,7 @@ exports[`PlanForm Component renders the UI given type equals 'Flight' 1`] = `
         Gate
       </label>
       <Input
+        autoComplete="no"
         id="PlanForm__to_gate"
         name="gate"
         onChange={[Function]}
@@ -1942,7 +1915,7 @@ exports[`PlanForm Component renders the UI given type equals 'Lodging' 1`] = `
     <label
       htmlFor="PlanForm__name"
     >
-      Name
+      Lodging Name
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -2062,6 +2035,7 @@ exports[`PlanForm Component renders the UI given type equals 'Lodging' 1`] = `
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__address"
       name="address"
       onChange={[Function]}
@@ -2075,6 +2049,7 @@ exports[`PlanForm Component renders the UI given type equals 'Lodging' 1`] = `
       Phone Number
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__phone"
       name="phone"
       onChange={[Function]}
@@ -2088,6 +2063,7 @@ exports[`PlanForm Component renders the UI given type equals 'Lodging' 1`] = `
       Website
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__website"
       name="website"
       onChange={[Function]}
@@ -2212,7 +2188,7 @@ exports[`PlanForm Component renders the UI given type equals 'Meeting' 1`] = `
     <label
       htmlFor="PlanForm__name"
     >
-      Name
+      Event Name
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -2332,6 +2308,7 @@ exports[`PlanForm Component renders the UI given type equals 'Meeting' 1`] = `
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__address"
       name="address"
       onChange={[Function]}
@@ -2345,6 +2322,7 @@ exports[`PlanForm Component renders the UI given type equals 'Meeting' 1`] = `
       Phone Number
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__phone"
       name="phone"
       onChange={[Function]}
@@ -2358,6 +2336,7 @@ exports[`PlanForm Component renders the UI given type equals 'Meeting' 1`] = `
       Website
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__website"
       name="website"
       onChange={[Function]}
@@ -2482,7 +2461,7 @@ exports[`PlanForm Component renders the UI given type equals 'Restaurant' 1`] = 
     <label
       htmlFor="PlanForm__name"
     >
-      Name
+      Restaurant
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -2602,6 +2581,7 @@ exports[`PlanForm Component renders the UI given type equals 'Restaurant' 1`] = 
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__address"
       name="address"
       onChange={[Function]}
@@ -2615,6 +2595,7 @@ exports[`PlanForm Component renders the UI given type equals 'Restaurant' 1`] = 
       Phone Number
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__phone"
       name="phone"
       onChange={[Function]}
@@ -2628,6 +2609,7 @@ exports[`PlanForm Component renders the UI given type equals 'Restaurant' 1`] = 
       Website
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__website"
       name="website"
       onChange={[Function]}
@@ -2752,7 +2734,7 @@ exports[`PlanForm Component renders the UI given type equals 'Sightseeing' 1`] =
     <label
       htmlFor="PlanForm__name"
     >
-      Name
+      Spot Name
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -2872,6 +2854,7 @@ exports[`PlanForm Component renders the UI given type equals 'Sightseeing' 1`] =
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__address"
       name="address"
       onChange={[Function]}
@@ -2885,6 +2868,7 @@ exports[`PlanForm Component renders the UI given type equals 'Sightseeing' 1`] =
       Phone Number
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__phone"
       name="phone"
       onChange={[Function]}
@@ -2898,6 +2882,7 @@ exports[`PlanForm Component renders the UI given type equals 'Sightseeing' 1`] =
       Website
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__website"
       name="website"
       onChange={[Function]}
@@ -3025,6 +3010,7 @@ exports[`PlanForm Component renders the UI given type equals 'Transportation' 1`
       Carrier Name
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__name"
       name="name"
       onChange={[Function]}
@@ -3141,7 +3127,7 @@ exports[`PlanForm Component renders the UI given type equals 'Transportation' 1`
     <label
       htmlFor="PlanForm__from-name"
     >
-      Name
+      From
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -3161,34 +3147,9 @@ exports[`PlanForm Component renders the UI given type equals 'Transportation' 1`
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__from_address"
       name="address"
-      onChange={[Function]}
-      type="text"
-    />
-  </div>
-  <div>
-    <label
-      htmlFor="PlanForm__from_phone"
-    >
-      Phone Number
-    </label>
-    <Input
-      id="PlanForm__from_phone"
-      name="phone"
-      onChange={[Function]}
-      type="text"
-    />
-  </div>
-  <div>
-    <label
-      htmlFor="PlanForm__from_website"
-    >
-      Website
-    </label>
-    <Input
-      id="PlanForm__from_website"
-      name="website"
       onChange={[Function]}
       type="text"
     />
@@ -3202,7 +3163,7 @@ exports[`PlanForm Component renders the UI given type equals 'Transportation' 1`
     <label
       htmlFor="PlanForm__to-name"
     >
-      Name
+      To
     </label>
     <Autocomplete
       componentRestrictions={Object {}}
@@ -3222,34 +3183,9 @@ exports[`PlanForm Component renders the UI given type equals 'Transportation' 1`
       Address
     </label>
     <Input
+      autoComplete="no"
       id="PlanForm__to_address"
       name="address"
-      onChange={[Function]}
-      type="text"
-    />
-  </div>
-  <div>
-    <label
-      htmlFor="PlanForm__to_phone"
-    >
-      Phone Number
-    </label>
-    <Input
-      id="PlanForm__to_phone"
-      name="phone"
-      onChange={[Function]}
-      type="text"
-    />
-  </div>
-  <div>
-    <label
-      htmlFor="PlanForm__to_website"
-    >
-      Website
-    </label>
-    <Input
-      id="PlanForm__to_website"
-      name="website"
       onChange={[Function]}
       type="text"
     />
@@ -4152,9 +4088,9 @@ exports[`TripItem Component renders the UI as expected' 1`] = `
     <h4
       className="TripItem__date"
     >
-      May 3
+      May 5
        - 
-      May 3, 2020
+      May 5, 2020
     </h4>
   </div>
 </div>

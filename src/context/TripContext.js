@@ -28,16 +28,28 @@ export class TripProvider extends Component {
 		return Object.keys(trip).length === 0 || trip.id !== Number(trip_id);
 	}
 
-	updateTrip = trip_id => {
+	updateTrip = (trip_id, cb) => {
 		this.clearError();
+		this.clearTrip();
 
-		TripsApiService.getTripById(trip_id)
-			.then(this.setTrip)
-			.catch(this.setError);
+		const p1 = TripsApiService.getTripById(trip_id)
+			.then(trip => {
+				this.setTrip(trip);
+				return trip;
+			})
+			.catch(res => this.setError(res.error));
 
-		TripsApiService.getTripPlans(trip_id)
-			.then(this.setPlanList)
-			.catch(this.setError);
+		const p2 = TripsApiService.getTripPlans(trip_id)
+			.then(plans => {
+				this.setPlanList(plans);
+				return plans;
+			})
+			.catch(res => this.setError(res.error));
+
+		Promise.all([p1, p2])
+			.then(res => 
+				(!!cb) && cb()
+			);
 	}
 
 	setTrip = trip => {

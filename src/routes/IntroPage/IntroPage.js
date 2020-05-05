@@ -72,7 +72,7 @@ export default class IntroPage extends Component {
 			<>
 				<section className='IntroPage'>
 					<div className='IntroPage__content-wide'>
-						<h1>Create itineraries can be a breeze.</h1>
+						<h1>Creating itineraries can be a breeze.</h1>
 						<img src={tlp} alt='Trip list page screenshot' />
 						<h1>Easily managed. Smartly displayed.</h1>
 						<img src={tp} alt='Trip page screenshot' />
@@ -81,7 +81,7 @@ export default class IntroPage extends Component {
 						{this.renderExploreBtn()}
 					</div>
 					<div className='IntroPage__content-narrow'>
-						<h2>Create, manage and display itineraries like a breeze.</h2>
+						<h1>Create, manage and display itineraries like a breeze.</h1>
 						{this.renderExploreBtn()}
 					</div>
 				</section>

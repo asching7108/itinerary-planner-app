@@ -26,6 +26,10 @@ This is the client-side code for the application with React, Node.js and google 
 - Start application `npm start`
 - Run tests: `npm test`
 
+## Deploy
+
+Default deploying to Zeit. Replace name in `public/now.json` with your app name. When ready for deployment, run `npm run deploy`.
+
 ## Features
 
 * Use authentication system

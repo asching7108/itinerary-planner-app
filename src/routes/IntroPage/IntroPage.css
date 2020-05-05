@@ -46,12 +46,19 @@
 	margin-top: 15px;
 }
 
-.IntroPage__content-narrow h2,
+.IntroPage__content-narrow h1,
 .IntroPage__content-narrow button,
 .IntroPage__content-narrow div {
 	position: relative;
 	top: -10vh;
 	margin: 15px auto;
+}
+
+.IntroPage__content-narrow h1 {
+	font-size: 1.5em;
+}
+
+.IntroPage__content-narrow button {
 	font-size: 1.1em;
 }
 
@@ -124,7 +131,6 @@ footer a:hover {
 		height: calc(100vh - 95px);
 	}
 
-	.IntroPage__content-narrow h2,
 	.IntroPage__content-narrow button {
 		font-size: 1.2em;
 	}

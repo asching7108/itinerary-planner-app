@@ -5,6 +5,11 @@ import TripForm from '../components/TripForm/TripForm';
 export default class EditTripPage extends Component {
 	static defaultProps = { match: { params: '' } };
 	
+	constructor(props) {
+		super(props);
+		this.state = { error: null };
+	}
+
 	static contextType = TripContext;
 
 	componentDidMount() {
@@ -15,25 +20,30 @@ export default class EditTripPage extends Component {
 	}
 
 	componentDidUpdate() {
-		if (this.context.error) {
-			this.props.history.push('/page-not-found');
+		if (!this.state.error && this.context.error) {
+			this.setState({ error: this.context.error });
 		}
 	}
 
 	handleUpdateTripSuccess = trip => {
-		const trip_id = this.props.match.params.trip_id;
-		this.context.updateTrip(trip_id);
-
-		const { history } = this.props;
-		history.push(`/trip/${trip_id}`);
+		const { match: { params }, history } = this.props;
+		this.context.updateTrip(params.trip_id);
+		history.push(`/trip/${params.trip_id}`);
 	}
 
 	handleClickOnCancel = () => {
-		this.props.history.goBack();
+		const { match: { params }, history } = this.props;
+		history.push(`/trip/${params.trip_id}`);
 	}
 	
 	render() {
 		const { trip } = this.context;
+		const { error } = this.state;
+
+		if (error) {
+			return <section><h2>{error}</h2></section>;
+		}
+
 		return (
 			<section className='EditTripPage'>
 				<h2>Edit trip</h2>

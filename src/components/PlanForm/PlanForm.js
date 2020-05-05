@@ -4,17 +4,20 @@ import Autocomplete from '../Autocomplete/Autocomplete';
 import { formatDate, toDate, Button, Select, Input, Textarea, CFlatpickr } from '../Utils/Utils';
 import './PlanForm.css';
 
-const TYPES = [
-	'Flight',
-	'Lodging',
-	'Car Rental',
-	'Restaurant',
-	'Activity',
-	'Sightseeing',
-	'Meeting',
-	'Transportation'
-];
+/* keys: plan_types */
+/* values: plan_name label text */
+const TYPES = {
+	Flight: 'Flight Number',
+	Lodging: 'Lodging Name',
+	'Car Rental': 'Rental Agency',
+	Restaurant: 'Restaurant',
+	Activity: 'Event Name',
+	Sightseeing: 'Spot Name',
+	Meeting: 'Event Name',
+	Transportation: 'Carrier Name'
+};
 
+/* renders from and to places inputs */
 const TYPES_FOR_DETAILS = [
 	'Flight',
 	'Car Rental',
@@ -373,7 +376,7 @@ export default class PlanForm extends Component {
 		const { plan_type } = this.state;
 		const elements = [];
 
-		TYPES.forEach(t => {
+		Object.keys(TYPES).forEach(t => {
 			if (t === plan_type) {
 				elements.push(<option key={t} value={t} selected>{t}</option>);
 			}
@@ -399,15 +402,8 @@ export default class PlanForm extends Component {
 
 	renderName() {
 		const { plan_type, name, viewport } = this.state;
-		let nameText = '', nameInput = '';
 
-		switch(plan_type) {
-			case 'Flight': nameText = 'Flight Number'; break;
-			case 'Car Rental': nameText = 'Rental Agency'; break;
-			case 'Transportation': nameText = 'Carrier Name'; break;
-			default: nameText = 'Name';
-		}
-
+		let nameInput = '';
 		if (TYPES_FOR_DETAILS.includes(plan_type)) {
 			nameInput = (
 				<Input
@@ -417,6 +413,7 @@ export default class PlanForm extends Component {
 					required
 					value={name}
 					onChange={e => this.inputChanged('name', e.target.value)}
+					autoComplete='no'
 				/>
 			);
 		}
@@ -435,7 +432,7 @@ export default class PlanForm extends Component {
 
 		return (
 			<div>
-				<label htmlFor='PlanForm__name'>{nameText}</label>
+				<label htmlFor='PlanForm__name'>{TYPES[plan_type]}</label>
 				{nameInput}
 			</div>
 		);
@@ -534,7 +531,9 @@ export default class PlanForm extends Component {
 			<>
 				<span className='PlanForm__subtitle'>{fromText[plan_type]}</span>
 				<div>
-					<label htmlFor='PlanForm__from-name'>Name</label>
+					<label htmlFor='PlanForm__from-name'>
+						{plan_type === 'Car Rental' ? 'Store Name' : 'From'}
+					</label>
 					<Autocomplete
 						id='PlanForm__from-name'
 						value={from_name}
@@ -544,11 +543,16 @@ export default class PlanForm extends Component {
 						onSelect={this.fromPlaceChanged}
 					/>
 				</div>
-				{this.renderPlaceDetails('from_')}
+				{plan_type === 'Car Rental'
+					? this.renderPlaceDetails('from_')
+					: this.renderTransportationDetails('from_')
+				}
 				{plan_type === 'Flight' && this.renderFlightDetails('from_')}
 				<span className='PlanForm__subtitle'>{toText[plan_type]}</span>
 				<div>
-					<label htmlFor='PlanForm__to-name'>Name</label>
+					<label htmlFor='PlanForm__to-name'>
+						{plan_type === 'Car Rental' ? 'Store Name' : 'To'}
+					</label>
 					<Autocomplete
 						id='PlanForm__to-name'
 						value={to_name}
@@ -558,7 +562,10 @@ export default class PlanForm extends Component {
 						onSelect={this.toPlaceChanged}
 					/>
 				</div>
-				{this.renderPlaceDetails('to_')}
+				{plan_type === 'Car Rental'
+					? this.renderPlaceDetails('to_')
+					: this.renderTransportationDetails('to_')
+				}
 				{plan_type === 'Flight' && this.renderFlightDetails('to_')}
 			</>
 		);
@@ -575,6 +582,7 @@ export default class PlanForm extends Component {
 						id={`PlanForm__${prefix}address`}
 						value={this.state[`${prefix}formatted_address`]}
 						onChange={e => this.inputChanged(`${prefix}formatted_address`, e.target.value)}
+						autoComplete='no'
 					/>
 				</div>
 				<div>
@@ -585,6 +593,7 @@ export default class PlanForm extends Component {
 						id={`PlanForm__${prefix}phone`}
 						value={this.state[`${prefix}international_phone_number`]}
 						onChange={e => this.inputChanged(`${prefix}international_phone_number`, e.target.value)}
+						autoComplete='no'
 					/>
 				</div>
 				<div>
@@ -595,9 +604,26 @@ export default class PlanForm extends Component {
 						id={`PlanForm__${prefix}website`}
 						value={this.state[`${prefix}website`]}
 						onChange={e => this.inputChanged(`${prefix}website`, e.target.value)}
+						autoComplete='no'
 					/>
 				</div>
 			</>
+		);
+	}
+
+	renderTransportationDetails(prefix) {
+		return (
+			<div>
+				<label htmlFor={`PlanForm__${prefix}address`}>Address</label>
+				<Input
+					name='address'
+					type='text'
+					id={`PlanForm__${prefix}address`}
+					value={this.state[`${prefix}formatted_address`]}
+					onChange={e => this.inputChanged(`${prefix}formatted_address`, e.target.value)}
+					autoComplete='no'
+				/>
+			</div>
 		);
 	}
 
@@ -612,6 +638,7 @@ export default class PlanForm extends Component {
 						id={`PlanForm__${prefix}terminal`}
 						value={this.state[`${prefix}terminal`]}
 						onChange={e => this.inputChanged(`${prefix}terminal`, e.target.value)}
+						autoComplete='no'
 					/>
 				</div>
 				<div className='PlanForm__gate'>
@@ -622,6 +649,7 @@ export default class PlanForm extends Component {
 						id={`PlanForm__${prefix}gate`}
 						value={this.state[`${prefix}gate`]}
 						onChange={e => this.inputChanged(`${prefix}gate`, e.target.value)}
+						autoComplete='no'
 					/>
 				</div>
 			</div>
