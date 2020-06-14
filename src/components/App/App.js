@@ -19,6 +19,7 @@ import NotFoundPage from '../../routes/NotFoundPage';
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import IdleService from '../../services/idle-service';
+import TripsApiService from '../../services/trips-api-service';
 import config from '../../config';
 import './App.css';
 
@@ -41,6 +42,12 @@ class App extends Component {
 	};
 	
 	componentDidMount() {
+		// wakes the server
+		TripsApiService.pingServer()
+			.catch(error => {
+				console.error(error);
+			});
+
 		IdleService.setIdleCallback(this.logoutFromIdle);
 
 		if (TokenService.hasAuthToken()) {

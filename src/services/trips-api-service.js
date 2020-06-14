@@ -2,6 +2,14 @@ import config from '../config';
 import TokenService from './token-service';
 
 const TripsApiService = {
+	pingServer() {
+		return fetch(`${config.API_BASE_URL}`)
+			.then(res =>
+				(!res.ok)
+					? res.json().then(e => Promise.reject(e))
+					: res.json()
+			);
+	},
 	getTripsByUser() {
 		return fetch(`${config.API_BASE_URL}/trips`, {
 			headers: {
