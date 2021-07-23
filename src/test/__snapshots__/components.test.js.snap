@@ -4088,9 +4088,9 @@ exports[`TripItem Component renders the UI as expected' 1`] = `
     <h4
       className="TripItem__date"
     >
-      May 5
+      Jun 14
        - 
-      May 5, 2020
+      Jun 14, 2020
     </h4>
   </div>
 </div>

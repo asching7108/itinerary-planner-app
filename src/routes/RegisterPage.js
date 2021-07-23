@@ -6,9 +6,8 @@ export default class RegisterPage extends Component {
 	static contextType = TripListContext;
 
 	handleRegisterSuccess = () => {
-		const { history } = this.props;
 		this.context.setAuthState(true);
-		history.push('/');
+		this.props.history.push('/');
 	}
 
 	handleClickOnCancel = () => {
@@ -18,7 +17,7 @@ export default class RegisterPage extends Component {
 	render() {
 		return (
 			<section className='RegisterPage'>
-				<h2>Create an acount</h2>
+				<h2>Create an account</h2>
 				<RegisterForm
 					onRegisterSuccess={this.handleRegisterSuccess}
 					onClickOnCancel={this.handleClickOnCancel}
